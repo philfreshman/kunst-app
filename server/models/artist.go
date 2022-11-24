@@ -1,0 +1,14 @@
+package models
+
+type Artist struct {
+	Id   int    `db:"Id"`
+	Name string `db:"Title"`
+}
+
+type IArtistStore interface {
+	Artist(id int) (Artist, error)
+	Artists() ([]Artist, error)
+	CreateArtist(a *Artist) error
+	UpdateArtist(a *Artist) error
+	DeleteThread(id int) error
+}

@@ -23,29 +23,38 @@ CREATE TABLE PeaceCollections (
 CREATE TABLE Offers (
    Id int NOT NULL AUTO_INCREMENT,
    Title varchar(255),
-   PeaceCollectionId int,
-   PRIMARY KEY (Id),
-   FOREIGN KEY (PeaceCollectionId) references PeaceCollections(Id)
+   OfferDate date,
+   Text1 varchar(255),
+   Text2 varchar(255),
+   PRIMARY KEY (Id)
 );
 
 CREATE TABLE Invoices (
     Id int NOT NULL AUTO_INCREMENT,
-    Title varchar(255),
-    PeaceCollectionId int,
-    PRIMARY KEY (Id),
-    FOREIGN KEY (PeaceCollectionId) references PeaceCollections(Id)
+    InvoiceDate date,
+    InvoiceNr varchar(255),
+    Description varchar(255),
+    Text1 varchar(255),
+    Text2 varchar(255),
+    PRIMARY KEY (Id)
 );
 
 
 CREATE TABLE Orders (
     Id int AUTO_INCREMENT,
-    Title varchar(255),
-    Description varchar(255),
-    PeaceCollectionId int,
+    Sender varchar(255),
+    Address1 varchar(255),
+    Address2 varchar(255),
+    Address3 varchar(255),
+    ProductionName varchar(255),
+    StartDate date,
+    EndDate date,
+    Tax float,
     OfferId int,
     InvoiceId int,
+    PeaceCollectionId int,
     PRIMARY KEY (Id),
-    FOREIGN KEY (PeaceCollectionId) references PeaceCollections (Id)  ON DELETE CASCADE,
     FOREIGN KEY (OfferId) references Offers (Id)  ON DELETE CASCADE,
-FOREIGN KEY (InvoiceId) references Invoices (Id)  ON DELETE CASCADE
+    FOREIGN KEY (InvoiceId) references Invoices (Id)  ON DELETE CASCADE,
+    FOREIGN KEY (PeaceCollectionId) references PeaceCollections (Id)  ON DELETE CASCADE
 );

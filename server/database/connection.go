@@ -1,29 +1,30 @@
 package database
 
 import (
-	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	"log"
+	"github.com/jmoiron/sqlx"
+	"server/util"
 	"time"
 )
 
-var DB *sql.DB
+var DB *sqlx.DB
 
-const (
-	dbDriver = "mysql"
-	dbSource = "admin:pass@tcp(127.0.0.1:3306)/KunstApp?charset=utf8mb4&parseTime=True&loc=Local"
-)
-
-func Connect() {
-	db, err := sql.Open("mysql", dbSource)
+func Connect(config util.Config) (*sqlx.DB, error) {
+	db, err := sqlx.Open(config.DBDriver, config.DBSource)
 	if err != nil {
-		log.Fatal("Cannot connect do db", err)
+		return nil, fmt.Errorf("database arguments not valid: %w", err)
 	}
 
-	DB = db
+	if err := db.Ping(); err != nil {
+		return nil, fmt.Errorf("establishing connection failed: %w", err)
+	}
 
 	db.SetConnMaxLifetime(time.Minute * 3)
 	db.SetMaxOpenConns(10)
 	db.SetMaxIdleConns(10)
 
+	DB = db
+
+	return db, nil
 }
