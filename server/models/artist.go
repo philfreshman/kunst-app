@@ -1,11 +1,12 @@
 package models
 
 type Artist struct {
-	Id   int    `db:"Id"`
-	Name string `db:"Title"`
+	Id         *int    `db:"Id"`
+	Name       *string `db:"Name"`
+	IsArchived *bool   `db:"IsArchived"`
 }
 
-type IArtistStore interface {
+type ArtistStore interface {
 	Artist(id int) (Artist, error)
 	Artists() ([]Artist, error)
 	CreateArtist(a *Artist) error

@@ -7,10 +7,12 @@ import (
 
 func CreateStore(db *sqlx.DB) *Store {
 	return &Store{
-		OrderStore: &OrderStore{DB: db},
+		OrderStore:  &OrderStore{DB: db},
+		ArtistStore: &ArtistStore{DB: db},
 	}
 }
 
 type Store struct {
 	*OrderStore
+	*ArtistStore
 }

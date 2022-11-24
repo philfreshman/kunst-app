@@ -32,7 +32,7 @@ func (h *Handler) ThreadsList() http.HandlerFunc {
 	}
 	tmpl := template.Must(template.New("").Parse(""))
 	return func(w http.ResponseWriter, r *http.Request) {
-		tt, err := h.store.Orders()
+		tt, err := h.store.AllOrders()
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

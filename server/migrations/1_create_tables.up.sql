@@ -1,17 +1,22 @@
 CREATE TABLE Artists (
     Id int NOT NULL AUTO_INCREMENT,
     Name varchar(255),
+    IsArchived bool default 0,
     PRIMARY KEY (Id)
 );
 
 CREATE TABLE Peaces (
     Id int NOT NULL AUTO_INCREMENT,
+    ArticleId varchar(255),
+    ImgUrl varchar(255),
     Title varchar(255),
-    Description varchar(255),
-    IsAvailable bool,
+    Dimensions varchar(255),
+    Worth float,
+    IsAvailable bool default 1,
+    IsArchived bool default 0,
     ArtistId int NOT NULL,
     PRIMARY KEY (Id),
-    FOREIGN KEY (ArtistId) references Artists (Id)  ON DELETE CASCADE
+    FOREIGN KEY (ArtistId) references Artists (Id)
 );
 
 CREATE TABLE PeaceCollections (
@@ -50,6 +55,7 @@ CREATE TABLE Orders (
     StartDate date,
     EndDate date,
     Tax float,
+    IsArchived tinyint DEFAULT 0,
     OfferId int,
     InvoiceId int,
     PeaceCollectionId int,
