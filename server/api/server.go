@@ -21,8 +21,11 @@ func NewServer(config util.Config, db *sqlx.DB) (*Server, error) {
 		config: config,
 		store:  *store.CreateStore(db),
 	}
+	app := gin.Default()
 
-	server.setupRouter()
+	server.setupRouter(app)
+	app.Use(corsRules())
+
 	return server, nil
 }
 
@@ -32,10 +35,8 @@ func (server *Server) Start(config util.Config) error {
 }
 
 // setupRouter defines the use of handlers for the api endpoints
-func (server *Server) setupRouter() {
-	router := gin.Default()
-	router.Use(corsRules())
-	api := router.Group("/api", middleware.Headers())
+func (server *Server) setupRouter(app *gin.Engine) {
+	api := app.Group("/api", middleware.Headers())
 
 	orders := api.Group("/order")
 	orders.GET("/", server.getOrders)
@@ -44,22 +45,22 @@ func (server *Server) setupRouter() {
 	orders.PUT("/", server.putOrder)
 	orders.DELETE("/:id", server.deleteOrder)
 
-	artists := api.Group("/artist")
+	artists := api.Group("/artist", middleware.Headers())
 	artists.GET("/", server.getArtists)
 	artists.GET("/:id", server.getArtistById)
 	artists.POST("/", server.postArtist)
 	artists.PUT("/", server.putArtist)
 	artists.DELETE("/:id", server.deleteArtist)
 
-	server.router = router
+	server.router = app
 }
 
 // corsRules defines the incoming HTTP request rules
 func corsRules() gin.HandlerFunc {
 	return cors.New(cors.Config{
-		AllowWildcard:   true,
-		AllowAllOrigins: true,
-		//AllowOrigins:     []string{"http://localhost:9090"},
+		AllowWildcard: true,
+		//AllowAllOrigins:  true,
+		AllowOrigins:     []string{"http://localhost:3000"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"},
 		AllowHeaders:     []string{"Authorization", "Origin", "Access-Control-Allow-Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
 		ExposeHeaders:    []string{"Access-Control-Allow-Origin"},

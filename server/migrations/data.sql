@@ -8,7 +8,7 @@ VALUES
     (6, 'D.Haupt', 0),
     (7, 'D.Stern', 0),
     (8, 'Gezett', 0),
-    (9, 'H. Klick', 0),
+    (9, 'H. Klock', 0),
     (10, 'I. Schmid', 0),
     (11, 'L. Valenzuela', 0),
     (12, 'P. Brändle', 0),
@@ -18,7 +18,21 @@ VALUES
     (16, 'W. Heinrich', 0);
 
 
-INSERT INTO Peaces (Id, Articleid, ImgUrl, Title, Dimensions, Worth, IsAvailable, IsArchived, ArtistId)
+INSERT INTO Peaces (Id, Articleid, Title, Worth, ImgUrl, Dimensions, IsAvailable, IsArchived, ArtistId)
 VALUES
-    (1, 'ANFE017', 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/02/ANFE017_Hyde-Park-800x587.jpg', 'Hyde Park', 'B32 x H24 cm', 3900.12,  true, false, 1),
-    (0000, 'code', 'url', 'xxxx', 'xxxx', 0000,  true, false, 2)
+#     A.Fehrenberg
+    (null, 'ANFE017','Hyde Park', 3900.12, null, 'B32 x H24 cm', true, false, 1),
+
+#     Helmut Klock
+    (null, 'HEKL001', 'Ort', 1400, null, null, true,  false, 9),
+    (null, 'HEKL002', 'Zeit', 1800, null, null, true,  false, 9),
+    (null, 'HEKL003', 'R', 1800, null, null, true,  false, 9),
+    (null, 'HEKL006', 'Up', 1900, null, null, true,  false, 9),
+    (null, 'HEKL007', 'Tango Flowers', 1900, null, null, true,  false, 9),
+    (null, 'HEKL008', 'Die drei Möglichkeiten', 1200, null, null, true,  false, 9),
+    (null, 'HEKL009', 'I Fiorii I', 800, null, null, true,  false, 9),
+    (null, 'HEKL0010', 'I Fiorii II', 800, null, null, true,  false, 9),
+    (null, 'HEKL0011', 'I Fiorii III', 800, null, null, true,  false, 9),
+    (null, 'HEKL0012', 'T', 1000, null, null, true,  false, 9),
+    (null, 'HEKL0013', 'Ort mit langer Muschel', 1500, null, null, true,  false, 9),
+    (null, 'HEKL0014', 'Villla R', 2000, null, null, true,  false, 9)

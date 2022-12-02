@@ -1,0 +1,29 @@
+.el-header{
+  --el-header-height: 70px !important;
+  --el-header-padding: 0 !important;
+
+  #logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: inherit;
+  }
+}
+
+.el-menu {
+  height: inherit;
+
+}
+.el-menu--horizontal{
+  background-color: #1c3452 !important;
+}
+
+
+.el-aside{
+  //background-color: lightgrey;
+}
+.el-main{
+  //background-color: yellow;
+}
+
+

@@ -13,17 +13,15 @@ func (server *Server) getArtists(ctx *gin.Context) {
 	if err != nil {
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"data":   data,
-		"status": "success",
-	})
+	ctx.JSON(http.StatusOK, data)
+
 }
 
 // getArtistById executes an SELECT * ... WHERE ID=id
 func (server *Server) getArtistById(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		ctx.JSON(http.StatusOK, gin.H{
+		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"status": "error",
 		})
 		return
@@ -33,10 +31,8 @@ func (server *Server) getArtistById(ctx *gin.Context) {
 	if err != nil {
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"data":   data,
-		"status": "success",
-	})
+	ctx.JSON(http.StatusOK, data)
+
 }
 
 // postArtist executes an INSERT statement
