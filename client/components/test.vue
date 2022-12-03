@@ -1,10 +1,10 @@
 <template>
-   <PeacesTable/>
+
 </template>
 
 <script>
 export default {
-   name: "Peaces"
+   name: "test"
 }
 </script>
 

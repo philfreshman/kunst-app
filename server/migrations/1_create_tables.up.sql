@@ -8,12 +8,12 @@ CREATE TABLE Artists (
 CREATE TABLE Peaces (
     Id int NOT NULL AUTO_INCREMENT,
     ArticleId varchar(255),
-    ImgUrl varchar(255),
     Title varchar(255),
     Dimensions varchar(255),
     Worth float,
     IsAvailable bool default 1,
     IsArchived bool default 0,
+    ImgUrl varchar(255),
     ArtistId int NOT NULL,
     PRIMARY KEY (Id),
     FOREIGN KEY (ArtistId) references Artists (Id)

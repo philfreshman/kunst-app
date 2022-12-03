@@ -57,7 +57,7 @@ func (store ArtistStore) PutArtist(artist models.Artist) error {
 
 func (store ArtistStore) DeleteArtist(id int) error {
 	if _, err := store.Exec(`UPDATE Artists SET IsArchived=true WHERE Id = ?`, id); err != nil {
-		return fmt.Errorf("error deleting thread: %w", err)
+		return fmt.Errorf("error deleting (archiving) artist: %w", err)
 	}
 	return nil
 }

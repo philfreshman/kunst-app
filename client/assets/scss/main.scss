@@ -22,6 +22,13 @@ html.dark {
 
 body {
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  height: 100vh;
 
 }
 
+#__nuxt, .el-container{
+  height: 100%;
+}
+
+.el-main{
+}

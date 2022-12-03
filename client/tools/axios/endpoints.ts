@@ -1,8 +1,11 @@
 import Axios from "./axios";
 
 export default {
-  Artist() {
+  Artists() {
     return Axios().get("/api/artist/");
+  },
+  Peaces() {
+    return Axios().get("/api/peace/");
   },
   // CheckPassword(data: any) {
   //   const formData = new FormData();

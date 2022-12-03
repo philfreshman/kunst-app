@@ -8,10 +8,9 @@ interface Artist {
    Name: string
    IsArchived: boolean
 }
-const response = Api.Artist()
-
-let tableData = ref()
-let isLoading = ref(true)
+const response = Api.Artists()
+const tableData = ref()
+const isLoading = ref(true)
 const singleTableRef = ref<InstanceType<typeof ElTable>>()
 
 

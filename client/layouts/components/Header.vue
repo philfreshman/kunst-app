@@ -29,8 +29,7 @@ import ToggleButton from "~/layouts/components/ToggleButton.vue";
        mode="horizontal"
        :ellipsis="false"
    >
-<!--      <div class="flex-grow" />-->
-      <img id="logo" src="~/assets/img/kunstfuerfilm_logo_shadow.svg" alt="kff"/>
+      <a href="https://element-plus.org/en-US/component/button.html" target="_blank"><img id="logo" src="~/assets/img/kunstfuerfilm_logo_shadow.svg" alt="kff"/></a>
 
       <el-sub-menu index="1">
          <template #title>Menu</template>

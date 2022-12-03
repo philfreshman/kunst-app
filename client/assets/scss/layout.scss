@@ -2,11 +2,16 @@
   --el-header-height: 70px !important;
   --el-header-padding: 0 !important;
 
-  #logo{
+  a{
     display: block;
     margin-left: auto;
     margin-right: auto;
     height: inherit;
+  }
+
+  #logo{
+    height: inherit;
+    padding: 5px;
   }
 }
 

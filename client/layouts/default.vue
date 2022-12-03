@@ -17,7 +17,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 </script>
 
 <template>
-   <div class="common-layout">
+<!--   <div class="common-layout">-->
       <el-container>
          <el-header>
             <Header/>
@@ -29,7 +29,7 @@ const handleClose = (key: string, keyPath: string[]) => {
             <el-main> <slot /></el-main>
          </el-container>
       </el-container>
-   </div>
+<!--   </div>-->
 </template>
 
 

@@ -76,7 +76,7 @@ func (store OrderStore) PutOrder(order models.Order) error {
 		order.Id)
 
 	if err != nil {
-		return fmt.Errorf("error creating order: %w", err)
+		return fmt.Errorf("error putting order: %w", err)
 	}
 
 	return nil
@@ -84,7 +84,7 @@ func (store OrderStore) PutOrder(order models.Order) error {
 
 func (store OrderStore) DeleteOrder(id int) error {
 	if _, err := store.Exec(`UPDATE Orders SET IsArchived=true WHERE Id = ?`, id); err != nil {
-		return fmt.Errorf("error deleting thread: %w", err)
+		return fmt.Errorf("error deleting (archiving) order: %w", err)
 	}
 	return nil
 }

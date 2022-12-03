@@ -45,12 +45,19 @@ func (server *Server) setupRouter(app *gin.Engine) {
 	orders.PUT("/", server.putOrder)
 	orders.DELETE("/:id", server.deleteOrder)
 
-	artists := api.Group("/artist", middleware.Headers())
+	artists := api.Group("/artist")
 	artists.GET("/", server.getArtists)
 	artists.GET("/:id", server.getArtistById)
 	artists.POST("/", server.postArtist)
 	artists.PUT("/", server.putArtist)
 	artists.DELETE("/:id", server.deleteArtist)
+
+	peaces := api.Group("/peace")
+	peaces.GET("/", server.getPeaces)
+	peaces.GET("/:id", server.getPeaceById)
+	peaces.POST("/", server.postPeace)
+	peaces.PUT("/", server.putPeace)
+	peaces.DELETE("/:id", server.deletePeace)
 
 	server.router = app
 }
@@ -60,7 +67,7 @@ func corsRules() gin.HandlerFunc {
 	return cors.New(cors.Config{
 		AllowWildcard: true,
 		//AllowAllOrigins:  true,
-		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowOrigins:     []string{"http://localhost:9000"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"},
 		AllowHeaders:     []string{"Authorization", "Origin", "Access-Control-Allow-Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
 		ExposeHeaders:    []string{"Access-Control-Allow-Origin"},
