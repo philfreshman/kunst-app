@@ -1,1 +1,4 @@
-# KunstApp
+# kunst-app
+
+
+## 🚧 work in progress
