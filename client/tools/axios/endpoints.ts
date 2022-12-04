@@ -1,12 +1,24 @@
 import Axios from "./axios";
 
 export default {
-  Artists() {
+
+  // Artist
+  GetArtists() {
     return Axios().get("/api/artist/");
   },
-  Peaces() {
+  GetArtist(id: number) {
+    return Axios().get(`/api/artist/${id}`);
+  },
+
+  // Peace
+  GetPeaces() {
     return Axios().get("/api/peace/");
   },
+  GetPeace(id: number) {
+    return Axios().get(`/api/peace/${id}`);
+  },
+
+
   // CheckPassword(data: any) {
   //   const formData = new FormData();
   //   formData.append("password", data);

@@ -2,10 +2,6 @@ package models
 
 import "time"
 
-// Rechnung
-// Rechnung
-// Rechnung
-
 type Invoice struct {
 	Id          int       `db:"Id"`
 	InvoiceDate time.Time `db:"InvoiceDate"`

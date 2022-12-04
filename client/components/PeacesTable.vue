@@ -2,7 +2,7 @@
 import {onMounted, ref} from "vue";
 import Api from "~/tools/axios";
 
-const response = Api.Peaces()
+const response = Api.GetPeaces()
 const tableData = ref()
 const isLoading = ref(true)
 
@@ -18,10 +18,17 @@ onMounted( async () => {
 
 <template>
    <div class="test">
-      <el-table :data="tableData" height="100%" width="100%" >
-         <el-table-column prop="date" label="Date" width="180" />
-         <el-table-column prop="name" label="Name" width="180" />
-         <el-table-column prop="address" label="Address" />
+      <el-table :data="tableData" height="100%" width="100%" sort-by="ArtistId">
+         <el-table-column type="index" width="50" />
+         <el-table-column prop="ArticleId" label="ArticleId" />
+         <el-table-column prop="Title" label="Title" width="180" />
+         <el-table-column prop="Width" label="Width" width="180" />
+         <el-table-column prop="Height" label="Height" width="180" />
+         <el-table-column prop="Worth" label="Price" />
+         <el-table-column prop="IsAvailable" label="IsAvailable" />
+         <el-table-column prop="IsArchived" label="IsArchived" />
+<!--         <el-table-column prop="ImgUrl" label="ImgUrl"/>-->
+         <el-table-column prop="ArtistId" label="ArtistId" />
       </el-table>
    </div>
 </template>

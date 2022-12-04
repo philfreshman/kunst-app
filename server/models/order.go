@@ -4,10 +4,6 @@ import (
 	"time"
 )
 
-// Bestellung
-// Bestellung
-// Bestellung
-
 type Order struct {
 	Id             *int       `db:"Id"`
 	Sender         *string    `db:"Sender"`
@@ -24,12 +20,4 @@ type Order struct {
 	OfferId           *int `db:"OfferId"`
 	InvoiceId         *int `db:"InvoiceId"`
 	PeaceCollectionId *int `db:"PeaceCollectionId"`
-}
-
-type OrderStore interface {
-	Order(id int) (Artist, error)
-	Orders() ([]Artist, error)
-	CreateOrder(a *Artist) error
-	UpdateOrder(a *Artist) error
-	DeleteOrder(id int) error
 }

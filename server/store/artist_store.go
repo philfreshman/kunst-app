@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"server/models"
-	"time"
 )
 
 func (store ArtistStore) Artists() ([]models.Artist, error) {
@@ -13,7 +12,6 @@ func (store ArtistStore) Artists() ([]models.Artist, error) {
 	if err := store.Select(&artist, `Select * FROM Artists`); err != nil {
 		return []models.Artist{}, fmt.Errorf("error getting orders: %w", err)
 	}
-	time.Sleep(1 * time.Second)
 	return artist, nil
 }
 

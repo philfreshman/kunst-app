@@ -28,7 +28,8 @@ func (store PeaceStore) CreatePeace(order models.Peace) error {
 		nil,
 		order.ArticleId,
 		order.Title,
-		order.Dimensions,
+		order.Width,
+		order.Height,
 		order.Worth,
 		order.IsAvailable,
 		order.IsArchived,
@@ -45,8 +46,8 @@ func (store PeaceStore) PutPeace(order models.Peace) error {
 	_, err := store.Exec(`UPDATE Peaces SET 
 		ArticleId=?,
 		Title=?,
-		Dimensions=?,
-		Worth=?,
+		Width=?,
+		Height=?,
 		IsAvailable=?,
 		IsArchived=?,
 		ImgUrl=?,
@@ -54,11 +55,13 @@ func (store PeaceStore) PutPeace(order models.Peace) error {
 		WHERE Id=?`,
 		order.ArticleId,
 		order.Title,
-		order.Dimensions,
+		order.Width,
+		order.Height,
 		order.Worth,
 		order.IsAvailable,
 		order.IsArchived,
 		order.ImgUrl,
+		order.ArtistId,
 		order.Id)
 
 	if err != nil {

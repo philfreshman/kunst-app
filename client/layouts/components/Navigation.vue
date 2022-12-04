@@ -3,41 +3,57 @@ import {
    Document,
    Menu as IconMenu,
    Setting,
+     Location
 } from '@element-plus/icons-vue'
 import {ref} from "vue";
 
-const navigationIndex = ref()
-const path = location.pathname.split('/')[1].toString();
-const savedIndex = sessionStorage.getItem("navigation-selected")
-const isIndexSet = savedIndex != null
-const isPathEmpty = path === ""
-
-
-// path to index mapping
-const routes = new Map([
-   ["artists", "2"],
-   ["peaces", "3"],
-   ["orders", "4"],
-   ["offers", "5"],
-   ["invoices", "6"],
-   ["settings", "7"]
-])
-
-
-if(!isPathEmpty){
-   navigationIndex.value = routes.get(path.toLowerCase())
-} else{
-   navigationIndex.value = "1"
-}
-
-if (isIndexSet){
-   navigationIndex.value = savedIndex.toString()
-}
-
-const handleSelect = (key: string) => {
-   sessionStorage.setItem("navigation-selected", key)
-   navigationIndex.value = key
-}
+// const navigationIndex = ref()
+// const pathLvl1 = location.pathname.split('/')[1].toString();
+// const pathLvl2 = location.pathname.split('/')[2].toString();
+// const storedIndex = sessionStorage.getItem("navigation-selected")
+// const isIndexSet = storedIndex != null
+// const isPathEmpty = pathLvl1 === ""
+//
+//
+//
+// // path to index mapping
+// const routes = new Map([
+//    ["artists", "2"],
+//    ["peaces", "3"],
+//    ["orders", "4"],
+//    ["offers", "5"],
+//    ["invoices", "6"],
+//    ["settings", "7"]
+// ])
+//
+// const routes2 = {
+//    artists: "2",
+//    peaces: "3",
+//    orders: { new: "4.1", all: "4.2" },
+//    offers: "5",
+//    invoices: "6",
+//    settings: "7"
+// };
+//
+//
+//
+// // const d = routes2[`${a}.${c}`]
+//
+//
+// if(!isPathEmpty){
+//    navigationIndex.value = routes.get(pathLvl1.toLowerCase())
+// } else{
+//    navigationIndex.value = "1"
+// }
+//
+// if (isIndexSet){
+//    navigationIndex.value = storedIndex.toString()
+// }
+//
+// const handleSelect = (key: string) => {
+//    sessionStorage.setItem("navigation-selected", key)
+//    navigationIndex.value = key
+// }
 </script>
 
 
@@ -70,12 +86,18 @@ const handleSelect = (key: string) => {
                </el-menu-item>
             </NuxtLink>
 
-            <NuxtLink to="/Orders">
-               <el-menu-item index="4">
-                  <el-icon><document /></el-icon>
-                  <span>Orders</span>
-               </el-menu-item>
-            </NuxtLink>
+
+            <!--            <NuxtLink to="/orders">-->
+               <el-sub-menu index="4">
+                  <template #title>
+                     <el-icon><document /></el-icon>
+                     <span>Orders</span>
+                  </template>
+                  <el-menu-item index="4-1">New order</el-menu-item>
+                  <el-menu-item index="4-2">All orders</el-menu-item>
+               </el-sub-menu>
+            <!--            </NuxtLink>-->
+
 
             <NuxtLink to="/Offers">
                <el-menu-item index="5">

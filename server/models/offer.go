@@ -2,10 +2,6 @@ package models
 
 import "time"
 
-// Angebot
-// Angebot
-// Angebot
-
 type Offer struct {
 	Id        int       `db:"Id"`
 	Set       string    `db:"Set"`
