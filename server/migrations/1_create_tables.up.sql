@@ -1,7 +1,7 @@
 CREATE TABLE Artists (
     Id int NOT NULL AUTO_INCREMENT,
     Name varchar(255),
-    IsArchived bool default 0,
+    IsArchived bool not null default 0,
     PRIMARY KEY (Id)
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE Peaces (
     Height int,
     Worth float,
     IsAvailable bool default 1,
-    IsArchived bool default 0,
+    IsArchived bool not null default 0,
     ImgUrl varchar(255),
     ArtistId int NOT NULL,
     PRIMARY KEY (Id),
@@ -23,16 +23,17 @@ CREATE TABLE Peaces (
 CREATE TABLE Collections (
     Id int NOT NULL AUTO_INCREMENT,
     PeaceIds JSON,
-    IsArchived bool default 0,
+    IsArchived bool not null default 0,
     PRIMARY KEY (Id)
 );
 
 CREATE TABLE Offers (
    Id int NOT NULL AUTO_INCREMENT,
-   Title varchar(255),
+   SetName varchar(255),
    OfferDate date,
    Text1 varchar(255),
    Text2 varchar(255),
+   IsArchived bool not null default 0,
    PRIMARY KEY (Id)
 );
 
@@ -43,6 +44,7 @@ CREATE TABLE Invoices (
     Description varchar(255),
     Text1 varchar(255),
     Text2 varchar(255),
+    IsArchived bool not null default 0,
     PRIMARY KEY (Id)
 );
 
@@ -57,12 +59,12 @@ CREATE TABLE Orders (
     StartDate date,
     EndDate date,
     Tax float,
-    IsArchived tinyint DEFAULT 0,
+    IsArchived bool not null default 0,
     OfferId int,
     InvoiceId int,
-    PeaceCollectionId int,
+    CollectionId int,
     PRIMARY KEY (Id),
     FOREIGN KEY (OfferId) references Offers (Id)  ON DELETE CASCADE,
     FOREIGN KEY (InvoiceId) references Invoices (Id)  ON DELETE CASCADE,
-    FOREIGN KEY (PeaceCollectionId) references PeaceCollections (Id)  ON DELETE CASCADE
+    FOREIGN KEY (CollectionId) references Collections (Id)  ON DELETE CASCADE
 );

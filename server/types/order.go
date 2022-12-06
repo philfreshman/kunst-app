@@ -14,10 +14,10 @@ type Order struct {
 	StartDate      *time.Time `db:"StartDate"`
 	EndDate        *time.Time `db:"EndDate"`
 	Tax            *float32   `db:"Tax"`
-	IsArchived     *bool      `db:"IsArchived"`
+	IsArchived     bool       `db:"IsArchived"`
 
 	// Foreign keys
-	OfferId           *int `db:"OfferId"`
-	InvoiceId         *int `db:"InvoiceId"`
-	PeaceCollectionId *int `db:"PeaceCollectionId"`
+	OfferId      *int `db:"OfferId"`
+	InvoiceId    *int `db:"InvoiceId"`
+	CollectionId *int `db:"CollectionId"`
 }

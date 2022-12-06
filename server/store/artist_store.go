@@ -6,6 +6,10 @@ import (
 	"server/types"
 )
 
+type ArtistStore struct {
+	*sqlx.DB
+}
+
 func (store ArtistStore) Artists() ([]types.Artist, error) {
 	artist := []types.Artist{}
 
@@ -54,12 +58,18 @@ func (store ArtistStore) PutArtist(artist types.Artist) error {
 }
 
 func (store ArtistStore) DeleteArtist(id int) error {
-	if _, err := store.Exec(`UPDATE Artists SET IsArchived=TRUE WHERE Id=?`, id); err != nil {
+	var artist types.Artist
+	if err := store.Get(&artist, `Select * FROM Artists WHERE Id=?`, id); err != nil {
+		return fmt.Errorf("artist doesn't exist: %w", err)
+	}
+
+	if artist.IsArchived == true {
+		return fmt.Errorf("artist already deleted (archived)")
+	}
+
+	_, err := store.Exec(`UPDATE Artists SET IsArchived=TRUE WHERE Id=?`, id)
+	if err != nil {
 		return fmt.Errorf("error deleting (archiving) artist: %w", err)
 	}
 	return nil
-}
-
-type ArtistStore struct {
-	*sqlx.DB
 }

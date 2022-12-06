@@ -6,6 +6,10 @@ import (
 	"server/types"
 )
 
+type PeaceStore struct {
+	*sqlx.DB
+}
+
 func (store PeaceStore) Peaces() ([]types.Peace, error) {
 	var peaces []types.Peace
 
@@ -71,12 +75,18 @@ func (store PeaceStore) PutPeace(order types.Peace) error {
 }
 
 func (store PeaceStore) DeletePeace(id int) error {
-	if _, err := store.Exec(`UPDATE Peaces SET IsArchived=TRUE WHERE Id=?`, id); err != nil {
-		return fmt.Errorf("error deleting (archiving) thread: %w", err)
+	var peace types.Peace
+	if err := store.Get(&peace, `Select * FROM Peaces WHERE Id=?`, id); err != nil {
+		return fmt.Errorf("peace doesn't exist: %w", err)
+	}
+
+	if peace.IsArchived == true {
+		return fmt.Errorf("peace already deleted (archived)")
+	}
+
+	_, err := store.Exec(`UPDATE Peaces SET IsArchived=TRUE WHERE Id=?`, id)
+	if err != nil {
+		return fmt.Errorf("error deleting (archiving) peace: %w", err)
 	}
 	return nil
-}
-
-type PeaceStore struct {
-	*sqlx.DB
 }

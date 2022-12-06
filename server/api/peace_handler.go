@@ -8,8 +8,8 @@ import (
 )
 
 // getPeaces executes an SELECT * statement
-func (server *Server) getPeaces(ctx *gin.Context) {
-	data, err := server.store.PeaceStore.Peaces()
+func (s *Server) getPeaces(ctx *gin.Context) {
+	data, err := s.store.PeaceStore.Peaces()
 	if err != nil {
 		return
 	}
@@ -17,14 +17,14 @@ func (server *Server) getPeaces(ctx *gin.Context) {
 }
 
 // getPeaceById executes an SELECT * ... WHERE ID=id
-func (server *Server) getPeaceById(ctx *gin.Context) {
+func (s *Server) getPeaceById(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, nil)
 		return
 	}
 
-	data, err := server.store.PeaceStore.PeaceById(id)
+	data, err := s.store.PeaceStore.PeaceById(id)
 	if err != nil {
 		return
 	}
@@ -32,28 +32,28 @@ func (server *Server) getPeaceById(ctx *gin.Context) {
 }
 
 // postPeace executes an INSERT statement
-func (server *Server) postPeace(ctx *gin.Context) {
+func (s *Server) postPeace(ctx *gin.Context) {
 	var input types.Peace
 
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"status": "data binding failed"})
 		return
 	}
-	err := server.store.PeaceStore.CreatePeace(input)
+	err := s.store.PeaceStore.CreatePeace(input)
 	if err != nil {
 		return
 	}
 }
 
 // putPeace executes a whole entity update
-func (server *Server) putPeace(ctx *gin.Context) {
+func (s *Server) putPeace(ctx *gin.Context) {
 	var input types.Peace
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(400, gin.H{"status": "data binding failed"})
 		return
 	}
 
-	if err := server.store.PeaceStore.PutPeace(input); err != nil {
+	if err := s.store.PeaceStore.PutPeace(input); err != nil {
 		return
 	}
 	ctx.JSON(http.StatusOK, gin.H{
@@ -62,7 +62,7 @@ func (server *Server) putPeace(ctx *gin.Context) {
 }
 
 // deletePeace executes a soft-delete
-func (server *Server) deletePeace(ctx *gin.Context) {
+func (s *Server) deletePeace(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
@@ -71,8 +71,11 @@ func (server *Server) deletePeace(ctx *gin.Context) {
 		return
 	}
 
-	err = server.store.PeaceStore.DeletePeace(id)
+	err = s.store.PeaceStore.DeletePeace(id)
 	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
 }

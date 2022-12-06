@@ -87,27 +87,39 @@ if (!isPath1Empty && !isPath2Empty){
             </NuxtLink>
 
 
-            <!--            <NuxtLink to="/orders">-->
-               <el-sub-menu index="4">
-                  <template #title>
-                     <el-icon><document /></el-icon>
-                     <span>Orders</span>
-                  </template>
-                     <NuxtLink to="/orders/new">
-                       <el-menu-item index="4-1">New</el-menu-item>
-                     </NuxtLink>
-                      <NuxtLink to="/orders/all">
-                        <el-menu-item index="4-2">All</el-menu-item>
-                      </NuxtLink>
-               </el-sub-menu>
+           <el-sub-menu>
+              <template #title>
+                 <el-icon><document /></el-icon>
+                 <span>Orders</span>
+              </template>
+                 <NuxtLink to="/orders/new">
+                   <el-menu-item index="4-1">New</el-menu-item>
+                 </NuxtLink>
+                  <NuxtLink to="/orders/all">
+                    <el-menu-item index="4-2">All</el-menu-item>
+                  </NuxtLink>
+           </el-sub-menu>
+
+           <el-sub-menu>
+             <template #title>
+               <el-icon><document /></el-icon>
+               <span>Offers</span>
+             </template>
+             <NuxtLink to="/offers/new">
+               <el-menu-item index="4-1">New</el-menu-item>
+             </NuxtLink>
+             <NuxtLink to="/offers/all">
+               <el-menu-item index="4-2">All</el-menu-item>
+             </NuxtLink>
+           </el-sub-menu>
 
 
-            <NuxtLink to="/Offers">
-               <el-menu-item index="5">
-                  <el-icon><document /></el-icon>
-                  <span>Offers</span>
-               </el-menu-item>
-            </NuxtLink>
+<!--            <NuxtLink to="/Offers">-->
+<!--               <el-menu-item index="5">-->
+<!--                  <el-icon><document /></el-icon>-->
+<!--                  <span>Offers</span>-->
+<!--               </el-menu-item>-->
+<!--            </NuxtLink>-->
 
             <NuxtLink to="/Invoices">
                <el-menu-item index="6">

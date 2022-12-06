@@ -4,5 +4,5 @@ package types
 type Collection struct {
 	Id         *int    `db:"Id"`
 	PeaceIds   *string `db:"PeaceIds"`
-	IsArchived *bool   `db:"IsArchived"`
+	IsArchived bool    `db:"IsArchived"`
 }

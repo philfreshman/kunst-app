@@ -17,20 +17,12 @@ const singleTableRef = ref<InstanceType<typeof ElTable>>()
 onMounted( async () => {
    const data = (await response).data
    console.log(data);
-   if (data === null) return
+  if (data === null) return
    tableData.value = data
    isLoading.value = false
 })
 
 
-// const currentRow = ref()
-
-// const setCurrent = (row?: Artist) => {
-//    singleTableRef.value!.setCurrentRow(row)
-// }
-// const handleCurrentChange = (val: Artist | undefined) => {
-//    currentRow.value = val
-// }
 
 </script>
 

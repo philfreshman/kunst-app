@@ -11,6 +11,8 @@ func CreateStore(db *sqlx.DB) *Store {
 		ArtistStore:     &ArtistStore{DB: db},
 		PeaceStore:      &PeaceStore{DB: db},
 		CollectionStore: &CollectionStore{DB: db},
+		OfferStore:      &OfferStore{DB: db},
+		InvoiceStore:    &InvoiceStore{DB: db},
 	}
 }
 
@@ -19,4 +21,6 @@ type Store struct {
 	*ArtistStore
 	*PeaceStore
 	*CollectionStore
+	*OfferStore
+	*InvoiceStore
 }

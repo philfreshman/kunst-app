@@ -8,8 +8,8 @@ import (
 )
 
 // getOrders executes an SELECT * statement
-func (server *Server) getOrders(ctx *gin.Context) {
-	data, err := server.store.OrderStore.Orders()
+func (s *Server) getOrders(ctx *gin.Context) {
+	data, err := s.store.OrderStore.Orders()
 	if err != nil {
 		return
 	}
@@ -20,7 +20,7 @@ func (server *Server) getOrders(ctx *gin.Context) {
 }
 
 // getOrderById executes an SELECT * ... WHERE ID=id
-func (server *Server) getOrderById(ctx *gin.Context) {
+func (s *Server) getOrderById(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
@@ -29,7 +29,7 @@ func (server *Server) getOrderById(ctx *gin.Context) {
 		return
 	}
 
-	data, err := server.store.OrderStore.OrderById(id)
+	data, err := s.store.OrderStore.OrderById(id)
 	if err != nil {
 		return
 	}
@@ -40,37 +40,35 @@ func (server *Server) getOrderById(ctx *gin.Context) {
 }
 
 // postOrder executes an INSERT statement
-func (server *Server) postOrder(ctx *gin.Context) {
+func (s *Server) postOrder(ctx *gin.Context) {
 	var input types.Order
 
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(400, gin.H{"status": "data binding failed"})
 		return
 	}
-	err := server.store.OrderStore.CreateOrder(input)
+	err := s.store.OrderStore.CreateOrder(input)
 	if err != nil {
 		return
 	}
 }
 
 // putOrder executes a whole entity update
-func (server *Server) putOrder(ctx *gin.Context) {
+func (s *Server) putOrder(ctx *gin.Context) {
 	var input types.Order
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(400, gin.H{"status": "data binding failed"})
 		return
 	}
 
-	if err := server.store.OrderStore.PutOrder(input); err != nil {
+	if err := s.store.OrderStore.PutOrder(input); err != nil {
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"status": "success",
-	})
+	ctx.Status(http.StatusOK)
 }
 
 // deleteOrder executes a soft-delete
-func (server *Server) deleteOrder(ctx *gin.Context) {
+func (s *Server) deleteOrder(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
@@ -79,8 +77,11 @@ func (server *Server) deleteOrder(ctx *gin.Context) {
 		return
 	}
 
-	err = server.store.OrderStore.DeleteOrder(id)
+	err = s.store.OrderStore.DeleteOrder(id)
 	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
 }

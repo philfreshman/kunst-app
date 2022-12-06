@@ -22,44 +22,63 @@ func NewServer(config util.Config, db *sqlx.DB) (*Server, error) {
 		store:  *store.CreateStore(db),
 	}
 	app := gin.Default()
-
 	server.setupRouter(app)
 	app.Use(corsRules())
-
 	return server, nil
 }
 
 // Start runs the HTTP server on a specific address.
-func (server *Server) Start(config util.Config) error {
-	return server.router.Run(config.HTTPServerAddress)
+func (s *Server) Start(config util.Config) error {
+	return s.router.Run(config.HTTPServerAddress)
 }
 
 // setupRouter defines the use of handlers for the api endpoints
-func (server *Server) setupRouter(app *gin.Engine) {
+func (s *Server) setupRouter(app *gin.Engine) {
 	api := app.Group("/api", middleware.Headers())
 
 	orders := api.Group("/order")
-	orders.GET("/", server.getOrders)
-	orders.GET("/:id", server.getOrderById)
-	orders.POST("/", server.postOrder)
-	orders.PUT("/", server.putOrder)
-	orders.DELETE("/:id", server.deleteOrder)
+	orders.GET("/", s.getOrders)
+	orders.GET("/:id", s.getOrderById)
+	orders.POST("/", s.postOrder)
+	orders.PUT("/", s.putOrder)
+	orders.DELETE("/:id", s.deleteOrder)
 
 	artists := api.Group("/artist")
-	artists.GET("/", server.getArtists)
-	artists.GET("/:id", server.getArtistById)
-	artists.POST("/", server.postArtist)
-	artists.PUT("/", server.putArtist)
-	artists.DELETE("/:id", server.deleteArtist)
+	artists.GET("/", s.getArtists)
+	artists.GET("/:id", s.getArtistById)
+	artists.POST("/", s.postArtist)
+	artists.PUT("/", s.putArtist)
+	artists.DELETE("/:id", s.deleteArtist)
 
 	peaces := api.Group("/peace")
-	peaces.GET("/", server.getPeaces)
-	peaces.GET("/:id", server.getPeaceById)
-	peaces.POST("/", server.postPeace)
-	peaces.PUT("/", server.putPeace)
-	peaces.DELETE("/:id", server.deletePeace)
+	peaces.GET("/", s.getPeaces)
+	peaces.GET("/:id", s.getPeaceById)
+	peaces.POST("/", s.postPeace)
+	peaces.PUT("/", s.putPeace)
+	peaces.DELETE("/:id", s.deletePeace)
 
-	server.router = app
+	collections := api.Group("/collection")
+	collections.GET("/", s.getCollections)
+	collections.GET("/:id", s.getCollectionById)
+	collections.POST("/", s.postCollection)
+	collections.PUT("/", s.putCollection)
+	collections.DELETE("/:id", s.deleteCollection)
+
+	offers := api.Group("/offer")
+	offers.GET("/", s.getOffers)
+	offers.GET("/:id", s.getOfferById)
+	offers.POST("/", s.postOffer)
+	offers.PUT("/", s.putOffer)
+	offers.DELETE("/:id", s.deleteOffer)
+
+	invoices := api.Group("/invoice")
+	invoices.GET("/", s.getInvoices)
+	invoices.GET("/:id", s.getInvoiceById)
+	invoices.POST("/", s.postInvoice)
+	invoices.PUT("/", s.putInvoice)
+	invoices.DELETE("/:id", s.deleteInvoice)
+
+	s.router = app
 }
 
 // corsRules defines the incoming HTTP request rules

@@ -6,6 +6,10 @@ import (
 	"server/types"
 )
 
+type CollectionStore struct {
+	*sqlx.DB
+}
+
 func (store CollectionStore) Collections() ([]types.Collection, error) {
 	var collection []types.Collection
 
@@ -23,8 +27,8 @@ func (store CollectionStore) CollectionById(id int) (types.Collection, error) {
 	return collection, nil
 }
 
-func (store CollectionStore) Collection(collection types.Collection) error {
-	_, err := store.Exec(`INSERT INTO Collections VALUES (NULL,?,?)`,
+func (store CollectionStore) InsertCollection(collection types.Collection) error {
+	_, err := store.Exec(`INSERT INTO Collections VALUES (?,?,?)`,
 		nil,
 		collection.PeaceIds,
 		collection.IsArchived,
@@ -45,18 +49,24 @@ func (store CollectionStore) PutCollection(collection types.Collection) error {
 	)
 
 	if err != nil {
-		return fmt.Errorf("error putting peace-collection: %w", err)
+		return fmt.Errorf("error putting collection: %w", err)
 	}
 	return nil
 }
 
 func (store CollectionStore) DeleteCollection(id int) error {
-	if _, err := store.Exec(`UPDATE Collections SET IsArchived=TRUE WHERE Id=?`, id); err != nil {
+	var collection types.Collection
+	if err := store.Get(&collection, `Select * FROM Collections WHERE Id=?`, id); err != nil {
+		return fmt.Errorf("colletion doesn't exist: %w", err)
+	}
+
+	if collection.IsArchived == true {
+		return fmt.Errorf("collection already deleted (archived)")
+	}
+
+	_, err := store.Exec(`UPDATE Collections SET IsArchived=TRUE WHERE Id=?`, id)
+	if err != nil {
 		return fmt.Errorf("error deleting (archiving) collection: %w", err)
 	}
 	return nil
-}
-
-type CollectionStore struct {
-	*sqlx.DB
 }

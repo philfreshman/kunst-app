@@ -6,6 +6,10 @@ import (
 	"server/types"
 )
 
+type OrderStore struct {
+	*sqlx.DB
+}
+
 func (store OrderStore) Orders() ([]types.Order, error) {
 	var orders []types.Order
 
@@ -37,7 +41,7 @@ func (store OrderStore) CreateOrder(order types.Order) error {
 		order.IsArchived,
 		order.OfferId,
 		order.InvoiceId,
-		order.PeaceCollectionId)
+		order.CollectionId)
 
 	if err != nil {
 		return fmt.Errorf("error creating order: %w", err)
@@ -59,7 +63,7 @@ func (store OrderStore) PutOrder(order types.Order) error {
 		IsArchived=?,
 		OfferId=?,
 		InvoiceId=?,
-		PeaceCollectionId=?
+		CollectionId=?
 		WHERE Id=?`,
 		order.Sender,
 		order.Address1,
@@ -72,7 +76,7 @@ func (store OrderStore) PutOrder(order types.Order) error {
 		order.IsArchived,
 		order.OfferId,
 		order.InvoiceId,
-		order.PeaceCollectionId,
+		order.CollectionId,
 		order.Id)
 
 	if err != nil {
@@ -83,12 +87,18 @@ func (store OrderStore) PutOrder(order types.Order) error {
 }
 
 func (store OrderStore) DeleteOrder(id int) error {
-	if _, err := store.Exec(`UPDATE Orders SET IsArchived=TRUE WHERE Id=?`, id); err != nil {
-		return fmt.Errorf("error deleting (archiving) order: %w", err)
+	var order types.Order
+	if err := store.Get(&order, `Select * FROM Orders WHERE Id=?`, id); err != nil {
+		return fmt.Errorf("order doesn't exist: %w", err)
+	}
+
+	if order.IsArchived == true {
+		return fmt.Errorf("order already deleted (archived)")
+	}
+
+	_, err := store.Exec(`UPDATE Orders SET IsArchived=TRUE WHERE Id=?`, id)
+	if err != nil {
+		return fmt.Errorf("error deleting (archiving) collection: %w", err)
 	}
 	return nil
-}
-
-type OrderStore struct {
-	*sqlx.DB
 }

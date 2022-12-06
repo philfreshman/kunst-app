@@ -9,4 +9,5 @@ type Invoice struct {
 	Description string    `db:"Description"`
 	Text1       string    `db:"Text1"`
 	Text2       string    `db:"Text2"`
+	IsArchived  bool      `db:"IsArchived"`
 }

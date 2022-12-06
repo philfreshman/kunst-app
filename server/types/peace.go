@@ -8,7 +8,7 @@ type Peace struct {
 	Height      *int     `db:"Height"`
 	Worth       *float32 `db:"Worth"`
 	IsAvailable *bool    `db:"IsAvailable"`
-	IsArchived  *bool    `db:"IsArchived"`
+	IsArchived  bool     `db:"IsArchived"`
 	ImgUrl      *string  `db:"ImgUrl"`
 	ArtistId    *int     `db:"ArtistId"`
 }

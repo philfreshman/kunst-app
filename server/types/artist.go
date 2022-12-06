@@ -3,10 +3,8 @@ package types
 type Artist struct {
 	Id         *int    `db:"Id"`
 	Name       *string `db:"Name"`
-	IsArchived *bool   `db:"IsArchived"`
+	IsArchived bool    `db:"IsArchived"`
 }
-
-// not used
 
 //type ArtistStore interface {
 //	Artist(id int) (Artist, error)
