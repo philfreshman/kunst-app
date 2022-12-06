@@ -7,45 +7,45 @@ import {
 } from '@element-plus/icons-vue'
 import {ref} from "vue";
 
-// const navigationIndex = ref()
-// const pathLvl1 = location.pathname.split('/')[1].toString();
-// const pathLvl2 = location.pathname.split('/')[2].toString();
-// const storedIndex = sessionStorage.getItem("navigation-selected")
-// const isIndexSet = storedIndex != null
-// const isPathEmpty = pathLvl1 === ""
-//
-//
-//
-// // path to index mapping
-// const routes = new Map([
-//    ["artists", "2"],
-//    ["peaces", "3"],
-//    ["orders", "4"],
-//    ["offers", "5"],
-//    ["invoices", "6"],
-//    ["settings", "7"]
-// ])
-//
-// const routes2 = {
-//    artists: "2",
-//    peaces: "3",
-//    orders: { new: "4.1", all: "4.2" },
-//    offers: "5",
-//    invoices: "6",
-//    settings: "7"
-// };
-//
-//
-//
-// // const d = routes2[`${a}.${c}`]
-//
-//
-// if(!isPathEmpty){
-//    navigationIndex.value = routes.get(pathLvl1.toLowerCase())
-// } else{
-//    navigationIndex.value = "1"
-// }
-//
+
+const navigationIndex = ref()
+const pathLvl1 = location.pathname.split('/')[1]?.toString().toLowerCase();
+const pathLvl2 = location.pathname.split('/')[2]?.toString().toLowerCase()
+const storedIndex = sessionStorage.getItem("navigation-selected")
+const isIndexSet = storedIndex != null
+const isPath1Empty = pathLvl1 == undefined
+const isPath2Empty = pathLvl2 == undefined
+
+
+const routes: any = {
+  artists: "2",
+  peaces: "3",
+  orders: { new: "4.1", all: "4.2" },
+  offers: "5",
+  invoices: "6",
+  settings: "7"
+};
+
+// is index page
+if(isPath1Empty && isPath2Empty){
+  navigationIndex.value = "1"
+}
+
+// is one level
+if (!isPath1Empty && isPath2Empty){
+  const newIndex = routes[`${pathLvl1}`]
+  navigationIndex.value = newIndex
+  console.log(newIndex);
+}
+
+// is two level
+if (!isPath1Empty && !isPath2Empty){
+  const newIndex = routes[`${pathLvl1}`][`${pathLvl2}`]
+  navigationIndex.value = newIndex
+  console.log(newIndex);
+}
+
+
 // if (isIndexSet){
 //    navigationIndex.value = storedIndex.toString()
 // }
@@ -56,6 +56,7 @@ import {ref} from "vue";
 // }
 </script>
 
+<!--@select="handleSelect"-->
 
 <template>
    <el-row class="tac">
@@ -63,7 +64,6 @@ import {ref} from "vue";
          <el-menu
              :default-active="navigationIndex"
              class="el-menu-vertical-demo"
-             @select="handleSelect"
          >
             <NuxtLink to="/">
                <el-menu-item index="1">
@@ -93,10 +93,13 @@ import {ref} from "vue";
                      <el-icon><document /></el-icon>
                      <span>Orders</span>
                   </template>
-                  <el-menu-item index="4-1">New order</el-menu-item>
-                  <el-menu-item index="4-2">All orders</el-menu-item>
+                     <NuxtLink to="/orders/new">
+                       <el-menu-item index="4-1">New</el-menu-item>
+                     </NuxtLink>
+                      <NuxtLink to="/orders/all">
+                        <el-menu-item index="4-2">All</el-menu-item>
+                      </NuxtLink>
                </el-sub-menu>
-            <!--            </NuxtLink>-->
 
 
             <NuxtLink to="/Offers">

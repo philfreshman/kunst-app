@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"server/models"
+	"server/types"
 	"strconv"
 )
 
@@ -33,7 +33,7 @@ func (server *Server) getPeaceById(ctx *gin.Context) {
 
 // postPeace executes an INSERT statement
 func (server *Server) postPeace(ctx *gin.Context) {
-	var input models.Peace
+	var input types.Peace
 
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"status": "data binding failed"})
@@ -47,7 +47,7 @@ func (server *Server) postPeace(ctx *gin.Context) {
 
 // putPeace executes a whole entity update
 func (server *Server) putPeace(ctx *gin.Context) {
-	var input models.Peace
+	var input types.Peace
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(400, gin.H{"status": "data binding failed"})
 		return

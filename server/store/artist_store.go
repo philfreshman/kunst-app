@@ -3,27 +3,27 @@ package store
 import (
 	"fmt"
 	"github.com/jmoiron/sqlx"
-	"server/models"
+	"server/types"
 )
 
-func (store ArtistStore) Artists() ([]models.Artist, error) {
-	artist := []models.Artist{}
+func (store ArtistStore) Artists() ([]types.Artist, error) {
+	artist := []types.Artist{}
 
-	if err := store.Select(&artist, `Select * FROM Artists`); err != nil {
-		return []models.Artist{}, fmt.Errorf("error getting orders: %w", err)
+	if err := store.Select(&artist, `Select * FROM Artists WHERE IsArchived=FALSE`); err != nil {
+		return []types.Artist{}, fmt.Errorf("error getting orders: %w", err)
 	}
 	return artist, nil
 }
 
-func (store ArtistStore) ArtistById(id int) (models.Artist, error) {
-	var artist models.Artist
-	if err := store.Get(&artist, `Select * FROM Artists WHERE Id = ?`, id); err != nil {
-		return models.Artist{}, fmt.Errorf("error getting artist: %w", err)
+func (store ArtistStore) ArtistById(id int) (types.Artist, error) {
+	var artist types.Artist
+	if err := store.Get(&artist, `Select * FROM Artists WHERE Id=? AND IsArchived=FALSE`, id); err != nil {
+		return types.Artist{}, fmt.Errorf("error getting artist: %w", err)
 	}
 	return artist, nil
 }
 
-func (store ArtistStore) CreateArtist(artist models.Artist) error {
+func (store ArtistStore) CreateArtist(artist types.Artist) error {
 	_, err := store.Exec(`INSERT INTO Artists VALUES (?,?,?)`,
 		nil,
 		artist.Name,
@@ -36,7 +36,7 @@ func (store ArtistStore) CreateArtist(artist models.Artist) error {
 	return nil
 }
 
-func (store ArtistStore) PutArtist(artist models.Artist) error {
+func (store ArtistStore) PutArtist(artist types.Artist) error {
 	_, err := store.Exec(`UPDATE Artists SET
 		Name=?,
 		IsArchived=?
@@ -54,7 +54,7 @@ func (store ArtistStore) PutArtist(artist models.Artist) error {
 }
 
 func (store ArtistStore) DeleteArtist(id int) error {
-	if _, err := store.Exec(`UPDATE Artists SET IsArchived=true WHERE Id = ?`, id); err != nil {
+	if _, err := store.Exec(`UPDATE Artists SET IsArchived=TRUE WHERE Id=?`, id); err != nil {
 		return fmt.Errorf("error deleting (archiving) artist: %w", err)
 	}
 	return nil

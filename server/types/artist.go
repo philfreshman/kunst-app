@@ -1,4 +1,4 @@
-package models
+package types
 
 type Artist struct {
 	Id         *int    `db:"Id"`

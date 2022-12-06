@@ -1,4 +1,4 @@
-mysql:
+mysql-create:
 	docker-compose -p "kunst-app" up
 
 mysql-start:
@@ -12,3 +12,6 @@ migrate-up:
 
 migrate-down:
 	migrate -source file://migrations -database 'mysql://admin:pass@tcp(localhost:3306)/KunstApp' down
+
+run:
+	air

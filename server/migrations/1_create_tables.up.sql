@@ -20,9 +20,10 @@ CREATE TABLE Peaces (
     FOREIGN KEY (ArtistId) references Artists (Id)
 );
 
-CREATE TABLE PeaceCollections (
+CREATE TABLE Collections (
     Id int NOT NULL AUTO_INCREMENT,
-    Collection JSON,
+    PeaceIds JSON,
+    IsArchived bool default 0,
     PRIMARY KEY (Id)
 );
 

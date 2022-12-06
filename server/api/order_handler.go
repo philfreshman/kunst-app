@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"server/models"
+	"server/types"
 	"strconv"
 )
 
@@ -41,7 +41,7 @@ func (server *Server) getOrderById(ctx *gin.Context) {
 
 // postOrder executes an INSERT statement
 func (server *Server) postOrder(ctx *gin.Context) {
-	var input models.Order
+	var input types.Order
 
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(400, gin.H{"status": "data binding failed"})
@@ -55,7 +55,7 @@ func (server *Server) postOrder(ctx *gin.Context) {
 
 // putOrder executes a whole entity update
 func (server *Server) putOrder(ctx *gin.Context) {
-	var input models.Order
+	var input types.Order
 	if err := ctx.BindJSON(&input); err != nil {
 		ctx.JSON(400, gin.H{"status": "data binding failed"})
 		return

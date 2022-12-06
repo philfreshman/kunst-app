@@ -16,13 +16,13 @@ VALUES
     (14, 'S. Schnibbe', 0),
     (15, 'V. Weltgen', 0),
     (16, 'W. Heinrich', 0),
-    (17, 'KINDEREBILDER', 0);
+    (17, 'KINDEREBILDER', 0),
+    (18, 'FAMILIENFOTOS', 0);
 
-# (null, 'xxxxxx','xxxxxx', 0, 0, 0, true, false, 'IMGURL', 1),
 INSERT INTO Peaces (Id, Articleid, Title, Width, Height, Worth, IsAvailable, IsArchived, ImgUrl, ArtistId)
 VALUES
 
-    #   A.Fehrenberg
+#   A.Fehrenberg
     (null, 'ANFE001','HOCHLAND', 120, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/02/ANFE001_Hochland-800x327.jpg', 1),
     (null, 'ANFE004','BIRKE', 150, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/02/ANFE004_Birke-800x263.jpg', 1),
     (null, 'ANFE005','GESUNDBRUNNEN', 160, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/02/ANFE005_Gesundbrunnen-800x604.jpg', 1),
@@ -38,18 +38,18 @@ VALUES
     (null, 'ANFE016','WINTERLANDSCHAFT', 32, 24, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/02/ANFE016_Winterlandschaft-800x585.jpg', 1),
     (null, 'ANFE017','HYDE PARK', 32, 24, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/02/ANFE017_Hyde-Park-800x587.jpg', 1),
 
-    #   A.SCHILLING
+#   A.SCHILLING
     (null, 'ANSC001','POLLENFLUG IN VIOLETT', 120, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/ANSC002_Pollenflug-in-violett-800x800.jpg', 2),
     (null, 'ANSC002','POLLENFLUG IN ROSA', 120, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/ANSC001_Pollenflug-in-rosa-800x800.jpg', 2),
     (null, 'ANSC003','BIRKEN', 40, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/ANSC003_Birken-800x1139.jpg', 2),
 
-    #   I.SCHMID
+#   I.SCHMID
     (null, 'INSC001','RIESENRAD', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/riesenrad-800x660.jpg', 10),
     (null, 'INSC002','KLASSIKER', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/klassiker-800x660.jpg', 10),
     (null, 'INSC003','DIE KRAKE', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/die_krake-800x660.jpg', 10),
     (null, 'INSC004','HAPPY TRAVELLER', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/traveller-800x660.jpg', 10),
 
-    #   A.F. CART
+#   A.F. CART
     (null, 'ANCA002','OHNE TITEL', 60, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/ANCA002_Ohne-Titel.jpg', 3),
     (null, 'ANCA003','GLÜCK TÄGLICH SUCHEN', 60, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/ANCA003_Glueck-taeglich-suchen.jpg', 3),
     (null, 'ANCA006','NOVEMBERLANDSCHAFT I', 40, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/ANCA006_Novemberlandschaft-I-800x783.jpg', 3),
@@ -79,7 +79,7 @@ VALUES
     (null, 'ANCA038','IM FLÄMING II', 60, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2021/09/anca038_im-flacc88ming-ii-800x782.jpg', 3),
     (null, 'ANCA039','IM FLÄMING III', 60, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2021/09/anca039_im-flacc88ming-iii-800x816.jpg', 3),
 
-    #   Helmut Klock
+#   Helmut Klock
     (null, 'HEKL001', 'Ort', 115, 115, 1400, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/HEKL001_Ort-800x796.jpg',  9),
     (null, 'HEKL002', 'Zeit', 140, 140, 1800, true,  false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/HEKL002_Zeit-800x809.jpg',9),
     (null, 'HEKL003', 'R', 130, 140, 1800, true,  false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/HEKL003_R-800x866.jpg',9),
@@ -98,7 +98,203 @@ VALUES
     (null, 'HEKL016', 'BLAUE STADT', 43, 53, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/HEKL016_Blaue-Stadt-800x995.jpg', 9),
     (null, 'HEKL017', 'MY OCEAN', 43, 53, 0, true,  false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/HEKL017_my-ocean-800x988.jpg', 9),
 
-    #   Kinderbilder
+#   B. VON HARTMANN
+    (null, 'BEHA001','DEZEMBER RHIN', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha001_dezember-rhin-800x643.jpg', 4),
+    (null, 'BEHA002','HAVEL', 70, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha002_havel_occ88l_auf_nessel-800x687.jpg', 4),
+    (null, 'BEHA004','CANYON', 70, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha004_canyon-800x925.jpg', 4),
+    (null, 'BEHA005','EBBE 1', 60, 45, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha005_ebbe_1-800x595.jpg', 4),
+    (null, 'BEHA006','EBBE 3', 60, 45, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha006_ebbe_3-800x607.jpg', 4),
+    (null, 'BEHA007','EBBE 4', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha007_ebbe_4-800x637.jpg', 4),
+    (null, 'BEHA008','FUCHS AUF MOHNWIESE', 70, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha008_fuchs_auf_mohnwiese-800x917.jpg', 4),
+    (null, 'BEHA009','INSEL-ENDE (AMRUM)', 70, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha009_insel-endeamrum-800x680.jpg', 4),
+    (null, 'BEHA010','KRISTALL (ULTRAMARIN)', 55, 55, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha010_kristall_ultramarin-800x787.jpg', 4),
+    (null, 'BEHA011','MEER (BAROCK)', 80, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha011_meer_barock-800x655.jpg', 4),
+    (null, 'BEHA012','MEER', 70, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha012_meer-800x684.jpg', 4),
+    (null, 'BEHA013','MEER (LICHT VON UNTEN)', 65, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha013_meer-licht_von_unten-800x619.jpg', 4),
+    (null, 'BEHA014','MONDKUH', 95, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha014_mondkuh-800x1088.jpg', 4),
+    (null, 'BEHA015','MONDLICHT-FUCHS', 80, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha015_mondlicht-fuchs-800x703.jpg', 4),
+    (null, 'BEHA016','MORGENDÄMMERUNG', 70, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha016_morgendacc88mmerung-800x913.jpg', 4),
+    (null, 'BEHA017','SCHWERTLILIEN', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha017_schwertlilien-800x641.jpg', 4),
+    (null, 'BEHA018','VOR SONNENAUFGANG', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha018_vor_sonnenaufgang-die-welle-coyote_buttes-800x637.jpg', 4),
+    (null, 'BEHA019','WELLEN (GELBES LICHT)', 70, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha019_wellen_gelbes_licht-800x691.jpg', 4),
+    (null, 'BEHA020','WILDWIESE', 130, 115, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha020_wildwiese-800x705.jpg', 4),
+    (null, 'BEHA021','ZWEI ÄPFEL UND EIN APFEL', 40, 30, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha021_zwei_acc88pfel_und_ein_apfel-800x592.jpg', 4),
+    (null, 'BEHA022','SCHLÄFER 1', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha022_1987-88_schlacc88fer-800x1136.jpg', 4),
+    (null, 'BEHA023','SCHLÄFER 2', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/10/beha023_1988-schlacc88fer-800x1140.jpg', 4),
+
+#   L. VALENZUELA
+    (null, 'LEVA001','POOLTIME', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA001_Pooltime-1-800x994.jpg', 11),
+    (null, 'LEVA002','THE GAME', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA002_The-Game-1-800x994.jpg', 11),
+    (null, 'LEVA003','QUALITY TIME', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA003_Quality-Time-1-800x994.jpg', 11),
+    (null, 'LEVA005','POOL FOR BREAKFAST', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA005_Pool-for-Breakfast-1-800x994.jpg', 11),
+    (null, 'LEVA006','ODE AN LABSKAUS', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA006_Ode-an-Labskaus-1-800x994.jpg', 11),
+    (null, 'LEVA007','HOME SWEET HOME', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA007_Home-Sweet-Home-1-800x994.jpg', 11),
+    (null, 'LEVA008','HOCHZEITSBILD', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA008_Hochzeitsbild-1-800x994.jpg', 11),
+    (null, 'LEVA009','HIGHWAY TO HEAVEN', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA009_Highway-to-Heaven-1-800x994.jpg', 11),
+    (null, 'LEVA010','GEISHA', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA010_Geisha-1-800x994.jpg', 11),
+    (null, 'LEVA011','FIGHT CLUB', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA011_Fight-Club-1-800x994.jpg', 11),
+    (null, 'LEVA012','BIG FISH', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA012_Big-Fish-1-800x994.jpg', 11),
+    (null, 'LEVA013','ZEBRA', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA013_Zebra-800x994.jpg', 11),
+    (null, 'LEVA014','GIRAFFE', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA014_Giraffe-800x994.jpg', 11),
+    (null, 'LEVA015','BALLOONS', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/LEVA015_Balloons-800x994.jpg', 11),
+
+#   C. HAGEMANN
+    (null, 'CHHA007','UNTITLED (BOX)', 60, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA007_Untitled-Box-800x631.jpg', 5),
+    (null, 'CHHA008','UNTITLED (HAIR)', 60, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/CHHA008_Untitled-Hair-800x800.jpg', 5),
+    (null, 'CHHA009','CLOUDS', 150, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA009_Clouds-800x619.jpg', 5),
+    (null, 'CHHA010','UNTITLED (FLOWERS)', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/CHHA010-Untitled-Flower-800x644.jpg', 5),
+    (null, 'CHHA011','BOUQUET', 60, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/CHHA011-800x1194.jpg', 5),
+    (null, 'CHHA012','UNTITLED (FRUITS)', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/CHAH012_Untitled-Fruits-800x644.jpg', 5),
+    (null, 'CHHA013','ABSTRACT FIGURES I', 60, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/CHHA013_Abstract-Figures-I-800x1194.jpg', 5),
+    (null, 'CHHA014','ABSTRACT FIGURES II', 60, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/CHHA014-Abstract-Figures-II-800x1194.jpg', 5),
+    (null, 'CHHA015','SHADES OF METAL I', 60, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA015_Shades-of-Metal-800x1194.jpg', 5),
+    (null, 'CHHA016','SHADES OF METAL II', 60, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA016_Shades-of-Metal-II-800x1194.jpg', 5),
+    (null, 'CHHA017','UNTITLED (BLINDED WINDOW)', 64, 82, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA018_Window-800x1026.jpg', 5),
+    (null, 'CHHA018','DARK PATH', 100, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA018_Dark-Path-800x798.jpg', 5),
+    (null, 'CHHA019','INSTANTS, I', 32, 23, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA001_Instants-I-800x1108.jpg', 5),
+    (null, 'CHHA020','INSTANTS, II', 32, 23, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA002_Instants-II-800x1108.jpg', 5),
+    (null, 'CHHA021','INSTANTS, III', 32, 23, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA003_Instants-III-800x1108.jpg', 5),
+    (null, 'CHHA022','INSTANTS, IV', 32, 23, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA004_Instants-IV-1-800x1108.jpg', 5),
+    (null, 'CHHA023','INSTANTS, V', 32, 23, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/CHHA005_Instants-V-800x1108.jpg', 5),
+
+#   P. BRÄNDLE
+    (null, 'POBR002','I AM PRO', 25, 33, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR002_-I-am-PRO_33x25cm-800x990.jpg', 12),
+    (null, 'POBR003','CLASSY LADY', 180, 240, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR003_Classy-Lady_240x180cm.jpg', 12),
+    (null, 'POBR004','EMIL PORTRAIT', 180, 250, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR004_Emil-Portrait_250x180cm-800x1096.jpg', 12),
+    (null, 'POBR005','COPENHAGEN UPSIDE DOWN', 70, 101, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR005_Copenhagen-Upside-Down_101x70cm-800x1098.jpg', 12),
+    (null, 'POBR009','CRIME SCENE', 102, 84, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR009_Crime-Scene_84x102cm-800x672.jpg', 12),
+    (null, 'POBR012','ONE WAY', 70, 140, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR012_One-Way_140x70cm.jpg', 12),
+    (null, 'POBR013','ORANIENPLATZ', 126, 97, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR013_Oranienplatz_97x126cm-800x620.jpg', 12),
+    (null, 'POBR014','WHITE SERIES I', 70, 101, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR014_White-Series-I_101x70cm-800x1098.jpg', 12),
+    (null, 'POBR015','STACKED 2.20', 47, 47, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR015_Stacked-220_47x47cm-800x800.jpg', 12),
+    (null, 'POBR016','STACKED 2.22', 47, 47, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/POBR016_Stacked-222_47x47cm-800x800.jpg', 12),
+
+#   D. HAUPT
+    (null, 'DOHA004','DEMOLITION AX AND SMASH CUSTOM DEMOLITION', 50, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA004_Demolition-Ax-and-Smash-Custom-Demolition-800x800.jpg', 6),
+    (null, 'DOHA015','FRANCE', 30, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA015_France-800x1067.jpg', 6),
+    (null, 'DOHA010','HERBST', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA010_Herbst-800x1194.jpg', 6),
+    (null, 'DOHA007','LAGOS', 70, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA007_Lagos-800x564.jpg', 6),
+    (null, 'DOHA005','YOKOZUNA', 50, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA005_Yokozuna-800x800.jpg', 6),
+    (null, 'DOHA012','ALGARVE', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA012_Portugal-800x1194.jpg', 6),
+    (null, 'DOHA013','HUNDE AM STRAND', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA013_Hunde-am-Strand-800x1194.jpg', 6),
+    (null, 'DOHA014','TROPENHAUS', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA014_Tropenhaus-800x1194.jpg', 6),
+    (null, 'DOHA001','FERNSEHTURM IM JANUAR', 30, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA001_Fersehturm-im-Januar-800x994.jpg', 6),
+    (null, 'DOHA006','HORTENSIEN', 50, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA006_Hortensie-800x800.jpg', 6),
+    (null, 'DOHA011','DIETER', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA011_Dieter-800x1194.jpg', 6),
+    (null, 'DOHA003','THE ULTIMATE WARRIOR', 50, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA003_The-Ultimate-Warrior-800x800.jpg', 6),
+    (null, 'DOHA002','RICKY THE DRAGON', 50, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA002_Ricky-the-dragon-800x800.jpg', 6),
+    (null, 'DOHA009','BLUMENSTRAUS', 30, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA009_Blumenstrauss-800x994.jpg', 6),
+    (null, 'DOHA008','OSTSEE', 70, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/DOHA008_Ostsee-800x564.jpg', 6),
+
+#   S. Schnibbe
+    (null, 'SUSC004','FLUXUS', 120, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc004_fluxus-800x531.jpg', 14),
+    (null, 'SUSC015','SWIM BY 4', 30, 24, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc015_swimby4-800x633.jpg', 14),
+    (null, 'SUSC009','ROCKED HILL', 200, 240, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc009_rockedhill-800x961.jpg', 14),
+    (null, 'SUSC010','SUMMERDAY', 80, 200, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc010_summerday.jpg', 14),
+    (null, 'SUSC007','ON THE ROAD AGAIN', 260, 170, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc007_on_the_road_again-800x519.jpg', 14),
+    (null, 'SUSC013','SWIM BY 2', 30, 24, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc013_swimby2-800x633.jpg', 14),
+    (null, 'SUSC008','POND 2', 75, 105, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc008_pond2-800x1127.jpg', 14),
+    (null, 'SUSC014','SWIM BY 3', 30, 24, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc014_swimby3-800x633.jpg', 14),
+    (null, 'SUSC001','AFUTANUTI', 160, 200, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc001_afutanutihell-800x1008.jpg', 14),
+    (null, 'SUSC006','GHOST FISH', 200, 240, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc006_ghostfishhell-800x959.jpg', 14),
+    (null, 'SUSC012','SWIM BY 1', 30, 24, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc012_swimby1-800x633.jpg', 14),
+    (null, 'SUSC005','GENTLE GREEN', 80, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc005_gentlegreen-800x529.jpg', 14),
+    (null, 'SUSC002','BLACK AND WHITE FISH 1', 190, 30, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc002black_and_whitefish1-800x125.jpg', 14),
+    (null, 'SUSC003','BLUE JOY', 64, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc003_bluejoy-800x621.jpg', 14),
+    (null, 'SUSC011','SUNSET IN ORANGE', 195, 150, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2019/03/susc011_sunsettinorangedunkel-800x614.jpg', 14),
+
+#   D. Stern
+    (null, 'DIST001','DIE BAR / THE BAR', 180, 130, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST001_Die-Bar-800x575.jpg', 7),
+    (null, 'DIST003','EINSCHNITTE / CUTTINGS', 80, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST003_Einschnitte-800x915.jpg', 7),
+    (null, 'DIST007','PERCEPTION MEETS REALITY', 130, 180, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST007_Perception-meets-Reality.jpg', 7),
+    (null, 'DIST009','SISTER', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST009_Sister-800x571.jpg', 7),
+    (null, 'DIST002','BERLIN SPLASH', 170, 170, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST002_Berlin-Splash-800x781.jpg', 7),
+    (null, 'DIST008','ROCKY HORROR PICTURE SHOW', 70, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST008_Rocky-Horror-Picture-Show-800x571.jpg', 7),
+    (null, 'DIST010','WELTENKINDER', 90, 90, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST010_Weltenkinder-800x800.jpg', 7),
+    (null, 'DIST005','LITTLE BROTHER', 40, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST005_Little-Brother-800x800.jpg', 7),
+    (null, 'DIST006','DIE NAZI-BRAUT', 50, 70, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST006_Die-Nazibraut.jpg', 7),
+    (null, 'DIST004','DER BÖRSENJUNKY', 250, 150, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/04/DIST004_Der-Boersenjunky-1-800x479.jpeg', 7),
+
+
+#   V. Weltgen
+    (null, 'VIWE003','IKONE', 120, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe003_ikone-800x528.jpg', 15),
+    (null, 'VIWE011','ERNST', 60, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/viwe011_ernst.jpeg', 15),
+    (null, 'VIWE007','FENSTER 2', 18, 13, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe007_fenster2-800x566.jpg', 15),
+    (null, 'VIWE002','SUPERPUTZMANN', 80, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe002_superputzman-800x1153.jpg', 15),
+    (null, 'VIWE006','POINT OF VIEW', 40, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe006_pointofview0-800x1209.jpg', 15),
+    (null, 'VIWE005','PAS DE DEUX', 24, 32, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe005_pasdedeux-800x1070.jpg', 15),
+    (null, 'VIWE001','SCHWERE SEE', 80, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe001_schweresee-800x610.jpg', 15),
+    (null, 'VIWE004','SEESTÜCK 1', 18, 13, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/10/viwe004_seestueck1-800x558.jpg', 15),
+    (null, 'VIWE008','AM SEE', 80, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/viwe008_amsee-800x602.jpeg', 15),
+    (null, 'VIWE010','SPIEGEL-TV', 120, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/viwe010_spiegel-800x530.jpeg', 15),
+    (null, 'VIWE009','DER RICHTER', 120, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/viwe009_derrichter-800x530.jpeg', 15),
+
+#   FAMILIENFOTOS
+    (null, 'FAMI004','VATER MIT TÖCHTERN UND HUND', 12, 9, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/FAMI004_Vater-mit-Toechtern-und-Hund-1-800x607.jpeg', 18),
+    (null, 'FAMI012','MATROSE', 16, 21, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/FAMI012_Matrose-800x1048.jpg', 18),
+    (null, 'FAMI003','PAAR', 13, 18, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/FAMI003_Paar-800x1098.jpg', 18),
+    (null, 'FAMI009','BRAUTPAAR', 15, 20, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/FAMI009_Brautpaar-800x1071.jpg', 18),
+    (null, 'FAMI011','DREI FREUNDINNNEN', 18, 13, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/FAMI011_Freundinnen-800x579.jpg', 18),
+    (null, 'FAMI010','MÄDCHEN MIT BABY', 10, 15, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/FAMI010_Maedchen-mit-Baby-1-800x1098.jpeg', 18),
+    (null, 'FAMI005','FRAU MIT AKKORDEON', 12, 9, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/FAMI_005_Frau-mit-Akkordeon-800x609.jpg', 18),
+    (null, 'FAMI008','FAMILIENPORTRAIT IM GARTEN', 15, 11, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/FAMI00X_Familienportrait-im-Garten-800x570.jpg', 18),
+    (null, 'FAMI014','URLAUB AN DER OSTSEE', 25, 29, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/FAMI014_Urlaub-an-der-Ostsse-800x616.jpg', 18),
+
+#   W. HEINRICH
+    (null, 'WAHE001','FLUSS', 120, 150, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE001_Fluss-800x996.jpg', 16),
+    (null, 'WAHE002','MANHATTEN', 140, 180, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE002_Manhatten-800x1028.jpg', 16),
+    (null, 'WAHE003','SCHATTENSTREIFEN', 150, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE003_Schattenstreifen-800x642.jpg', 16),
+    (null, 'WAHE004','OHNE TITEL', 130, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE004_O-T-800x742.jpg', 16),
+    (null, 'WAHE005','GRASLANDSCHAFT', 110, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE005_Graslandschaft-800x735.jpg', 16),
+    (null, 'WAHE006','ROTES GEFLECHT', 150, 120, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE006_RotesGeflecht-800x581.jpg', 16),
+    (null, 'WAHE007','HEUSTADL', 150, 110, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE007_Heustadl-800x642.jpg', 16),
+    (null, 'WAHE010','ZWEI HÄUSER', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE010_Zwei-Haeuser-800x653.jpg', 16),
+    (null, 'WAHE011','ARCHAISCH', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/WAHE011_Archaisch-800x653.jpg', 16),
+
+#   GEZETT
+    (null, 'GEZE001','PARISER PLATZ, BERLIN', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE001_Pariser-Platz-800x644.jpg', 8),
+    (null, 'GEZE002','BRANDENBURGER TOR', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE002_Brandenburger-Tor-800x644.jpg', 8),
+    (null, 'GEZE003','HOLOCAUST-MAHNMAL, BERLIN', 70, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE003_Holocaust-Mahnmal-800x644.jpg', 8),
+    (null, 'GEZE004','BRANDENBURGER TOR MIT PLATZ DES 18. JUNI', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE004_Brandenburger-Tor-Platz-des-18-Maerz-800x994.jpg', 8),
+    (null, 'GEZE005','TRIBÜNE FÜR STAATSFÜHRUNG, BERLIN, 1988', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE005_Tribuene-fuer-Staatsfuehrung-1988-800x644.jpg', 8),
+    (null, 'GEZE006','MAUER AN DER WALDEMARSTRASSE,1990', 40, 30, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE006_Mauer-an-der-Waldemarstrasse-1990-800x644.jpg', 8),
+    (null, 'GEZE007','BRANDENBURGER TOR, 1989', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE007_Brandenburger-Tor-Fruehling-1989-800x994.jpg', 8),
+    (null, 'GEZE008','LENINDENKMAL', 30, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE008_Lenindenkmal-800x994.jpg', 8),
+    (null, 'GEZE009','LENINDENKMAL KURZ VOR ABRISS, 1991', 30, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE009_Lenindenkmal-kurz-vor-Abriss-1991-800x994.jpg', 8),
+    (null, 'GEZE010','ALEXANDERPLATZ, 7. NOV. 1989', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE010_Alexanderplatz-7-Nov-1989-800x644.jpg', 8),
+    (null, 'GEZE011','KU’DAMM-ECK', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE011_Kudamm-Eck-800x994.jpg', 8),
+    (null, 'GEZE014','KAMELKARAVANE', 40, 30, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE014_Kamelkaravane-800x644.jpg', 8),
+    (null, 'GEZE015','TEMPEL RAMSES II', 40, 30, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE015_Tempel-Ramses-II-800x644.jpg', 5),
+    (null, 'GEZE016','TEMPELWÄRTER VON EDFU', 40, 30, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/07/GEZE016_Tempelwaerter-von-Edfu-800x644.jpg', 8),
+
+#   R. ROSPERT
+    (null, 'RORO001','FICHI', 35, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro001_fichi-800x1152.jpg', 13),
+    (null, 'RORO002','LIMONE', 35, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro002_limone-800x1152.jpg', 13),
+    (null, 'RORO003','KINDHEIT', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro003_kindheit-800x1157.jpg', 13),
+    (null, 'RORO004','ADOLESZENZ', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro004_adoleszenz-800x1157.jpg', 13),
+    (null, 'RORO005','ERWACHSENSEIN', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro005_erwachsensein-800x1157.jpg', 13),
+    (null, 'RORO006','LEBENSMITTE', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro006_lebensmitte-800x1157.jpg', 13),
+    (null, 'RORO007','ALTER', 70, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro007_alter-800x1157.jpg', 13),
+    (null, 'RORO008','TANZ FÜR SICH', 60, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro008_tanz-fucc88r-sich-800x1056.jpg', 13),
+    (null, 'RORO009','PEACE', 100, 80, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro009_peace-800x637.jpg', 13),
+    (null, 'RORO010','CAMOUFLAGE I', 80, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro010_camouflage1-800x999.jpg', 13),
+    (null, 'RORO011','CAMOUFLAGE II', 80, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro011_camouflage2-800x999.jpg', 13),
+    (null, 'RORO012','CAMOUFLAGE III', 80, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro012_camouflage_3-800x999.jpg', 13),
+    (null, 'RORO013','NACH DEM EINSATZ', 100, 100, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro013_nach-dem-einsatz-800x799.jpg', 13),
+    (null, 'RORO014','NEBELSCHLEIER', 120, 140, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro014_nebelschleier.jpg', 13),
+    (null, 'RORO015','WOLKENDURCHBRUCH', 120, 140, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro015_wolkendurchbruch.jpg', 13),
+    (null, 'RORO016','TWIN-SAGUARO', 75, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro016_twin-saguaro-800x628.jpg', 13),
+    (null, 'RORO017','OLIVENHAIN', 75, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro017_olivenhain-800x655.jpg', 13),
+    (null, 'RORO018','SIESTA IN RELIQUIDAS', 62, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro018_siesta-in-reliquidas-800x652.jpg', 13),
+    (null, 'RORO019','KLEINE OASE', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro019_kleine-oase-800x662.jpg', 13),
+    (null, 'RORO020','KONTRASTE', 40, 50, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro020_kontraste-800x966.jpg', 13),
+    (null, 'RORO021','SONORA STILLLEBEN', 50, 40, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro021_sonora-stillleben-800x662.jpg', 13),
+    (null, 'RORO022','KANDELABER SAGUARO', 45, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro022_kandelaber-800x1051.jpg', 13),
+    (null, 'RORO023','KAKTUSFAMILIE', 45, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro023_kaktusfamilie.jpg', 13),
+    (null, 'RORO024','VERBUNDEN', 45, 60, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro024_verbunden.jpg', 13),
+    (null, 'RORO025','DAS ROSA KAKTUSBLATT', 64, 53, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2018/12/roro025_das-rosa-kaktusblatt-800x683.jpg', 13),
+
+#   Kinderbilder
     (null, 'KIBI001','SCHMETTERLING', 44, 34, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/KIBI_001-800x615.jpg', 17),
     (null, 'KIBI002','UHU', 24, 33, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/KIBI_002-800x1098.jpg', 17),
     (null, 'KIBI003','WOLF', 23, 32, 0, true, false, 'https://www.kunstfuerfilm.de/wp-content/uploads/2017/08/KIBI_003-800x1103.jpg', 17),
