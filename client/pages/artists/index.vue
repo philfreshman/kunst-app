@@ -4,8 +4,8 @@
 
 
 <template>
-   <ArtistDialog/>
-   <el-divider />
+<!--   <ArtistDialog/>-->
+<!--   <el-divider />-->
    <ArtistTable/>
 </template>
 

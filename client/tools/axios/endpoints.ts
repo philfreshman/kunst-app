@@ -19,6 +19,14 @@ export default {
   },
 
 
+  // Invoice
+  PostInvoice(data: Invoice){
+    return Axios().post('/api/invoice/', data)
+  }
+
+
+
+
   // CheckPassword(data: any) {
   //   const formData = new FormData();
   //   formData.append("password", data);

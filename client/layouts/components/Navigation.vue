@@ -21,8 +21,8 @@ const routes: any = {
   artists: "2",
   peaces: "3",
   orders: { new: "4.1", all: "4.2" },
-  offers: "5",
-  invoices: "6",
+  offers: { new: "5.1", all: "5.2" },
+  invoices: { new: "6.1", all: "6.2" },
   settings: "7"
 };
 
@@ -87,7 +87,7 @@ if (!isPath1Empty && !isPath2Empty){
             </NuxtLink>
 
 
-           <el-sub-menu>
+           <el-sub-menu index="4">
               <template #title>
                  <el-icon><document /></el-icon>
                  <span>Orders</span>
@@ -100,33 +100,36 @@ if (!isPath1Empty && !isPath2Empty){
                   </NuxtLink>
            </el-sub-menu>
 
-           <el-sub-menu>
+
+
+           <el-sub-menu index="5">
              <template #title>
                <el-icon><document /></el-icon>
                <span>Offers</span>
              </template>
              <NuxtLink to="/offers/new">
-               <el-menu-item index="4-1">New</el-menu-item>
+               <el-menu-item index="5-1">New</el-menu-item>
              </NuxtLink>
              <NuxtLink to="/offers/all">
-               <el-menu-item index="4-2">All</el-menu-item>
+               <el-menu-item index="5-2">All</el-menu-item>
              </NuxtLink>
            </el-sub-menu>
 
 
-<!--            <NuxtLink to="/Offers">-->
-<!--               <el-menu-item index="5">-->
-<!--                  <el-icon><document /></el-icon>-->
-<!--                  <span>Offers</span>-->
-<!--               </el-menu-item>-->
-<!--            </NuxtLink>-->
+           <el-sub-menu index="6">
+             <template #title>
+               <el-icon><document /></el-icon>
+               <span>Invoices</span>
+             </template>
+             <NuxtLink to="/invoices/new">
+               <el-menu-item index="6-1">New</el-menu-item>
+             </NuxtLink>
+             <NuxtLink to="/invoices/all">
+               <el-menu-item index="6-2">All</el-menu-item>
+             </NuxtLink>
+           </el-sub-menu>
 
-            <NuxtLink to="/Invoices">
-               <el-menu-item index="6">
-                  <el-icon><document /></el-icon>
-                  <span>Invoices</span>
-            </el-menu-item>
-            </NuxtLink>
+
 
             <NuxtLink to="/Settings">
                <el-menu-item index="7">

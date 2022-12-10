@@ -19,7 +19,13 @@ onMounted( async () => {
 
 <template>
    <div class="test">
-      <el-table :data="tableData" height="100%" width="100%" sort-by="ArtistId" v-loading=isLoading>
+      <el-table
+          :data="tableData"
+          height="100%"
+          width="100%"
+          sort-by="ArtistId"
+          v-loading=isLoading
+      >
          <el-table-column type="index" width="50" />
          <el-table-column prop="ArticleId" label="ArticleId" />
          <el-table-column prop="Title" label="Title" width="300" />

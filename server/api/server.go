@@ -84,9 +84,9 @@ func (s *Server) setupRouter(app *gin.Engine) {
 // corsRules defines the incoming HTTP request rules
 func corsRules() gin.HandlerFunc {
 	return cors.New(cors.Config{
-		AllowWildcard: true,
-		//AllowAllOrigins:  true,
-		AllowOrigins:     []string{"http://localhost:9000"},
+		AllowWildcard:   true,
+		AllowAllOrigins: true,
+		//AllowOrigins:     []string{"http://localhost:9000"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE"},
 		AllowHeaders:     []string{"Authorization", "Origin", "Access-Control-Allow-Origin", "Content-Length", "Content-Type", "User-Agent", "Referrer", "Host", "Token"},
 		ExposeHeaders:    []string{"Access-Control-Allow-Origin"},
