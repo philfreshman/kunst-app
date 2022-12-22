@@ -14,9 +14,10 @@ declare global{
         IsArchived: boolean;
     }
 
+    // Rechnung
     interface Invoice {
         Id?: number | null;
-        InvoiceDate: Date;
+        Date: Date;
         InvoiceNr: string;
         Description: string;
         Text1: string;
@@ -24,17 +25,17 @@ declare global{
         IsArchived?: boolean;
     }
 
-
-
+    // Angebot
     interface Offer {
         Id: number;
         SetName: string;
-        OfferDate: Date;
+        Date: Date;
         Text1: string;
         Text2: string;
         IsArchived: boolean;
     }
 
+    // Bestellung
     interface Order {
         Id: number;
         Sender: string;

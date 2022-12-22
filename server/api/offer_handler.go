@@ -41,8 +41,13 @@ func (s *Server) postOffer(ctx *gin.Context) {
 	}
 	err := s.store.OfferStore.CreateOffer(input)
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
+
+	ctx.Status(http.StatusCreated)
 }
 
 // putOffer executes a whole entity update

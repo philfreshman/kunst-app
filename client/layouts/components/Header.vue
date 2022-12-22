@@ -14,6 +14,8 @@ import ToggleButton from "~/layouts/components/ToggleButton.vue";
 </style>
 
 <template>
+<!--  <NuxtLoadingIndicator />-->
+
 <!--   <header>-->
 <!--      <div class="box header-left">-->
 <!--      </div>-->

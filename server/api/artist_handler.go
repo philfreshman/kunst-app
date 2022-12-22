@@ -45,8 +45,13 @@ func (s *Server) postArtist(ctx *gin.Context) {
 	}
 	err := s.store.ArtistStore.CreateArtist(input)
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
+
+	ctx.Status(http.StatusCreated)
 }
 
 // putOrder executes a whole entity update
@@ -58,14 +63,16 @@ func (s *Server) putArtist(ctx *gin.Context) {
 	}
 
 	if err := s.store.ArtistStore.PutArtist(input); err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"status": "success",
-	})
+
+	ctx.Status(http.StatusOK)
 }
 
-// deleteOrder executes a soft-delete
+// deleteArtist executes a soft-delete
 func (s *Server) deleteArtist(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
@@ -82,4 +89,6 @@ func (s *Server) deleteArtist(ctx *gin.Context) {
 		})
 		return
 	}
+
+	ctx.Status(http.StatusOK)
 }

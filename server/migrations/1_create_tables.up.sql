@@ -30,7 +30,7 @@ CREATE TABLE Collections (
 CREATE TABLE Offers (
    Id int NOT NULL AUTO_INCREMENT,
    SetName varchar(255),
-   OfferDate date,
+   Date date,
    Text1 varchar(255),
    Text2 varchar(255),
    IsArchived bool not null default 0,
@@ -39,7 +39,7 @@ CREATE TABLE Offers (
 
 CREATE TABLE Invoices (
     Id int NOT NULL AUTO_INCREMENT,
-    InvoiceDate date,
+    Date date,
     InvoiceNr varchar(255),
     Description varchar(255),
     Text1 varchar(255),

@@ -22,8 +22,28 @@ export default {
   // Invoice
   PostInvoice(data: Invoice){
     return Axios().post('/api/invoice/', data)
-  }
+  },
+  GetInvoice(){
+    return Axios().get('api/invoice/')
+  },
 
+
+  // Offer
+  PostOffer(data: Offer){
+    return Axios().post('/api/offer/', data)
+  },
+  GetOffer(){
+    return Axios().get('api/offer/')
+  },
+
+
+  // Order
+  PostOrder(data: Order){
+    return Axios().post('/api/order/', data)
+  },
+  GetOrder(){
+    return Axios().get('api/order/')
+  }
 
 
 

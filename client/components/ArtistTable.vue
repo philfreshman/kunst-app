@@ -28,11 +28,11 @@ onMounted( async () => {
 
 <template>
    <el-table
+       v-loading=isLoading
        :data="tableData"
        height="100%"
-       width="100%"
        sort-by="index"
-       v-loading=isLoading
+       width="100%"
    >
       <el-table-column type="index" width="50" />
       <el-table-column property="Name" label="Name" width="120" />

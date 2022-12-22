@@ -30,7 +30,7 @@ func (store InvoiceStore) InvoiceById(id int) (types.Invoice, error) {
 func (store InvoiceStore) CreateInvoice(invoice types.Invoice) error {
 	_, err := store.Exec(`INSERT INTO Invoices VALUES (?,?,?,?,?,?,?)`,
 		nil,
-		invoice.InvoiceDate,
+		invoice.Date,
 		invoice.InvoiceNr,
 		invoice.Description,
 		invoice.Text1,
@@ -45,14 +45,14 @@ func (store InvoiceStore) CreateInvoice(invoice types.Invoice) error {
 
 func (store InvoiceStore) PutInvoice(invoice types.Invoice) error {
 	_, err := store.Exec(`UPDATE Invoices SET 
-		InvoiceDate=?,
+		Date=?,
 		InvoiceNr=?,
 		Description=?,
 		Text1=?,
 		Text2=?,
 		IsArchived=? 
 		WHERE Id=?`,
-		invoice.InvoiceDate,
+		invoice.Date,
 		invoice.InvoiceNr,
 		invoice.Description,
 		invoice.Text1,

@@ -1,10 +1,13 @@
 <template>
-<h1>Invoices</h1>
+<InvoiceTable/>
 </template>
 
 <script>
+import InvoiceTable from "~/components/InvoiceTable.vue";
+
 export default {
-  name: "index"
+  name: "index",
+  components: {InvoiceTable}
 }
 </script>
 

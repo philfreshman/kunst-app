@@ -31,7 +31,7 @@ func (store OfferStore) CreateOffer(offer types.Offer) error {
 	_, err := store.Exec(`INSERT INTO Offers VALUES (?,?,?,?,?,?)`,
 		nil,
 		offer.SetName,
-		offer.OfferDate,
+		offer.Date,
 		offer.Text1,
 		offer.Text2,
 		offer.IsArchived)
@@ -45,13 +45,13 @@ func (store OfferStore) CreateOffer(offer types.Offer) error {
 func (store OfferStore) PutOffer(offer types.Offer) error {
 	_, err := store.Exec(`UPDATE Offers SET 
 		SetName=?,
-		OfferDate=?,
+		Date=?,
 		Text1=?,
 		Text2=?,
 		IsArchived=?
 		WHERE Id=?`,
 		offer.SetName,
-		offer.OfferDate,
+		offer.Date,
 		offer.Text1,
 		offer.Text2,
 		offer.IsArchived,

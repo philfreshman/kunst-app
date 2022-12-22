@@ -8,13 +8,13 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "element-plus": "^2.2.26",
+    "element-plus": "^2.2.27",
     "nuxt": "3.0.0"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "axios": "^1.2.1",
-    "sass": "^1.56.2",
+    "sass": "^1.57.1",
     "vue": "^3.2.45"
   }
 }

@@ -31,6 +31,9 @@ func (s *Server) getInvoiceById(ctx *gin.Context) {
 
 	data, err := s.store.InvoiceStore.InvoiceById(id)
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
 	ctx.JSON(http.StatusOK, data)
@@ -70,7 +73,7 @@ func (s *Server) putInvoice(ctx *gin.Context) {
 		return
 	}
 
-	ctx.Status(http.StatusCreated)
+	ctx.Status(http.StatusOK)
 }
 
 // deleteInvoice executes a soft-delete

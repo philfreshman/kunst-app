@@ -4,7 +4,7 @@ import "time"
 
 type Invoice struct {
 	Id          int       `db:"Id"`
-	InvoiceDate time.Time `db:"InvoiceDate"`
+	Date        time.Time `db:"Date"`
 	InvoiceNr   string    `db:"InvoiceNr"`
 	Description string    `db:"Description"`
 	Text1       string    `db:"Text1"`

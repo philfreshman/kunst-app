@@ -11,12 +11,12 @@ import (
 func (s *Server) getOrders(ctx *gin.Context) {
 	data, err := s.store.OrderStore.Orders()
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"data":   data,
-		"status": "success",
-	})
+	ctx.JSON(http.StatusOK, data)
 }
 
 // getOrderById executes an SELECT * ... WHERE ID=id
@@ -31,12 +31,12 @@ func (s *Server) getOrderById(ctx *gin.Context) {
 
 	data, err := s.store.OrderStore.OrderById(id)
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"data":   data,
-		"status": "success",
-	})
+	ctx.JSON(http.StatusOK, data)
 }
 
 // postOrder executes an INSERT statement
@@ -49,8 +49,13 @@ func (s *Server) postOrder(ctx *gin.Context) {
 	}
 	err := s.store.OrderStore.CreateOrder(input)
 	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": err.Error(),
+		})
 		return
 	}
+
+	ctx.Status(http.StatusCreated)
 }
 
 // putOrder executes a whole entity update
@@ -84,4 +89,5 @@ func (s *Server) deleteOrder(ctx *gin.Context) {
 		})
 		return
 	}
+	ctx.Status(http.StatusOK)
 }
