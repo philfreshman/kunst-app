@@ -1,0 +1,44 @@
+@use 'layout';
+@use 'hamburger';
+@use 'toggle';
+@use 'colors';
+@use 'element-plus';
+
+@forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+  $bg-color: (
+    'page': #0a0a0a,
+    '': #626aef,
+    'overlay': #1d1e1f,
+  )
+
+);
+
+
+:root {
+  --gray: #ccccd7;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  background: #222;
+  color: white;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  height: 100vh;
+
+}
+
+#__nuxt, .el-container{
+  height: 100%;
+}
+
+.el-main{
+}
