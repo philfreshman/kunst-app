@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "kunst-app",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,8 +11,21 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.8.2",
     "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "@element-plus/nuxt": "^1.0.7",
+    "autoprefixer": "^10.4.16",
+    "nuxt": "3.8.2",
+    "nuxt-typed-router": "^3.3.3",
+    "postcss": "^8.4.31"
+  },
+  "dependencies": {
+    "@nuxtjs/supabase": "^1.1.4",
+    "@nuxtjs/tailwindcss": "^6.10.1",
+    "@popperjs/core": "^2.11.8",
+    "@types/node": "^20.10.0",
+    "nuxt-mdi": "^1.1.1",
+    "sass": "^1.69.5",
+    "tailwindcss": "^3.3.5"
   }
 }
