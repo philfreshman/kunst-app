@@ -5,46 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47f8d3eb-9191-4d41-b055-ae8507e7ab91" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/scss/element-plus.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ArtistDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ArtistTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/InvoiceForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/InvoiceTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Nav.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/OfferForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/OfferTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/OrderTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/PeacesTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/test.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composables/dark.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composables/dateFormatter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composables/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composables/message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composables/navigationIndex.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/blank.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Artists.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Invoices.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Offers.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Orders.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Peaces.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/Settings.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/old/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/old/Tasks.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/old/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/database.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/task.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +85,7 @@
       <workItem from="1701008613432" duration="1699000" />
       <workItem from="1701010343767" duration="812000" />
       <workItem from="1701011158373" duration="59000" />
-      <workItem from="1701011225061" duration="1309000" />
+      <workItem from="1701011225061" duration="1687000" />
     </task>
     <servers />
   </component>
