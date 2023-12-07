@@ -1,36 +1,25 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  imports: {
+    autoImport: true
+  },
+  components: {
+    global: true,
+    dirs: ['~/components', '~/layouts/components']
+  },
   modules: [
-    '@element-plus/nuxt',
-    'nuxt-mdi',
+    '@nuxt/ui',
     '@nuxtjs/tailwindcss',
+    'nuxt-mdi',
     '@nuxtjs/supabase'
   ],
-
-  css: ['~/assets/scss/main.scss'],
-  mdi: {
-    cache: false,
-    componentName: 'MdiIcon',
-    defaultSize: '5rem'
-  },
-  tailwindcss: {
-    viewer: false
-  },
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {}
-    }
-  },
-  elementPlus: {},
-  vite: {
-    css: {
-      preprocessorOptions: {
-        sass: {
-          additionalData: '@use "@/assets/scss/colors.scss" as *\n'
-        }
-      }
-    }
+  colorMode: {
+    preference: 'dark'
   }
+
+  // supabase: {
+  //   redirectOptions: {
+  //     login: '/',
+  //     callback: '/confirm'
+  //   }
+  // }
 })

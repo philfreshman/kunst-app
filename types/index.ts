@@ -2,10 +2,13 @@ export {}
 
 
 declare global {
+
   interface Artist {
-    Id: number
-    Name: string
-    IsArchived: boolean
+    id: number
+    name: string
+    is_archived: boolean
+    phone: string
+    email: string
   }
 
   interface Collection {
