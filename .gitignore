@@ -133,3 +133,4 @@ bun.lockb
 .output/
 .DS_Store
 .idea/
+package-lock.json
