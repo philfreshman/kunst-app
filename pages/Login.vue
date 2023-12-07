@@ -1,93 +1,78 @@
 <script setup lang="ts">
-import type {FormInstance, FormRules} from "element-plus"
+import type { FormError, FormSubmitEvent } from '#ui/types'
 
-definePageMeta({layout: 'blank'})
-
-const client = useSupabaseClient()
-const user = useSupabaseUser()
 const router = useRouter()
+const supabase = useSupabaseClient()
+const user = useSupabaseUser()
+
+definePageMeta({layout: 'auth'})
 
 
-interface RuleForm {
-  email: string
-  password: string
-}
-
-const loginFormRef = ref<FormInstance>()
-const loginForm = reactive<RuleForm>({
-  email: import.meta.env.VITE_API_LOGIN || "",
-  password: import.meta.env.VITE_PASS || "",
+const state = reactive({
+  email: import.meta.env.VITE_AUTH_EMAIL,
+  password: import.meta.env.VITE_AUTH_PASS
 })
 
-
-const rules = reactive<FormRules<RuleForm>>({
-  email: [
-    {required: true, message: 'Email erforderlich!', trigger: 'blur', type: 'email'},
-  ],
-  password: [
-    {required: true, message: 'Passwort erforderlich!', trigger: 'blur'},
-  ]
-})
-
-
-async function login(){
-  const {error} = await client.auth.signInWithPassword({email: loginForm.email, password: loginForm.password})
-  console.log(error)
-  if(error === null){
-    router.push('/')
-  }
+const validate = (state: any | undefined): FormError[] => {
+  const errors = []
+  if (!state.email) errors.push({ path: 'email', message: 'Required' })
+  if (!state.password) errors.push({ path: 'password', message: 'Required' })
+  return errors
 }
 
-
-const submitForm = async (formEl: FormInstance | undefined) => {
-  console.log("login", process.env.LOGIN)
-  console.log('submit')
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      console.log('valid')
-      login()
-    } else {
-      console.log('error')
-      ElMessage.error({message:'Incorrect email or password', offset: 410})
-      return false
-    }
-  })
+async function onSubmit (event: FormSubmitEvent<any>) {
+  await signIn()
+  await router.push("/artists")
 }
+
+const signIn = async () => {
+  const { error } = await supabase.auth.signInWithPassword({ email: state.email , password: state.password })
+  if (error) { console.log(error) }
+  console.log('user', user.value)
+}
+
+const signOut = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) { console.log(error) }
+}
+
 
 </script>
 
 <template>
-  <div class="h-3/4 flex items-center justify-center">
-    <div class="flex items-center w-80 flex-col bg-white rounded-2xl shadow-2xl">
 
-      <div class="bg-[#1C3452] flex items-center justify-center m-6 ">
-        <div class="">
-<!--          <Logo/>-->
+  <Pattern class="absolute top-0 h-full"/>
+
+  <div class="h-screen">
+    <div class="absolute w-min h-auto right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div class="relative pb-20">
+          <Container class="shadow-xl bg-white">
+            <div class="m-2 w-72">
+              <h1 class="flex w-full justify-center pb-6 text-3xl">Login</h1>
+
+              <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
+                <UFormGroup label="Email" name="email">
+                  <UInput v-model="state.email" />
+                </UFormGroup>
+
+                <UFormGroup  label="Passwort" name="password">
+                  <UInput v-model="state.password" type="password" />
+                </UFormGroup>
+
+                <div class="pt-6 flex w-full justify-center ">
+                  <UButton type="submit">
+                    Einloggen
+                  </UButton>
+                </div>
+              </UForm>
+
+            </div>
+          </Container>
         </div>
-      </div>
-
-      <el-form
-        ref="loginFormRef"
-        :model="loginForm"
-        :rules="rules"
-        label-width="80px"
-        class="max-w-md mx-auto w-80 p-6 "
-        status-icon
-      >
-        <el-form-item label="Email" prop="email">
-          <el-input type="text" v-model="loginForm.email" placeholder="Email"></el-input>
-        </el-form-item>
-        <el-form-item label="Passwort" prop="password">
-          <el-input type="password" v-model="loginForm.password" placeholder="Passwort"></el-input>
-        </el-form-item>
-        <div class="w-full flex justify-center">
-          <el-button type="primary" @click="submitForm(loginFormRef)">Login</el-button>
-        </div>
-      </el-form>
-
     </div>
   </div>
+
+
 </template>
 
 

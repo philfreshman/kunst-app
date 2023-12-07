@@ -1,22 +1,18 @@
 <script setup lang="ts">
 const props = defineProps({
-  height: {type: Number, default: 70}
+  height: {type: String, default: "56"}
 })
 </script>
 
 <template>
-  <a
-    href="https://element-plus.org/en-US/component/button.html"
-    target="_blank">
+  <a href="https://ui.nuxt.com/getting-started">
     <img
-      :style="`height:${props.height}px`"
-      id="logo"
-      src="~/assets/img/kunstfuerfilm_logo_shadow.svg"
-      alt="kff"
+      alt="logo"
+      src="~/assets/img/logo.svg"
+      :style="{
+        height: `${props.height}px`
+      }"
     />
   </a>
 </template>
 
-<style scoped>
-
-</style>

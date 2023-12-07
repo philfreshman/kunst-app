@@ -1,8 +1,6 @@
 <template>
-  <h1> Default</h1>
+  <Container>
+    <h1>Index</h1>
+  </Container>
 </template>
 
-
-<script setup>
-
-</script>
