@@ -8,13 +8,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/supabase": "^1.1.4",
-    "nuxt-mdi": "^1.1.1"
+    "@nuxtjs/supabase": "^1.1.6",
+    "nuxt-mdi": "^1.1.6"
   },
   "devDependencies": {
-    "@nuxt/ui": "^2.8.0",
-    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@nuxt/ui": "^2.12.3",
+    "@nuxtjs/tailwindcss": "^6.11.1",
     "@types/node": "^20",
-    "nuxt": "^3.7.3"
+    "nuxt": "^3.9.3"
   }
 }
