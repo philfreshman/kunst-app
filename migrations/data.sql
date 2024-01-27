@@ -1,4 +1,4 @@
-INSERT INTO artists (id, name, phone, email, is_Archived)
+INSERT INTO artists (id, name, phone, email, is_archived)
 VALUES
     (1, 'A.Fehrenberg', '02351 76 71 58', 'emmalee_herzog@hotmail.com', false),
     (2, 'A.Schilling', '039482 96 33','dovie.strosin70@gmail.com', false),
@@ -19,7 +19,7 @@ VALUES
     (17, 'KINDEREBILDER', '06543 96 94 67', 'janis.bechtelar93@hotmail.com',false),
     (18, 'FAMILIENFOTOS', '06249 83 89 06', 'vida25@gmail.com',false);
 
-INSERT INTO peaces (Articleid, Title, Width, Height, Worth, IsAvailable, IsArchived, ImgUrl, ArtistId)
+INSERT INTO peaces (article_id, title, width, height, worth, is_available, is_archived, img_url, artist_id)
 VALUES
 
 --   A.Fehrenberg

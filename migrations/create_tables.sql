@@ -1,66 +1,65 @@
 CREATE TABLE artists (
     id SERIAL PRIMARY KEY,
-    name varchar(255),
-    phone varchar(255),
-    email varchar(255),
-    is_archived bool not null default false
+    name VARCHAR(255),
+    phone VARCHAR(255),
+    email VARCHAR(255),
+    is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE peaces (
-    Id SERIAL PRIMARY KEY,
-    ArticleId varchar(255),
-    Title varchar(255),
-    Width int,
-    Height int,
-    Worth float,
-    IsAvailable bool default true,
-    IsArchived bool not null default false,
-    ImgUrl varchar(255),
-    ArtistId int NOT NULL,
-    FOREIGN KEY (ArtistId) references artists (Id)
+    id SERIAL PRIMARY KEY,
+    article_id VARCHAR(255),
+    title VARCHAR(255),
+    width INTEGER,
+    height INTEGER,
+    worth FLOAT,
+    is_available BOOLEAN DEFAULT true,
+    is_archived BOOLEAN NOT NULL DEFAULT false,
+    img_url VARCHAR(255),
+    artist_id INTEGER NOT NULL,
+    FOREIGN KEY (artist_id) REFERENCES artists (id)
 );
 
 CREATE TABLE collections (
-    Id SERIAL PRIMARY KEY,
-    PeaceIds JSON,
-    IsArchived bool not null default false
+    id SERIAL PRIMARY KEY,
+    peace_ids JSON,
+    is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE offers (
-    Id SERIAL PRIMARY KEY,
-    SetName varchar(255),
-    Date date,
-    Text1 varchar(255),
-    Text2 varchar(255),
-    IsArchived bool not null default false
+    id SERIAL PRIMARY KEY,
+    set_name VARCHAR(255),
+    date DATE,
+    text1 VARCHAR(255),
+    text2 VARCHAR(255),
+    is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE invoices (
-    Id SERIAL PRIMARY KEY,
-    Date date,
-    InvoiceNr varchar(255),
-    Description varchar(255),
-    Text1 varchar(255),
-    Text2 varchar(255),
-    IsArchived bool not null default false
+    id SERIAL PRIMARY KEY,
+    date DATE,
+    invoice_nr VARCHAR(255),
+    description VARCHAR(255),
+    text1 VARCHAR(255),
+    text2 VARCHAR(255),
+    is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
-
 CREATE TABLE orders (
-    Id SERIAL PRIMARY KEY,
-    Sender varchar(255),
-    Address1 varchar(255),
-    Address2 varchar(255),
-    Address3 varchar(255),
-    ProductionName varchar(255),
-    StartDate date,
-    EndDate date,
-    Tax float,
-    IsArchived bool not null default false,
-    OfferId int,
-    InvoiceId int,
-    CollectionId int,
-    FOREIGN KEY (OfferId) references offers (Id)  ON DELETE CASCADE,
-    FOREIGN KEY (InvoiceId) references invoices (Id)  ON DELETE CASCADE,
-    FOREIGN KEY (CollectionId) references collections (Id)  ON DELETE CASCADE
+    id SERIAL PRIMARY KEY,
+    sender VARCHAR(255),
+    address1 VARCHAR(255),
+    address2 VARCHAR(255),
+    address3 VARCHAR(255),
+    production_name VARCHAR(255),
+    start_date DATE,
+    end_date DATE,
+    tax FLOAT,
+    is_archived BOOLEAN NOT NULL DEFAULT false,
+    offer_id INTEGER,
+    invoice_id INTEGER,
+    collection_id INTEGER,
+    FOREIGN KEY (offer_id) REFERENCES offers (id) ON DELETE CASCADE,
+    FOREIGN KEY (invoice_id) REFERENCES invoices (id) ON DELETE CASCADE,
+    FOREIGN KEY (collection_id) REFERENCES collections (id) ON DELETE CASCADE
 );
