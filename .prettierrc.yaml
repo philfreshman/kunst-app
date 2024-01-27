@@ -1,0 +1,5 @@
+semi: false
+overrides:
+  - files: "*.js"
+    options:
+      tabWidth: 2
