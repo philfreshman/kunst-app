@@ -19,7 +19,7 @@ VALUES
     (17, 'KINDEREBILDER', '06543 96 94 67', 'janis.bechtelar93@hotmail.com',false),
     (18, 'FAMILIENFOTOS', '06249 83 89 06', 'vida25@gmail.com',false);
 
-INSERT INTO peaces (article_id, title, width, height, worth, is_available, is_archived, img_url, artist_id)
+INSERT INTO artworks (article_id, title, width, height, price, is_available, is_archived, img_url, artist_id)
 VALUES
 
 --   A.Fehrenberg
