@@ -6,13 +6,13 @@ CREATE TABLE artists (
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
-CREATE TABLE peaces (
+CREATE TABLE artworks (
     id SERIAL PRIMARY KEY,
     article_id VARCHAR(255),
     title VARCHAR(255),
     width INTEGER,
     height INTEGER,
-    worth FLOAT,
+    price FLOAT,
     is_available BOOLEAN DEFAULT true,
     is_archived BOOLEAN NOT NULL DEFAULT false,
     img_url VARCHAR(255),
@@ -22,7 +22,7 @@ CREATE TABLE peaces (
 
 CREATE TABLE collections (
     id SERIAL PRIMARY KEY,
-    peace_ids JSON,
+    artwork_ids JSON,
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
 

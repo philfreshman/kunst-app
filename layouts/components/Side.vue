@@ -1,14 +1,26 @@
 <template>
   <div class="h-auto flex flex-col">
-
     <NuxtLink to="/artists">
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:alien-outline"
-        size="lg" color="gray"
+        size="lg"
+        color="gray"
         variant="solid"
       >
         Künstler
+      </UButton>
+    </NuxtLink>
+
+    <NuxtLink to="/artworks">
+      <UButton
+        class="w-full my-1.5"
+        icon="i-mdi:palette-outline"
+        size="lg"
+        color="gray"
+        variant="solid"
+      >
+        Kunstwerke
       </UButton>
     </NuxtLink>
 
@@ -16,7 +28,8 @@
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:receipt-text-outline"
-        size="lg" color="gray"
+        size="lg"
+        color="gray"
         variant="solid"
       >
         Rechnungen
@@ -27,7 +40,8 @@
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:offer"
-        size="lg" color="gray"
+        size="lg"
+        color="gray"
         variant="solid"
       >
         Angebote
@@ -38,23 +52,12 @@
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:cart-outline"
-        size="lg" color="gray"
+        size="lg"
+        color="gray"
         variant="solid"
       >
         Bestellungen
       </UButton>
     </NuxtLink>
-
-    <NuxtLink to="/peaces">
-      <UButton
-        class="w-full my-1.5"
-        icon="i-mdi:palette-outline"
-        size="lg" color="gray"
-        variant="solid"
-      >
-        Kunstwerke
-      </UButton>
-    </NuxtLink>
-
   </div>
 </template>

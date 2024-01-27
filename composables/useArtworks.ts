@@ -1,30 +1,32 @@
-import { ref } from 'vue'
+import { ref } from "vue"
 
-export default function usePeaces(){
-
+export default function useArtworks() {
   const supabase = useSupabaseClient<Database>()
   const data = ref<Artist[]>()
   const loading = ref<boolean>(true)
 
-  async function fetchPeaces() {
+  async function fetchArtworks() {
     try {
-      const {pending, data: peacesData} = await useLazyAsyncData('peaces', async () =>
-        supabase.from('peaces').select('*').order('id'), {
-        transform: result => result.data as Artist[], server: false
-      })
+      const { pending, data: artworksData } = await useLazyAsyncData(
+        "artworks",
+        async () => supabase.from("artworks").select("*").order("id"),
+        {
+          transform: (result) => result.data as Artist[],
+          server: false,
+        },
+      )
 
-      if (peacesData.value === null) {
+      if (artworksData.value === null) {
         data.value = []
         return
       }
       // store response to allTodos
-      data.value = peacesData.value
+      data.value = artworksData.value
     } catch (err) {
-      console.error('Error retrieving data from db', err)
+      console.error("Error retrieving data from db", err)
     }
 
     loading.value = false
-
   }
   //
   // async function updateArtist(artist: Artist){
@@ -43,6 +45,6 @@ export default function usePeaces(){
   return {
     data,
     loading,
-    fetchPeaces,
+    fetchArtworks,
   }
 }

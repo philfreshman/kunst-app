@@ -20,9 +20,9 @@ const validate = (state: any | undefined): FormError[] => {
 }
 
 async function onSubmit(event: FormSubmitEvent<any>) {
-  if (useRuntimeConfig().useAuth) {
-    await signIn()
-  }
+  // if (useRuntimeConfig().useAuth) {
+  await signIn()
+  // }
 
   await router.push("/artists")
 }
