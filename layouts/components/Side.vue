@@ -2,9 +2,9 @@
   <div class="h-auto flex flex-col">
     <NuxtLink to="/artists">
       <UButton
-        class="w-full my-1.5"
+        class="w-full mb-1.5"
         icon="i-mdi:alien-outline"
-        size="lg"
+        size="md"
         color="gray"
         variant="solid"
       >
@@ -16,7 +16,7 @@
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:palette-outline"
-        size="lg"
+        size="md"
         color="gray"
         variant="solid"
       >
@@ -24,11 +24,23 @@
       </UButton>
     </NuxtLink>
 
+    <NuxtLink to="/orders">
+      <UButton
+        class="w-full my-1.5"
+        icon="i-mdi:cart-outline"
+        size="md"
+        color="gray"
+        variant="solid"
+      >
+        Bestellungen
+      </UButton>
+    </NuxtLink>
+
     <NuxtLink to="/invoices">
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:receipt-text-outline"
-        size="lg"
+        size="md"
         color="gray"
         variant="solid"
       >
@@ -40,24 +52,13 @@
       <UButton
         class="w-full my-1.5"
         icon="i-mdi:offer"
-        size="lg"
+        size="md"
         color="gray"
         variant="solid"
       >
         Angebote
       </UButton>
     </NuxtLink>
-
-    <NuxtLink to="/orders">
-      <UButton
-        class="w-full my-1.5"
-        icon="i-mdi:cart-outline"
-        size="lg"
-        color="gray"
-        variant="solid"
-      >
-        Bestellungen
-      </UButton>
-    </NuxtLink>
   </div>
 </template>
+<script setup lang="ts"></script>
