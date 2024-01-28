@@ -31,6 +31,8 @@ export default function useArtist() {
   async function updateArtist(artist: Artist) {
     const { error } = await supabase.from("artists").upsert(artist)
 
+    console.log(data)
+
     return new Promise((resolve, reject) => {
       if (error === null) {
         resolve("Operation was successful")

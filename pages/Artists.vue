@@ -92,7 +92,7 @@ const submitEdit = async () => {
 </script>
 
 <template>
-  <Container>
+  <Container_old>
     <UTable
       class="w-[700px]"
       :columns="columns"
@@ -114,7 +114,7 @@ const submitEdit = async () => {
     >
       <UPagination v-model="page" :page-count="pageCount" :total="length" />
     </div>
-  </Container>
+  </Container_old>
 
   <!--  EditModal-->
 
