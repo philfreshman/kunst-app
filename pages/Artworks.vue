@@ -19,6 +19,9 @@ const filteredRows = computed(() => {
   }
   return artworks.data.value.filter((artwork) => {
     return Object.values(artwork).some((value) => {
+      if (typeof value === "object" && value !== null && "name" in value) {
+        return String(value.name).toLowerCase().includes(q.value.toLowerCase())
+      }
       return String(value).toLowerCase().includes(q.value.toLowerCase())
     })
   })
@@ -37,6 +40,16 @@ const columns = [
     class: "w-1/4",
   },
   {
+    key: "artists.name",
+    label: "Künstler",
+    sortable: true,
+  },
+  {
+    key: "title",
+    label: "Titel",
+    sortable: true,
+  },
+  {
     key: "height",
     label: "Größe",
     sortable: true,
@@ -51,11 +64,6 @@ const columns = [
     label: "Wert",
     sortable: true,
   },
-  {
-    key: "title",
-    label: "Titel",
-    sortable: true,
-  },
 ]
 
 const log = (value: any) => {
@@ -66,7 +74,23 @@ const log = (value: any) => {
 <template>
   <!-- SEARCH -->
   <div class="flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700">
-    <UInput v-model="q" placeholder="Filter people..." />
+    <UInput
+      icon="i-heroicons-magnifying-glass-20-solid"
+      v-model="q"
+      placeholder="Filter people..."
+      :ui="{ icon: { trailing: { pointer: '' } } }"
+    >
+      <template #trailing>
+        <UButton
+          v-show="q !== ''"
+          color="gray"
+          variant="link"
+          icon="i-heroicons-x-mark-20-solid"
+          :padded="false"
+          @click="q = ''"
+        />
+      </template>
+    </UInput>
   </div>
 
   <UTable :columns="columns" :rows="filteredRows">

@@ -1,4 +1,5 @@
 semi: false
+proseWrap: never
 overrides:
   - files: "*.js"
     options:
