@@ -22,18 +22,10 @@ CREATE TABLE artworks (
 
 CREATE TABLE collections (
     id SERIAL PRIMARY KEY,
-    artwork_ids JSON,
+    artwork_collection JSON,
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
-CREATE TABLE offers (
-    id SERIAL PRIMARY KEY,
-    set_name VARCHAR(255),
-    date DATE,
-    text1 VARCHAR(255),
-    text2 VARCHAR(255),
-    is_archived BOOLEAN NOT NULL DEFAULT false
-);
 
 CREATE TABLE invoices (
     id SERIAL PRIMARY KEY,
@@ -45,21 +37,15 @@ CREATE TABLE invoices (
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
-CREATE TABLE orders (
+CREATE TABLE offers (
     id SERIAL PRIMARY KEY,
-    sender VARCHAR(255),
-    address1 VARCHAR(255),
-    address2 VARCHAR(255),
-    address3 VARCHAR(255),
+    offer_date DATE,
+    address VARCHAR(255),
     production_name VARCHAR(255),
+    set_name VARCHAR(255),
     start_date DATE,
     end_date DATE,
-    tax FLOAT,
     is_archived BOOLEAN NOT NULL DEFAULT false,
-    offer_id INTEGER,
-    invoice_id INTEGER,
     collection_id INTEGER,
-    FOREIGN KEY (offer_id) REFERENCES offers (id) ON DELETE CASCADE,
-    FOREIGN KEY (invoice_id) REFERENCES invoices (id) ON DELETE CASCADE,
     FOREIGN KEY (collection_id) REFERENCES collections (id) ON DELETE CASCADE
 );

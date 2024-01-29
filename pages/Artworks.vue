@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import useArtworks from "~/composables/useArtworks"
+import useFilteredArtworks from "~/composables/useSearchFilter"
 
 const artworks = useArtworks()
 await artworks.fetchArtworks()
@@ -8,24 +9,9 @@ onBeforeMount(() => {
   artworks.fetchArtworks()
 })
 
-const q = ref("")
-
-const filteredRows = computed(() => {
-  if (!q.value) {
-    return artworks.data.value
-  }
-  if (!artworks.data.value) {
-    return artworks.data.value
-  }
-  return artworks.data.value.filter((artwork) => {
-    return Object.values(artwork).some((value) => {
-      if (typeof value === "object" && value !== null && "name" in value) {
-        return String(value.name).toLowerCase().includes(q.value.toLowerCase())
-      }
-      return String(value).toLowerCase().includes(q.value.toLowerCase())
-    })
-  })
-})
+// Search
+const search = ref("")
+const { filteredRows } = useFilteredArtworks(artworks, search)
 
 // Table settings
 const columns = [
@@ -74,19 +60,19 @@ const columns = [
         <!-- SEARCH -->
         <UInput
           icon="i-heroicons-magnifying-glass-20-solid"
-          v-model="q"
+          v-model="search"
           size="md"
-          placeholder="Filter people..."
+          placeholder="Suche..."
           :ui="{ icon: { trailing: { pointer: '' } } }"
         >
           <template #trailing>
             <UButton
-              v-show="q !== ''"
+              v-show="search !== ''"
               color="gray"
               variant="link"
               icon="i-heroicons-x-mark-20-solid"
               :padded="false"
-              @click="q = ''"
+              @click="search = ''"
             />
           </template>
         </UInput>
@@ -96,11 +82,7 @@ const columns = [
     <template #content>
       <UTable :columns="columns" :rows="filteredRows">
         <template #img_url-data="{ row }" class="bg-red-50">
-          <LazyUPopover
-            class="h-20 w-fit content-fit bg-red-500"
-            mode="hover"
-            :popper="{ placement: 'right' }"
-          >
+          <LazyUPopover class="h-20 w-fit content-fit bg-red-500" mode="hover" :popper="{ placement: 'right' }">
             <template #panel class="bg-red-50">
               <img class="" :src="row.img_url" alt="" />
             </template>
