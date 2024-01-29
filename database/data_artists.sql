@@ -1,0 +1,20 @@
+INSERT INTO artists (id, name, phone, email, is_archived)
+VALUES
+    (1, 'A.Fehrenberg', '02351 76 71 58', 'emmalee_herzog@hotmail.com', false),
+    (2, 'A.Schilling', '039482 96 33','dovie.strosin70@gmail.com', false),
+    (3, 'A.F.Cart', '034782 52 39', 'pamela79@gmail.com', false),
+    (4, 'B. von Hartmann', '', 'lauriane_tromp37@hotmail.com',false),
+    (5, 'C. Hagemann', '08707 51 54 38', 'gilda_schaefer35@hotmail.com',false),
+    (6, 'D.Haupt', '08141 94 72 17', 'mireya.gorczany64@gmail.com',false),
+    (7, 'D.Stern', '07275 70 37 11', 'amelie7@yahoo.com',false),
+    (8, 'Gezett', '05507 54 49 23', 'valentina.schuster@yahoo.com',false),
+    (9, 'H. Klock', '04469 18 76 81', 'felicity16@gmail.com',false),
+    (10, 'I. Schmid', '040 33 04 24', 'koby_crooks37@hotmail.com',false),
+    (11, 'L. Valenzuela', '05734 24 31 78', 'lauriane_tromp37@hotmail.com',false),
+    (12, 'P. Brändle', '06303 37 83 46', 'brandi.roob@yahoo.com',false),
+    (13, 'R. Rospert', '08238 63 38 78', 'lamont14@hotmail.com',false),
+    (14, 'S. Schnibbe', '08294 88 40 17', 'curt.johnston64@gmail.com',false),
+    (15, 'V. Weltgen', '02723 89 29 77', 'polly_krajcik81@yahoo.com',false),
+    (16, 'W. Heinrich', '0641 29 57 28', 'kennith_adams@gmail.com',false),
+    (17, 'KINDEREBILDER', '06543 96 94 67', 'janis.bechtelar93@hotmail.com',false),
+    (18, 'FAMILIENFOTOS', '06249 83 89 06', 'vida25@gmail.com',false);

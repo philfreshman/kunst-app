@@ -24,15 +24,15 @@
       </UButton>
     </NuxtLink>
 
-    <NuxtLink to="/orders">
+    <NuxtLink to="/offers">
       <UButton
         class="w-full my-1.5"
-        icon="i-mdi:cart-outline"
+        icon="i-mdi:offer"
         size="md"
         color="gray"
         variant="solid"
       >
-        Bestellungen
+        Angebote
       </UButton>
     </NuxtLink>
 
@@ -45,18 +45,6 @@
         variant="solid"
       >
         Rechnungen
-      </UButton>
-    </NuxtLink>
-
-    <NuxtLink to="/offers">
-      <UButton
-        class="w-full my-1.5"
-        icon="i-mdi:offer"
-        size="md"
-        color="gray"
-        variant="solid"
-      >
-        Angebote
       </UButton>
     </NuxtLink>
   </div>

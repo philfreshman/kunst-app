@@ -20,10 +20,7 @@ const validate = (state: any | undefined): FormError[] => {
 }
 
 async function onSubmit(event: FormSubmitEvent<any>) {
-  // if (useRuntimeConfig().useAuth) {
   await signIn()
-  // }
-
   await router.push("/artists")
 }
 
@@ -32,17 +29,12 @@ const signIn = async () => {
     email: state.email,
     password: state.password,
   })
-  if (error) {
-    console.log(error)
-  }
-  console.log("user", user.value)
+  if (error) console.log(error)
 }
 
 const signOut = async () => {
   const { error } = await supabase.auth.signOut()
-  if (error) {
-    console.log(error)
-  }
+  if (error) console.log(error)
 }
 </script>
 
@@ -54,7 +46,7 @@ const signOut = async () => {
       class="absolute w-min h-auto right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
       <div class="relative pb-20">
-        <Container class="shadow-xl bg-white">
+        <Card class="shadow-xl bg-white">
           <div class="m-2 w-72">
             <h1 class="flex w-full justify-center pb-6 text-3xl">Login</h1>
 
@@ -77,7 +69,7 @@ const signOut = async () => {
               </div>
             </UForm>
           </div>
-        </Container>
+        </Card>
       </div>
     </div>
   </div>

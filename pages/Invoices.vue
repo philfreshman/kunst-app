@@ -1,3 +1,98 @@
 <template>
-  <h1>Invoices</h1>
+  <TableControl class="flex flex-row justify-between mb-3">
+    <div class="">Search</div>
+    <div class="self-end">
+      <UButton
+        class="w-full"
+        icon="i-mdi:cart-outline"
+        size="lg"
+        color="gray"
+        variant="solid"
+      >
+        Neue Bestellung
+      </UButton>
+    </div>
+  </TableControl>
+
+  <InnerContainer>
+    <div class="bg-red-300">
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+      <p>helllo</p>
+    </div>
+  </InnerContainer>
 </template>
+<script setup lang="ts"></script>
