@@ -27,13 +27,16 @@ declare global {
   }
 
   // Angebot
-  interface Offer {
-    id: number
+  type Offer = {
+    id?: number
+    offer_date: Date | any
+    address: string
+    production_name: string
     set_name: string
-    date: Date
-    text1: string
-    text2: string
-    is_archived: boolean
+    start_date: Date | any
+    end_date: Date | any
+    is_archived?: boolean
+    collection_id: number
   }
 
   // Bestellung
@@ -53,13 +56,27 @@ declare global {
     collection_id?: any
   }
 
-  interface Artwork {
+  type Artwork = {
     id: number
-    invoice_date: Date
-    invoice_nr: string
-    description: string
-    text1: string
-    text2: string
+    article_id: string
+    title: string
+    width: number
+    height: number
+    price: number
+    is_available: boolean
     is_archived: boolean
+    img_url: string
+    artist_id: number
+  }
+
+  // For searching
+  type ArtworkLight = {
+    id: number
+    article_id: string
+    img_url: string
+    artists: {
+      name: string
+    }
+    title: string
   }
 }

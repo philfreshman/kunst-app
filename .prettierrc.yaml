@@ -4,4 +4,4 @@ overrides:
   - files: "*.js"
     options:
       tabWidth: 2
-printWidth: 120
+printWidth: 150

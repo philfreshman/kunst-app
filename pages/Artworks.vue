@@ -3,11 +3,7 @@ import useArtworks from "~/composables/useArtworks"
 import useFilteredArtworks from "~/composables/useSearchFilter"
 
 const artworks = useArtworks()
-await artworks.fetchArtworks()
-
-onBeforeMount(() => {
-  artworks.fetchArtworks()
-})
+artworks.fetchArtworks()
 
 // Search
 const search = ref("")
@@ -66,21 +62,14 @@ const columns = [
           :ui="{ icon: { trailing: { pointer: '' } } }"
         >
           <template #trailing>
-            <UButton
-              v-show="search !== ''"
-              color="gray"
-              variant="link"
-              icon="i-heroicons-x-mark-20-solid"
-              :padded="false"
-              @click="search = ''"
-            />
+            <UButton v-show="search !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid" :padded="false" @click="search = ''" />
           </template>
         </UInput>
       </div>
     </template>
 
     <template #content>
-      <UTable :columns="columns" :rows="filteredRows">
+      <UTable :columns="columns" :rows="filteredRows" :loading="artworks.loading.value">
         <template #img_url-data="{ row }" class="bg-red-50">
           <LazyUPopover class="h-20 w-fit content-fit bg-red-500" mode="hover" :popper="{ placement: 'right' }">
             <template #panel class="bg-red-50">

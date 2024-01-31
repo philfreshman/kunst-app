@@ -5,6 +5,11 @@ export default function useArtist() {
   const data = ref<Artist[]>()
   const loading = ref<boolean>(true)
 
+  // handle page refresh
+  onMounted(() => {
+    if (data.value) fetchArtists()
+  })
+
   async function fetchArtists() {
     try {
       const { pending, data: artistData } = await useLazyAsyncData(
