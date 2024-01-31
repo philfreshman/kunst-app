@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+  devtools: {
+    enabled: false,
+  },
   runtimeConfig: {
     useAuth: false,
   },

@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import Container from "~/components/Container.vue"
 import useArtist from "~/composables/useArtist"
+import useFilteredArtworks from "~/composables/useSearchFilter"
 
 const artists = useArtist()
-const loading = artists.loading
-
-await artists.fetchArtists()
-
-onBeforeMount(() => {
-  artists.fetchArtists()
-})
+artists.fetchArtists()
 
 // Table settings
 const columns = [
@@ -74,26 +68,9 @@ const submitEdit = async () => {
   }
 }
 
+// Search
 const search = ref("")
-
-const filteredRows = computed(() => {
-  if (!search.value) {
-    return artists.data.value
-  }
-  if (!artists.data.value) {
-    return artists.data.value
-  }
-  return artists.data.value.filter((artwork) => {
-    return Object.values(artwork).some((value) => {
-      if (typeof value === "object" && value !== null && "name" in value) {
-        return String(value.name)
-          .toLowerCase()
-          .includes(search.value.toLowerCase())
-      }
-      return String(value).toLowerCase().includes(search.value.toLowerCase())
-    })
-  })
-})
+const { filteredRows } = useFilteredArtworks(artists, search)
 </script>
 
 <template>
@@ -122,29 +99,21 @@ const filteredRows = computed(() => {
       </div>
     </template>
     <template #content>
-      <UTable :columns="columns" :loading="loading" :rows="filteredRows">
+      <UTable :columns="columns" :rows="filteredRows" :loading="artists.loading.value">
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
-            <UButton
-              color="gray"
-              variant="ghost"
-              icon="i-heroicons-ellipsis-horizontal-20-solid"
-            />
+            <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
           </UDropdown>
         </template>
       </UTable>
     </template>
   </Container>
 
-  <!--  EditModal-->
+  <!--EditModal-->
   <BaseModal :isOpen="isModalOpen">
     <template #header>
       <div class="flex items-center justify-between">
-        <h3
-          class="text-base font-semibold leading-6 text-gray-900 dark:text-white"
-        >
-          Edit
-        </h3>
+        <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Edit</h3>
         <UButton
           @click="setModalClosed"
           color="gray"
