@@ -14,9 +14,9 @@ CREATE TABLE artworks (
     height INTEGER,
     price FLOAT,
     is_available BOOLEAN DEFAULT true,
-    is_archived BOOLEAN NOT NULL DEFAULT false,
+    is_archived BOOLEAN DEFAULT false,
     img_url VARCHAR(255),
-    artist_id INTEGER NOT NULL,
+    artist_id INTEGER,
     FOREIGN KEY (artist_id) REFERENCES artists (id)
 );
 

@@ -1,7 +1,14 @@
 semi: false
-proseWrap: never
+proseWrap: preserve
 overrides:
   - files: "*.js"
     options:
       tabWidth: 2
 printWidth: 150
+singleAttributePerLine: false
+trailingComma: none
+noBracketSpacing: true
+html-whitespace-sensitivity: ignore
+experimentalTernaries: true
+
+
