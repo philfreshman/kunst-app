@@ -1,66 +1,76 @@
 <script setup lang="ts">
 import limitTextarea from "~/utils/textareaLimiter"
 
+// Setup
 const emit = defineEmits<{ closeModal: [] }>()
+onMounted(() => artworks.fetchArtworksLight())
 
-// Modal-tabs
+// Data
+const artworks = useArtworks()
+const selected = ref([1, 2, 3])
+
+// Modal
 const tabIndex = ref(0)
-const items = [
+const modalData = reactive<Offer>({
+  address: "LETTERBOX FILMPRODUKTION GMBH\n" + "Jenfelder Allee 80\n" + "D- 22039 Hamburg\n" + "Germany",
+  production_name: "The next Level",
+  set_name: "NY Apt Josh",
+  start_date: "2024-01-17",
+  end_date: "2024-01-22",
+  offer_date: "2024-01-16",
+  collection_id: 0
+})
+const modalTabs = [
   {
     index: 0,
     slot: "basics",
     label: "Basics",
+    defaultOpen: true
   },
   {
     index: 1,
     slot: "artworks",
-    label: "Kunstwerke",
+    label: "Kunstwerke"
   },
   {
     index: 2,
     slot: "price",
-    label: "Preis",
-  },
+    label: "Preise"
+  }
 ]
 
-const modalData = reactive<Offer>({
-  address: "",
-  production_name: "",
-  set_name: "",
-  start_date: "",
-  end_date: "",
-  offer_date: "",
-  collection_id: 0,
-})
-
-const artworks = useArtworks()
-await artworks.fetchArtworksLight()
-
-const selected = ref([])
-watch(selected, () => {
-  console.log(selected.value)
-})
+const items = [
+  {
+    label: "Getting Started",
+    icon: "i-heroicons-information-circle",
+    defaultOpen: true,
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate."
+  },
+  {
+    label: "Installation",
+    icon: "i-heroicons-arrow-down-tray",
+    defaultOpen: false,
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate."
+  }
+]
 
 const formatArtwork = (artwork: ArtworkLight) => {
-  return `  ${artwork.article_id} | ${artwork.artists.name} | ${artwork.title}`
+  return `${artwork.article_id} | ${artwork.artists?.name} | ${artwork.title}`
 }
 
-watch(tabIndex, () => {
-  console.log(tabIndex.value)
-})
-
-const clearSelected = (e) => {
-  e.preventDefault()
-  selected.value = []
+const removeSelected = (artIndex: number) => {
+  selected.value = selected.value.filter((item) => item !== artIndex)
 }
 
-const removeSelected = (e) => {
-  selected.value = selected.value.filter((item) => item !== e)
+const log = (val) => {
+  console.log(val)
 }
 </script>
 
 <template>
-  <BaseModal :isWide="tabIndex === 1">
+  <BaseModal :isWide="tabIndex !== 0">
     <template #header>
       <div class="flex items-center justify-between">
         <h2 class="text-xl font-semibold">Angebot erstellen</h2>
@@ -69,7 +79,7 @@ const removeSelected = (e) => {
     </template>
 
     <div>
-      <UTabs :items="items" class="h-[464px] w-full custom-height flex flex-col" @change="(idx) => (tabIndex = idx)">
+      <UTabs :items="modalTabs" class="h-[464px] w-full custom-height flex flex-col" @change="(idx) => (tabIndex = idx)">
         <template #basics="{ item }">
           <UCard>
             <UForm :state="modalData" class="label-padding">
@@ -124,26 +134,26 @@ const removeSelected = (e) => {
 
               <div class="w-full h-full overflow-scroll">
                 <ul class="h-[310px]">
-                  <li v-for="(value, key) in selected" :key="item">
+                  <li v-for="(val, key) in selected" :key="item">
                     <div
                       class="flex justify-between mb-2 px-3 rounded-md ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 p-1"
                     >
                       <UTooltip :openDelay="1000" :ui="{ base: 'h-auto', width: 'max-w-2xl' }">
                         <template #text>
-                          <img class="h-96" :src="artworks.dataLight.value[value - 1].img_url" />
+                          <img class="h-96" :src="artworks.dataLight.value?.[val - 1].img_url" alt="artwork" />
                           <span class="w-full flex flex-row justify-center items-center h-4">
-                            <span class="italic">{{ artworks.dataLight.value[value - 1].title }}</span>
+                            <span class="italic">{{ artworks.dataLight.value[val - 1].title }}</span>
                           </span>
                         </template>
                         <div class="w-[536px] whitespace-nowrap overflow-ellipsis overflow-hidden pr-3">
-                          <code class="">{{ `${key + 1} ${formatArtwork(artworks.dataLight.value[value - 1])}` }}</code>
+                          <code class="">{{ `${key + 1} ${formatArtwork(artworks.dataLight.value[val - 1])}` }}</code>
                         </div>
                       </UTooltip>
 
                       <UIcon
                         class="mt-1 hover:cursor-pointer"
                         dynamic
-                        @click="removeSelected(value)"
+                        @click="removeSelected(val)"
                         color="gray"
                         variant="link"
                         name="i-heroicons-x-mark-20-solid"
@@ -158,7 +168,7 @@ const removeSelected = (e) => {
 
         <template #price="{ item }">
           <UCard>
-            <h1>Hello</h1>
+            <LazyOfferSummaryAccordion :modalData :selected />
           </UCard>
         </template>
       </UTabs>
@@ -172,21 +182,18 @@ const removeSelected = (e) => {
   </BaseModal>
 </template>
 
-<style>
-.custom-height > div:nth-child(2) {
-  flex: 1;
-  height: 100%;
-}
+<style lang="sass">
+.custom-height>div:nth-child(2)
+    flex: 1
+    height: 100%
 
-div[tabindex="-1"] {
-  height: 100% !important;
-}
+div[tabindex="-1"]
+  height: 100% !important
 
-code {
-  overflow: hidden;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  width: fit-content;
-  white-space: nowrap;
-}
+code
+  overflow: hidden
+  max-width: 100%
+  text-overflow: ellipsis
+  width: fit-content
+  white-space: nowrap
 </style>

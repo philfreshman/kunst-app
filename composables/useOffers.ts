@@ -6,15 +6,15 @@ export default function useOffers() {
   const loading = ref<boolean>(true)
 
   // handle page refresh
-  onMounted(() => {
-    if (data.value) fetchOffers()
+  onMounted(async () => {
+    if (data.value) await fetchOffers()
   })
 
   async function fetchOffers() {
     try {
       const { data: offerData } = await useLazyAsyncData("artists", async () => supabase.from("offers").select("*").order("id"), {
         transform: (result) => result.data as Offer[],
-        server: false,
+        server: false
       })
       if (offerData.value === null) {
         data.value = []
@@ -44,6 +44,6 @@ export default function useOffers() {
     data,
     loading,
     fetchOffers,
-    updateOffer,
+    updateOffer
   }
 }

@@ -4,6 +4,7 @@ export default function useArtworks() {
   const supabase = useSupabaseClient<Database>()
   const data = ref<Artwork[]>()
   const dataLight = ref<ArtworkLight[]>()
+  const dataById = ref<Artwork[]>()
   const loading = ref<boolean>()
 
   // handle page refresh
@@ -21,21 +22,21 @@ export default function useArtworks() {
             .from("artworks")
             .select(
               `
-                id,
-                article_id,
-                img_url,
-                title,
-                height,
-                width,
-                price,
-                artists:artist_id (name)
-              `,
+              id,
+              article_id,
+              img_url,
+              title,
+              height,
+              width,
+              price,
+              artists:artist_id (name)
+            `
             )
             .order("id"),
         {
           transform: (result) => result.data as any[],
-          server: false,
-        },
+          server: false
+        }
       )
 
       if (artworksData.value === null) {
@@ -44,6 +45,46 @@ export default function useArtworks() {
       }
       // store response
       data.value = artworksData.value
+      loading.value = false
+    } catch (err) {
+      console.error("Error retrieving data from db", err)
+    }
+
+    loading.value = false
+  }
+
+  async function fetchArtworksById(ids: number[]) {
+    loading.value = true
+    try {
+      const { data: artworksData } = await useAsyncData(
+        "artworks",
+        async () =>
+          supabase
+            .from("artworks")
+            .select(
+              `
+              id,
+              article_id,
+              title,
+              height,
+              width,
+              price
+            `
+            )
+            .in("id", ids)
+            .order("id"),
+        {
+          transform: (result) => result.data as any[],
+          server: false
+        }
+      )
+
+      if (artworksData.value === null) {
+        data.value = []
+        return
+      }
+      // store response
+      dataById.value = artworksData.value
       loading.value = false
     } catch (err) {
       console.error("Error retrieving data from db", err)
@@ -65,13 +106,13 @@ export default function useArtworks() {
               img_url,
               title,
               artists:artist_id (name)
-              `,
+              `
           ),
         // .order("title"),
         {
           transform: (result) => result.data as any[],
-          server: false,
-        },
+          server: false
+        }
       )
 
       if (artworksLightData.value === null) {
@@ -91,8 +132,10 @@ export default function useArtworks() {
   return {
     data,
     dataLight,
+    dataById,
     loading,
     fetchArtworks,
     fetchArtworksLight,
+    fetchArtworksById
   }
 }
