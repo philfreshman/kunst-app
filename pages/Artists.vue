@@ -3,44 +3,44 @@ import useArtist from "~/composables/useArtist"
 import useFilteredArtworks from "~/composables/useSearchFilter"
 
 const artists = useArtist()
-artists.fetchArtists()
+artists.getArtists()
 
 // Table settings
 const columns = [
   {
-    key: "id",
-    label: "#",
+    key: "internal_id",
+    label: "#"
   },
   {
     key: "name",
-    label: "Name",
+    label: "Name"
   },
   {
     key: "phone",
-    label: "Phone",
+    label: "Phone"
   },
   {
     key: "email",
-    label: "Email",
+    label: "Email"
   },
   {
-    key: "actions",
-  },
+    key: "actions"
+  }
 ]
 const items = (row: Artist) => [
   [
     {
       label: "Edit",
       icon: "i-heroicons-pencil-square-20-solid",
-      click: () => openEditModal(row),
+      click: () => openEditModal(row)
     },
     {
       label: "Delete",
       icon: "i-heroicons-trash-20-solid",
       click: () => console.log("delete"),
-      disabled: true,
-    },
-  ],
+      disabled: true
+    }
+  ]
 ]
 
 // Modal
@@ -60,7 +60,7 @@ const openEditModal = (row: Artist) => {
 const submitEdit = async () => {
   try {
     await artists.updateArtist(modalData)
-    await artists.fetchArtists()
+    await artists.getArtists()
   } catch (e) {
     console.log("Update artist failed", e)
   } finally {
@@ -86,14 +86,7 @@ const { filteredRows } = useFilteredArtworks(artists, search)
           :ui="{ icon: { trailing: { pointer: '' } } }"
         >
           <template #trailing>
-            <UButton
-              v-show="search !== ''"
-              color="gray"
-              variant="link"
-              icon="i-heroicons-x-mark-20-solid"
-              :padded="false"
-              @click="search = ''"
-            />
+            <UButton v-show="search !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid" :padded="false" @click="search = ''" />
           </template>
         </UInput>
       </div>
@@ -114,13 +107,7 @@ const { filteredRows } = useFilteredArtworks(artists, search)
     <template #header>
       <div class="flex items-center justify-between">
         <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Edit</h3>
-        <UButton
-          @click="setModalClosed"
-          color="gray"
-          variant="ghost"
-          icon="i-heroicons-x-mark-20-solid"
-          class="-my-1"
-        />
+        <UButton @click="setModalClosed" color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" />
       </div>
     </template>
 

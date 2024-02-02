@@ -6,37 +6,23 @@ export default function useArtist() {
   const loading = ref<boolean>(true)
 
   // handle page refresh
-  onMounted(() => {
-    if (data.value) fetchArtists()
+  onMounted(async () => {
+    if (data.value) await getArtists()
   })
 
-  async function fetchArtists() {
-    try {
-      const { pending, data: artistData } = await useLazyAsyncData(
-        "artists",
-        async () => supabase.from("artists").select("*").order("id"),
-        {
-          transform: (result) => result.data as Artist[],
-          server: false,
-        },
-      )
-      if (artistData.value === null) {
-        data.value = []
-        return
-      }
-      // store response to allTodos
-      data.value = artistData.value
-    } catch (err) {
-      console.error("Error retrieving data from db", err)
+  async function getArtists() {
+    loading.value = true
+    const { data: artistData, error } = await supabase.rpc("get_artists")
+    if (error) {
+      console.error("Error retrieving data from db", error)
+      return
     }
-
+    data.value = artistData
     loading.value = false
   }
 
   async function updateArtist(artist: Artist) {
     const { error } = await supabase.from("artists").upsert(artist)
-
-    console.log(data)
 
     return new Promise((resolve, reject) => {
       if (error === null) {
@@ -50,7 +36,7 @@ export default function useArtist() {
   return {
     data,
     loading,
-    fetchArtists,
     updateArtist,
+    getArtists
   }
 }

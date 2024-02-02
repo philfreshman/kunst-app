@@ -7,6 +7,10 @@ export default function useArtworks() {
   const dataById = ref<Artwork[]>()
   const loading = ref<boolean>()
 
+  supabase.rpc("get_artworks", { id: 1 }).then((res) => {
+    console.log(res)
+  })
+
   // handle page refresh
   onMounted(() => {
     if (data.value) fetchArtworks()
@@ -15,21 +19,37 @@ export default function useArtworks() {
   async function fetchArtworks() {
     loading.value = true
     try {
+      // const { data: artworksData } = await useAsyncData(
+      //   "artworks",
+      //   async () =>
+      //     supabase
+      //       .from("artworks")
+      //       .select(
+      //         `
+      //         id,
+      //         article_id,
+      //         artwork_url (url_id),
+      //         title,
+      //         height,
+      //         width,
+      //         price,
+      //         artists:artist_id (name)
+      //       `
+      //       )
+      //       .order("id"),
+      //   {
+      //     transform: (result) => result.data as any[],
+      //     server: false
+      //   }
+      // )
       const { data: artworksData } = await useAsyncData(
-        "artworks",
+        "artworks_url",
         async () =>
           supabase
-            .from("artworks")
+            .from("artworks_url")
             .select(
               `
-              id,
-              article_id,
-              img_url,
-              title,
-              height,
-              width,
-              price,
-              artists:artist_id (name)
+              urls:artwork_id (img_url)
             `
             )
             .order("id"),
@@ -93,6 +113,13 @@ export default function useArtworks() {
     loading.value = false
   }
 
+  async function fetchArtworksLight2() {
+    const { data, error } = await supabase.rpc("get_all_artworks_search_materialized")
+
+    if (error) console.log(error)
+    console.log(data)
+  }
+
   async function fetchArtworksLight() {
     loading.value = true
     try {
@@ -136,6 +163,7 @@ export default function useArtworks() {
     loading,
     fetchArtworks,
     fetchArtworksLight,
+    fetchArtworksLight2,
     fetchArtworksById
   }
 }

@@ -3,7 +3,7 @@ import limitTextarea from "~/utils/textareaLimiter"
 
 // Setup
 const emit = defineEmits<{ closeModal: [] }>()
-onMounted(() => artworks.fetchArtworksLight())
+onMounted(() => artworks.fetchArtworksLight2())
 
 // Data
 const artworks = useArtworks()
