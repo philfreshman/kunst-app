@@ -2,7 +2,7 @@ export {}
 
 declare global {
   interface Artist {
-    id: number
+    id: string
     name: string
     is_archived: boolean
     phone: string
@@ -10,14 +10,14 @@ declare global {
   }
 
   interface Collection {
-    id: number
+    id: string
     peace_ids: string
     is_archived: boolean
   }
 
   // Rechnung
   interface Invoice {
-    id?: number | null
+    id?: string | null
     date: Date
     invoice_nr: string
     description: string
@@ -28,7 +28,7 @@ declare global {
 
   // Angebot
   type Offer = {
-    id?: number
+    id?: string
     offer_date: Date | any
     address: string
     production_name: string
@@ -41,7 +41,7 @@ declare global {
 
   // Bestellung
   interface Order {
-    id: number
+    id: string
     sender: string
     address1: string
     address2: string
@@ -57,7 +57,7 @@ declare global {
   }
 
   type Artwork = {
-    id: number
+    id: string
     article_id: string
     title: string
     width: number
@@ -71,7 +71,7 @@ declare global {
 
   // For searching
   type ArtworkLight = {
-    id: number
+    id: string
     article_id: string
     img_url: string
     artists: {
