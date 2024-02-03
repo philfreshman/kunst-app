@@ -1,13 +1,30 @@
-CREATE OR REPLACE FUNCTION get_artworks_search_materialized() RETURNS SETOF artworks_search_materialized AS $$
-BEGIN
-    RETURN QUERY SELECT * FROM artworks_search_materialized;
-END; $$ LANGUAGE plpgsql;
-
+-- ARTISTS
 
 
 CREATE OR REPLACE FUNCTION get_artists() RETURNS SETOF artists AS $$
 BEGIN
-    RETURN QUERY SELECT * FROM artists;
+    RETURN QUERY SELECT * FROM artists ORDER BY internal_id;
 END; $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION update_artist(artist Artists) RETURNS text AS $$
+BEGIN
+    UPDATE artists
+    SET name = artist.name,
+        phone = artist.phone,
+        email = artist.email
+    WHERE id = artist.id;
+    RETURN 'Artist updated successfully';
+EXCEPTION
+    WHEN others THEN
+        RETURN 'Error updating artist';
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- ARTWORKS
+
+CREATE OR REPLACE FUNCTION get_artworks() RETURNS SETOF artworks_search_materialized AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM artworks_search_materialized;
+END; $$ LANGUAGE plpgsql;

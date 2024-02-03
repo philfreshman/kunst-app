@@ -2,27 +2,39 @@ import { ref } from "vue"
 
 export default function useArtist() {
   const supabase = useSupabaseClient<Database>()
-  const data = ref<Artist[]>()
   const loading = ref<boolean>(true)
+  const data = ref<Artist[]>()
 
   // handle page refresh
   onMounted(async () => {
-    if (data.value) await getArtists()
+    if (data.value === null) await initArtists()
   })
 
-  async function getArtists() {
-    loading.value = true
-    const { data: artistData, error } = await supabase.rpc("get_artists")
-    if (error) {
-      console.error("Error retrieving data from db", error)
-      return
+  async function initArtists() {
+    try {
+      loading.value = true
+      data.value = await getArtists()
+    } catch (error) {
+      console.error(error)
+    } finally {
+      loading.value = false
     }
-    data.value = artistData
-    loading.value = false
+  }
+
+  async function getArtists(): Promise<Artist[]> {
+    const { data, error } = await supabase.rpc("get_artists")
+
+    return new Promise((resolve, reject) => {
+      if (error === null) {
+        resolve(data)
+      } else {
+        reject("Operation failed")
+      }
+    })
   }
 
   async function updateArtist(artist: Artist) {
-    const { error } = await supabase.from("artists").upsert(artist)
+    const { error } = await supabase.rpc("update_artist", { artist })
 
     return new Promise((resolve, reject) => {
       if (error === null) {
@@ -36,7 +48,8 @@ export default function useArtist() {
   return {
     data,
     loading,
-    updateArtist,
-    getArtists
+    initArtists,
+    getArtists,
+    updateArtist
   }
 }
