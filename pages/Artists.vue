@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import useArtist from "~/composables/useArtist"
 import useFilteredArtworks from "~/composables/useSearchFilter"
+import { ref } from "vue"
 
 const artists = useArtist()
-artists.getArtists()
+artists.initArtists()
 
 // Table settings
 const columns = [
   {
     key: "internal_id",
-    label: "#"
+    label: "#",
+    sortable: true,
+    direction: "desc"
   },
   {
     key: "name",
