@@ -134,3 +134,11 @@ bun.lockb
 .DS_Store
 .idea/
 package-lock.json
+
+database/
+
+database/data_artworks.sql
+database/data_artists.sql
+database/data_invoices.sql
+database/data_offers.sql
+database/data_urls.sql
