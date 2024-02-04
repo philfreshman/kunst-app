@@ -4,19 +4,18 @@ import type { PropType } from "@vue/runtime-core"
 const props = defineProps({
   title: {
     type: String,
-    default: "",
+    default: ""
   },
   isOpen: {
     type: Boolean,
-    required: false,
+    required: false
   },
   data: {
     type: Object as PropType<Artist | undefined>,
     default: [],
-    required: true,
-  },
+    required: true
+  }
 })
-
 const modalData = reactive({ data: props.data })
 </script>
 
@@ -26,22 +25,13 @@ const modalData = reactive({ data: props.data })
       <UCard
         :ui="{
           ring: '',
-          divide: 'divide-y divide-gray-100 dark:divide-gray-800',
+          divide: 'divide-y divide-gray-100 dark:divide-gray-800'
         }"
       >
         <template #header>
           <div class="flex items-center justify-between">
-            <h3
-              class="text-base font-semibold leading-6 text-gray-900 dark:text-white"
-            >
-              Modal
-            </h3>
-            <UButton
-              color="gray"
-              variant="ghost"
-              icon="i-heroicons-x-mark-20-solid"
-              class="-my-1"
-            />
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Modal</h3>
+            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" />
           </div>
         </template>
 

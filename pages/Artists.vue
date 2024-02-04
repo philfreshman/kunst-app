@@ -2,34 +2,11 @@
 import useArtist from "~/composables/useArtist"
 import useFilteredArtworks from "~/composables/useSearchFilter"
 import { ref } from "vue"
+import { artistsTableColumns } from "~/utils/tableDefinitions"
+import BaseSearch from "~/components/BaseSearch.vue"
 
 const artists = useArtist()
-artists.initArtists()
 
-// Table settings
-const columns = [
-  {
-    key: "internal_id",
-    label: "#",
-    sortable: true,
-    direction: "desc"
-  },
-  {
-    key: "name",
-    label: "Name"
-  },
-  {
-    key: "phone",
-    label: "Phone"
-  },
-  {
-    key: "email",
-    label: "Email"
-  },
-  {
-    key: "actions"
-  }
-]
 const items = (row: Artist) => [
   [
     {
@@ -54,16 +31,13 @@ const setModalClosed = () => (isModalOpen.value = false)
 // Edit
 const modalData = reactive({}) as Artist
 const openEditModal = (row: Artist) => {
-  modalData.id = row.id
-  modalData.name = row.name
-  modalData.email = row.email
-  modalData.phone = row.phone
+  Object.assign(modalData, row)
   setModalOpen()
 }
 const submitEdit = async () => {
   try {
     await artists.updateArtist(modalData)
-    await artists.getArtists()
+    await artists.initArtists()
   } catch (e) {
     console.log("Update artist failed", e)
   } finally {
@@ -72,30 +46,16 @@ const submitEdit = async () => {
 }
 
 // Search
-const search = ref("")
-const { filteredRows } = useFilteredArtworks(artists, search)
+const { search, filteredRows } = useFilteredArtworks(artists.data)
 </script>
 
 <template>
   <Container>
     <template #controls>
-      <div class="flex dark:border-gray-700 h-full">
-        <!-- SEARCH -->
-        <UInput
-          icon="i-heroicons-magnifying-glass-20-solid"
-          v-model="search"
-          size="md"
-          placeholder="Suche..."
-          :ui="{ icon: { trailing: { pointer: '' } } }"
-        >
-          <template #trailing>
-            <UButton v-show="search !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid" :padded="false" @click="search = ''" />
-          </template>
-        </UInput>
-      </div>
+      <BaseSearch v-model="search" />
     </template>
     <template #content>
-      <UTable :columns="columns" :rows="filteredRows" :loading="artists.loading.value">
+      <UTable :columns="artistsTableColumns" :rows="filteredRows" :loading="artists.loading.value">
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
             <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
@@ -115,7 +75,7 @@ const { filteredRows } = useFilteredArtworks(artists, search)
     </template>
 
     <UForm :state="modalData" @submit="submitEdit">
-      <UFormGroup label="Name">
+      <UFormGroup label="Name" @keyup.enter="submitEdit">
         <UInput v-model="modalData.name" type="text" />
       </UFormGroup>
       <UFormGroup label="Phone">
