@@ -7,7 +7,7 @@ export default function useArtist() {
 
   // handle page refresh
   onMounted(async () => {
-    if (data.value === null) await initArtists()
+    await initArtists()
   })
 
   async function initArtists() {
@@ -23,25 +23,15 @@ export default function useArtist() {
 
   async function getArtists(): Promise<Artist[]> {
     const { data, error } = await supabase.rpc("get_artists")
-
     return new Promise((resolve, reject) => {
-      if (error === null) {
-        resolve(data)
-      } else {
-        reject("Operation failed")
-      }
+      error ? reject(error) : resolve(data)
     })
   }
 
   async function updateArtist(artist: Artist) {
     const { error } = await supabase.rpc("update_artist", { artist })
-
     return new Promise((resolve, reject) => {
-      if (error === null) {
-        resolve("Operation was successful")
-      } else {
-        reject("Operation failed")
-      }
+      error ? reject(error) : resolve(null)
     })
   }
 

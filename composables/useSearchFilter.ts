@@ -1,19 +1,25 @@
-import { computed, type Ref } from "vue"
-import recursiveSearch from "~/utils/recursiveSearch"
+import { computed } from "vue"
 
-export default function useFilteredArtworks(searchObject: any, search: Ref<string>) {
+function recursiveSearch(value: any, searchValue: string) {
+  if (typeof value === "object" && value !== null) {
+    return Object.values(value).some((nestedValue) => recursiveSearch(nestedValue, searchValue))
+  }
+  return String(value).toLowerCase().includes(searchValue.toLowerCase())
+}
+
+export default function useFilteredArtworks(searchObject: any) {
+  const search = ref("")
   const filteredRows = computed(() => {
     if (!search.value) {
-      return searchObject.data.value
+      return searchObject.value
     }
-    if (!searchObject.data.value) {
-      return searchObject.data.value
+    if (!searchObject.value) {
+      return searchObject.value
     }
-
-    return searchObject.data.value.filter((object) => {
+    return searchObject.value.filter((object) => {
       return recursiveSearch(object, search.value)
     })
   })
 
-  return { filteredRows }
+  return { search, filteredRows }
 }
