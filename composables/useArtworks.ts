@@ -1,8 +1,8 @@
 import { ref } from "vue"
 
-export default function useArtworks() {
+export default function useArtworks(variant?: string) {
   const supabase = useSupabaseClient<Database>()
-  const data = ref<Artwork[]>()
+  const data = ref<Artwork[] | ArtworkLight[]>()
   const dataLight = ref<ArtworkLight[]>()
   const dataById = ref<Artwork[]>()
   const loading = ref<boolean>()
@@ -15,7 +15,7 @@ export default function useArtworks() {
   async function initArtworks() {
     try {
       loading.value = true
-      data.value = await getArtworks()
+      data.value = variant === "search" ? await getArtworksSearch() : await getArtworks()
     } catch (e) {
       console.error(e)
     } finally {
@@ -23,8 +23,15 @@ export default function useArtworks() {
     }
   }
 
-  async function getArtworks(): Promise<Artwork[]> {
+  async function getArtworks(): Promise<any[]> {
     const { data, error } = await supabase.rpc("get_artworks")
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
+  async function getArtworksSearch(): Promise<any[]> {
+    const { data, error } = await supabase.rpc("get_artworks_search")
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
@@ -118,7 +125,7 @@ export default function useArtworks() {
     dataLight,
     dataById,
     loading,
-    getArtworks,
+    getArtworksSearch,
     fetchArtworksLight,
     fetchArtworksLight2,
     fetchArtworksById

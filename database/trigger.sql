@@ -19,4 +19,18 @@ END;
 $$ LANGUAGE plpgsql;
 
 
--- CREATE TRIGGER trigger_short_guid BEFORE INSERT ON artists2 FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+
+CREATE TRIGGER trigger_short_guid BEFORE INSERT ON artists FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+CREATE TRIGGER trigger_short_guid BEFORE INSERT ON urls FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+CREATE TRIGGER trigger_short_guid BEFORE INSERT ON artworks FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+CREATE TRIGGER trigger_short_guid BEFORE INSERT ON collections FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+CREATE TRIGGER trigger_short_guid BEFORE INSERT ON invoices FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+CREATE TRIGGER trigger_short_guid BEFORE INSERT ON offers FOR EACH ROW EXECUTE PROCEDURE short_guid();
+
+
