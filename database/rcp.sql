@@ -1,4 +1,8 @@
--- ARTISTS
+/*
+========================================
+               ARTISTS
+========================================
+*/
 
 
 CREATE OR REPLACE FUNCTION get_artists() RETURNS SETOF artists AS $$
@@ -22,9 +26,15 @@ END;
 $$ LANGUAGE plpgsql;
 
 
--- ARTWORKS
+/*
+========================================
+               ARTWORKS
+========================================
+*/
 
-CREATE OR REPLACE FUNCTION get_artworks() RETURNS SETOF artworks_search_materialized AS $$
+
+CREATE OR REPLACE FUNCTION get_artworks() RETURNS SETOF artworks_available AS $$
 BEGIN
-    RETURN QUERY SELECT * FROM artworks_search_materialized;
-END; $$ LANGUAGE plpgsql;
+    RETURN QUERY SELECT * FROM artworks_available;
+END
+$$ LANGUAGE plpgsql;

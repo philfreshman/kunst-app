@@ -14,7 +14,7 @@
       </div>
 
       <!--CONTENT-->
-      <div class="w-full h-full flex flex-col rounded-[6px] p-4">
+      <div class="w-full h-full flex flex-col rounded-[6px] p-4 overflow-x-scroll">
         <slot />
       </div>
     </div>
