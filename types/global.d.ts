@@ -11,8 +11,12 @@ declare global {
 
   interface Collection {
     id: string
-    peace_ids: string
-    is_archived: boolean
+    article_id: string
+    width: number
+    height: number
+    price: number
+    url: string
+    title: string
   }
 
   // Rechnung
@@ -73,10 +77,8 @@ declare global {
   type ArtworkLight = {
     id: string
     article_id: string
-    img_url: string
-    artists: {
-      name: string
-    }
+    url: string
+    name: string
     title: string
   }
 }

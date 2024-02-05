@@ -3,15 +3,23 @@ import limitTextarea from "~/utils/textareaLimiter"
 
 // Setup
 const emit = defineEmits<{ closeModal: [] }>()
-onMounted(() => artworks.fetchArtworksLight2())
 
 // Data
-const artworks = useArtworks()
-const selected = ref([1, 2, 3])
+const artworks = useArtworks("search")
+const { collectionData, initCollection } = useCollection()
+const selected = ref(["ZDNkMWNjZTg"])
+
+watch(
+  selected,
+  () => {
+    initCollection(selected.value)
+  },
+  { immediate: true }
+)
 
 // Modal
 const tabIndex = ref(0)
-const modalData = reactive<Offer>({
+const formData = reactive<Offer>({
   address: "LETTERBOX FILMPRODUKTION GMBH\n" + "Jenfelder Allee 80\n" + "D- 22039 Hamburg\n" + "Germany",
   production_name: "The next Level",
   set_name: "NY Apt Josh",
@@ -39,34 +47,22 @@ const modalTabs = [
   }
 ]
 
-const items = [
-  {
-    label: "Getting Started",
-    icon: "i-heroicons-information-circle",
-    defaultOpen: true,
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate."
-  },
-  {
-    label: "Installation",
-    icon: "i-heroicons-arrow-down-tray",
-    defaultOpen: false,
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate."
-  }
-]
-
 const formatArtwork = (artwork: ArtworkLight) => {
-  return `${artwork.article_id} | ${artwork.artists?.name} | ${artwork.title}`
+  return `${artwork.article_id} | ${artwork.name} | ${artwork.title}`
 }
 
-const removeSelected = (artIndex: number) => {
+const artworkById = (id: string) => {
+  return artworks.data.value && artworks.data.value.find((artwork) => artwork.id === id)
+}
+
+const removeSelected = (artIndex: string) => {
   selected.value = selected.value.filter((item) => item !== artIndex)
 }
 
-const log = (val) => {
-  console.log(val)
-}
+import { ref, shallowRef, reactive } from "vue"
+import OfferSummaryAccordion from "../components/OfferSummaryAccordion.vue"
+
+const current = shallowRef(OfferSummaryAccordion)
 </script>
 
 <template>
@@ -82,30 +78,30 @@ const log = (val) => {
       <UTabs :items="modalTabs" class="h-[464px] w-full custom-height flex flex-col" @change="(idx) => (tabIndex = idx)">
         <template #basics="{ item }">
           <UCard>
-            <UForm :state="modalData" class="label-padding">
+            <UForm :state="formData" class="label-padding">
               <UFormGroup label="Anschrift" class="label-no-padding">
-                <UTextarea v-model="modalData.address" :rows="4" type="text" @input="limitTextarea" />
+                <UTextarea v-model="formData.address" :rows="4" type="text" @input="limitTextarea" />
               </UFormGroup>
               <UFormGroup label="Production">
-                <UInput v-model="modalData.production_name" type="text" />
+                <UInput v-model="formData.production_name" type="text" />
               </UFormGroup>
               <UFormGroup label="Set">
-                <UInput v-model="modalData.set_name" type="text" />
+                <UInput v-model="formData.set_name" type="text" />
               </UFormGroup>
               <div class="w-full flex flex-row">
                 <UFormGroup label="Leih-Zeitraum" class="w-[47%]">
-                  <UInput v-model="modalData.start_date" type="date" />
+                  <UInput v-model="formData.start_date" type="date" />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
                   <h1 class="pl-1 pb-1">-></h1>
                 </div>
                 <UFormGroup label="&nbsp" class="w-[47%]">
-                  <UInput v-model="modalData.end_date" type="date" />
+                  <UInput v-model="formData.end_date" type="date" />
                 </UFormGroup>
               </div>
               <div class="w-[47%]">
                 <UFormGroup label="Rechnungsdatum">
-                  <UInput v-model="modalData.offer_date" type="date" />
+                  <UInput v-model="formData.offer_date" type="date" />
                 </UFormGroup>
               </div>
             </UForm>
@@ -121,10 +117,10 @@ const log = (val) => {
                 v-model="selected"
                 multiple
                 searchable
-                :options="artworks.dataLight.value"
+                :options="artworks.data.value"
                 value-attribute="id"
                 option-attribute="id"
-                :search-attributes="['artists.name', 'article_id', 'title']"
+                :search-attributes="['name', 'article_id', 'title']"
               >
                 <template #option="{ option: artwork }">
                   <code>{{ formatArtwork(artwork) }}</code>
@@ -138,17 +134,17 @@ const log = (val) => {
                     <div
                       class="flex justify-between mb-2 px-3 rounded-md ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 p-1"
                     >
-                      <UTooltip :openDelay="1000" :ui="{ base: 'h-auto', width: 'max-w-2xl' }">
+                      <LazyUTooltip :openDelay="1000" :ui="{ base: 'h-auto', width: 'max-w-2xl' }">
                         <template #text>
-                          <img class="h-96" :src="artworks.dataLight.value?.[val - 1].img_url" alt="artwork" />
+                          <img class="h-96" :src="artworkById(val).url" alt="artwork" />
                           <span class="w-full flex flex-row justify-center items-center h-4">
-                            <span class="italic">{{ artworks.dataLight.value[val - 1].title }}</span>
+                            <span class="italic">{{ artworkById(val).title }}</span>
                           </span>
                         </template>
                         <div class="w-[536px] whitespace-nowrap overflow-ellipsis overflow-hidden pr-3">
-                          <code class="">{{ `${key + 1} ${formatArtwork(artworks.dataLight.value[val - 1])}` }}</code>
+                          <code class="">{{ `${key + 1} ${formatArtwork(artworkById(val))}` }}</code>
                         </div>
-                      </UTooltip>
+                      </LazyUTooltip>
 
                       <UIcon
                         class="mt-1 hover:cursor-pointer"
@@ -168,7 +164,7 @@ const log = (val) => {
 
         <template #price="{ item }">
           <UCard>
-            <LazyOfferSummaryAccordion :modalData :selected />
+            <OfferSummaryAccordion :collectionData :formData />
           </UCard>
         </template>
       </UTabs>

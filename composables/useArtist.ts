@@ -39,7 +39,6 @@ export default function useArtist() {
     data,
     loading,
     initArtists,
-    getArtists,
     updateArtist
   }
 }
