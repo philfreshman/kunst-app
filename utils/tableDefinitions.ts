@@ -27,12 +27,11 @@ export const artworksTableColumns = [
     sortable: true
   },
   {
-    key: "img_url",
-    label: "Bild",
-    class: "w-1/4"
+    key: "url",
+    label: "Bild"
   },
   {
-    key: "artists.name",
+    key: "name",
     label: "Künstler",
     sortable: true
   },

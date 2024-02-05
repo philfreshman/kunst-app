@@ -5,10 +5,9 @@ import { artworksTableColumns } from "~/utils/tableDefinitions"
 import BaseSearch from "~/components/BaseSearch.vue"
 
 const artworks = useArtworks()
-artworks.fetchArtworks()
 
 // Search
-const { search, filteredRows } = useFilteredArtworks(artworks)
+const { search, filteredRows } = useFilteredArtworks(artworks.data)
 </script>
 
 <template>
@@ -19,12 +18,14 @@ const { search, filteredRows } = useFilteredArtworks(artworks)
 
     <template #content>
       <UTable :columns="artworksTableColumns" :rows="filteredRows" :loading="artworks.loading.value">
-        <template #img_url-data="{ row }" class="bg-red-50">
-          <LazyUPopover class="h-20 w-fit content-fit bg-red-500" mode="hover" :popper="{ placement: 'right' }">
-            <template #panel class="bg-red-50">
-              <img class="" :src="row.img_url" alt="" />
+        <template #url-data="{ row }" class="hello">
+          <LazyUPopover class="h-20 w-fit content-fit" mode="hover" :popper="{ placement: 'right' }">
+            <template #panel>
+              <img :src="row.url" alt="" />
             </template>
-            <img class="h-20" :src="row.img_url" alt="" />
+            <span class="w-[200px]">
+              <img class="h-20" :src="row.url" alt="" />
+            </span>
           </LazyUPopover>
         </template>
       </UTable>

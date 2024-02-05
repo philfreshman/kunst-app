@@ -37,6 +37,15 @@ CREATE TABLE artworks (
 CREATE TRIGGER trigger_short_guid BEFORE INSERT ON artworks FOR EACH ROW EXECUTE PROCEDURE short_guid();
 
 
+CREATE VIEW artworks_available AS
+SELECT article_id, u.url, a.name, title, height, width, price
+FROM artworks
+    JOIN public.artists a ON artworks.artist_id = a.id
+    JOIN public.urls u ON artworks.url_id = u.id
+WHERE is_available = true;
+
+
+
 
 CREATE TABLE collections (
     id TEXT PRIMARY KEY,
