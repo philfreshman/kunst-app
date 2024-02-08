@@ -31,10 +31,27 @@ CREATE TABLE artworks (
 );
 
 
-CREATE TABLE collections (
+CREATE TABLE offer_snapshots (
     id TEXT PRIMARY KEY,
-    artwork_collection JSON,
+    collection JSON NOT NULL,
+    net_rental_fee TEXT,
+    tax FLOAT4,
+    sales_tax TEXT,
+    total TEXT,
     is_archived BOOLEAN NOT NULL DEFAULT false
+);
+
+CREATE TABLE offers (
+    id TEXT PRIMARY KEY,
+    address VARCHAR(255),
+    production_name VARCHAR(255),
+    set_name VARCHAR(255),
+    start_date DATE,
+    end_date DATE,
+    offer_date DATE,
+    is_archived BOOLEAN NOT NULL DEFAULT false,
+    offer_snapshot_id TEXT,
+    FOREIGN KEY (offer_snapshot_id) REFERENCES offer_snapshots (id) ON DELETE CASCADE
 );
 
 
@@ -48,15 +65,4 @@ CREATE TABLE invoices (
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
-CREATE TABLE offers (
-    id TEXT PRIMARY KEY,
-    offer_date DATE,
-    address VARCHAR(255),
-    production_name VARCHAR(255),
-    set_name VARCHAR(255),
-    start_date DATE,
-    end_date DATE,
-    is_archived BOOLEAN NOT NULL DEFAULT false,
-    collection_id TEXT,
-    FOREIGN KEY (collection_id) REFERENCES collections (id) ON DELETE CASCADE
-);
+

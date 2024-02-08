@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { textWithLineBreaks } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
+import { accordionTabs } from "~/utils/tableDefinitions"
 
 // Setup
 const props = defineProps({
@@ -8,38 +9,15 @@ const props = defineProps({
     type: Object as PropType<Offer>,
     required: true
   },
-  collectionData: {
-    type: Object as PropType<Collection[]>,
-    required: true
+  offerSnapshot: {
+    type: (Object as PropType<OfferSnapshot>) || undefined,
+    required: false
   }
 })
-
-// Accordion
-const accordionTabs = [
-  {
-    index: 0,
-    slot: "data",
-    label: "Daten",
-    defaultOpen: true,
-    closeOthers: true
-  },
-  {
-    index: 1,
-    slot: "artworks",
-    label: "Bilder",
-    defaultOpen: false
-  },
-  {
-    index: 2,
-    slot: "prices",
-    label: "Preise",
-    defaultOpen: false
-  }
-]
 </script>
 
 <template>
-  <UAccordion color="primary" variant="outline" size="sm" :items="accordionTabs" :defaultOpen="false" :buttonRe="{}" :closeOthers="true">
+  <UAccordion color="primary" variant="outline" size="sm" :items="accordionTabs">
     <template #data>
       <div v-html="textWithLineBreaks(formData.address)" />
       <br />
@@ -58,15 +36,45 @@ const accordionTabs = [
       </div>
     </template>
     <template #artworks>
-      {{ collectionData }}
-      <!--      <div v-for="artwork in artworks.dataById.value">-->
-      <!--        <a>{{ artwork }}</a>-->
-      <!--        <span>{{ artwork.article_id }}</span>-->
-      <!--        <span>{{ artwork.artists?.name }}</span>-->
-      <!--      </div>-->
-    </template>
-    <template #prices>
-      <h1>prices</h1>
+      <table v-if="offerSnapshot?.collection" class="w-full h-max">
+        <tr class="mb-2">
+          <th class="py-2">Pos.</th>
+          <th>Artikel nr.</th>
+          <th>Titel des Bildes</th>
+          <th>Größe</th>
+          <th>Wert</th>
+          <th class="text-right">Preis</th>
+        </tr>
+        <tr v-for="(artwork, idx) in offerSnapshot.collection" class="pt-5">
+          <td>{{ idx + 1 }}</td>
+          <td>{{ artwork.article_id }}</td>
+          <td>{{ artwork.title }}</td>
+          <td>{{ `${artwork.width} - ${artwork.height}` }}</td>
+          <td>{{ `${artwork.price} €` }}</td>
+          <td class="text-right">{{ `${artwork.rent_price} €` }}</td>
+        </tr>
+      </table>
+      <br />
+      <table v-if="offerSnapshot?.summary" class="w-full h-max">
+        <tr>
+          <th></th>
+          <th class="w-32"></th>
+        </tr>
+        <tr>
+          <td>Leihgebühr netto:</td>
+          <td class="text-right">{{ `${offerSnapshot.summary.net_rental_fee} €` }}</td>
+        </tr>
+        <tr>
+          <td>{{ `zzgl. ${offerSnapshot.summary.tax}% Umsatzsteuer` }}</td>
+          <td class="text-right">{{ `${offerSnapshot.summary.sales_tax} €` }}</td>
+        </tr>
+        <tr>
+          <td><strong>GESAMT</strong></td>
+          <td class="text-right pt-1">
+            <strong> {{ `${offerSnapshot.summary.total} €` }}</strong>
+          </td>
+        </tr>
+      </table>
     </template>
   </UAccordion>
 </template>

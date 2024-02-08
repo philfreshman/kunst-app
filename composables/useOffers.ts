@@ -5,45 +5,34 @@ export default function useOffers() {
   const data = ref<Offer[]>()
   const loading = ref<boolean>(true)
 
-  // handle page refresh
   onMounted(async () => {
-    if (data.value) await fetchOffers()
+    try {
+      loading.value = true
+      data.value = await getOffers()
+    } catch (error) {
+      console.error(error)
+    } finally {
+      loading.value = false
+    }
   })
 
-  async function fetchOffers() {
-    try {
-      const { data: offerData } = await useLazyAsyncData("artists", async () => supabase.from("offers").select("*").order("id"), {
-        transform: (result) => result.data as Offer[],
-        server: false
-      })
-      if (offerData.value === null) {
-        data.value = []
-        return
-      }
-      // store response to allTodos
-      data.value = offerData.value
-    } catch (err) {
-      console.error("Error retrieving data from db", err)
-    }
-
-    loading.value = false
+  async function getOffers(): Promise<Offer[]> {
+    const { data, error } = await supabase.rpc("get_offers")
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
   }
 
-  async function updateOffer(offer: Offer) {
-    const { error } = await supabase.from("offers").upsert(offer)
+  async function createOffer(offer: Offer): Promise<unknown> {
+    const { data, error } = await supabase.rpc("create_offer", { offer })
     return new Promise((resolve, reject) => {
-      if (error === null) {
-        resolve("Operation was successful")
-      } else {
-        reject("Operation failed")
-      }
+      error ? reject(error) : resolve(data)
     })
   }
 
   return {
     data,
     loading,
-    fetchOffers,
-    updateOffer
+    createOffer
   }
 }
