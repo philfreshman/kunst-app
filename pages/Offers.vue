@@ -5,7 +5,6 @@ import { offersTableColumns } from "~/utils/tableDefinitions"
 import BaseSearch from "~/components/BaseSearch.vue"
 
 const offers = useOffers()
-offers.fetchOffers()
 
 // Modal
 const isModalOpen = ref(false)

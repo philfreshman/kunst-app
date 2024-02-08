@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import limitTextarea from "~/utils/textareaLimiter"
+import { offersModalTabs } from "~/utils/tableDefinitions"
+import useOffersSnapshot from "~/composables/useOffersSnapshot"
 
 // Setup
 const emit = defineEmits<{ closeModal: [] }>()
 
 // Data
 const artworks = useArtworks("search")
-const { collectionData, initCollection } = useCollection()
-const selected = ref(["ZDNkMWNjZTg"])
-
-watch(
-  selected,
-  () => {
-    initCollection(selected.value)
-  },
-  { immediate: true }
-)
+const offers = useOffers()
+const { collectionData, offerSnapshot, initCollection, calcRentPrices, createOfferSnapshot } = useOffersSnapshot()
+const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
 
 // Modal
 const tabIndex = ref(0)
@@ -26,43 +21,35 @@ const formData = reactive<Offer>({
   start_date: "2024-01-17",
   end_date: "2024-01-22",
   offer_date: "2024-01-16",
-  collection_id: 0
+  offer_snapshot_id: ""
 })
-const modalTabs = [
-  {
-    index: 0,
-    slot: "basics",
-    label: "Basics",
-    defaultOpen: true
-  },
-  {
-    index: 1,
-    slot: "artworks",
-    label: "Kunstwerke"
-  },
-  {
-    index: 2,
-    slot: "price",
-    label: "Preise"
-  }
-]
-
-const formatArtwork = (artwork: ArtworkLight) => {
-  return `${artwork.article_id} | ${artwork.name} | ${artwork.title}`
-}
-
-const artworkById = (id: string) => {
-  return artworks.data.value && artworks.data.value.find((artwork) => artwork.id === id)
-}
 
 const removeSelected = (artIndex: string) => {
   selected.value = selected.value.filter((item) => item !== artIndex)
 }
+const formatArtwork = (artwork: ArtworkLight) => {
+  return `${artwork.article_id} | ${artwork.name} | ${artwork.title}`
+}
+const artworkById = (id: string) => {
+  return artworks.data.value && artworks.data.value.find((artwork) => artwork.id === id)
+}
+const tabChange = async (idx: number) => {
+  tabIndex.value = idx
+  if (tabIndex.value == 2) {
+    await initCollection(selected.value).then()
+    calcRentPrices(formData)
+  }
+}
 
-import { ref, shallowRef, reactive } from "vue"
-import OfferSummaryAccordion from "../components/OfferSummaryAccordion.vue"
-
-const current = shallowRef(OfferSummaryAccordion)
+const submitOffer = async () => {
+  if (!offerSnapshot.value) return
+  try {
+    const { data: snapshotId } = await createOfferSnapshot(offerSnapshot.value)
+    await offers.createOffer({ ...formData, offer_snapshot_id: snapshotId })
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <template>
@@ -75,8 +62,8 @@ const current = shallowRef(OfferSummaryAccordion)
     </template>
 
     <div>
-      <UTabs :items="modalTabs" class="h-[464px] w-full custom-height flex flex-col" @change="(idx) => (tabIndex = idx)">
-        <template #basics="{ item }">
+      <UTabs :items="offersModalTabs" class="h-[464px] w-full custom-height flex flex-col" @change="tabChange">
+        <template #data="{ item }">
           <UCard>
             <UForm :state="formData" class="label-padding">
               <UFormGroup label="Anschrift" class="label-no-padding">
@@ -162,9 +149,9 @@ const current = shallowRef(OfferSummaryAccordion)
           </div>
         </template>
 
-        <template #price="{ item }">
-          <UCard>
-            <OfferSummaryAccordion :collectionData :formData />
+        <template #summary="{ item }">
+          <UCard class="w-full h-full overflow-scroll">
+            <OfferSummaryAccordion :offerSnapshot :formData />
           </UCard>
         </template>
       </UTabs>
@@ -172,7 +159,7 @@ const current = shallowRef(OfferSummaryAccordion)
 
     <template #footer>
       <div class="w-full flex justify-center">
-        <UButton>Save</UButton>
+        <UButton @click="submitOffer">Save</UButton>
       </div>
     </template>
   </BaseModal>

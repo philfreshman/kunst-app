@@ -20,17 +20,25 @@ $$ LANGUAGE plpgsql;
 
 
 
+DO $$
+    DECLARE
+        table_name text;
+        trigger_exists boolean;
+    BEGIN
+        FOR table_name IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public')
+            LOOP
+                SELECT EXISTS (
+                    SELECT 1
+                    FROM pg_trigger
+                    WHERE tgname = 'trigger_short_guid' AND tgisinternal = false AND tgenabled != 'D' AND tgrelid = (table_name)::regclass
+                ) INTO trigger_exists;
 
-CREATE TRIGGER trigger_short_guid BEFORE INSERT ON artists FOR EACH ROW EXECUTE PROCEDURE short_guid();
-
-CREATE TRIGGER trigger_short_guid BEFORE INSERT ON urls FOR EACH ROW EXECUTE PROCEDURE short_guid();
-
-CREATE TRIGGER trigger_short_guid BEFORE INSERT ON artworks FOR EACH ROW EXECUTE PROCEDURE short_guid();
-
-CREATE TRIGGER trigger_short_guid BEFORE INSERT ON collections FOR EACH ROW EXECUTE PROCEDURE short_guid();
-
-CREATE TRIGGER trigger_short_guid BEFORE INSERT ON invoices FOR EACH ROW EXECUTE PROCEDURE short_guid();
-
-CREATE TRIGGER trigger_short_guid BEFORE INSERT ON offers FOR EACH ROW EXECUTE PROCEDURE short_guid();
-
-
+                IF NOT trigger_exists THEN
+                    EXECUTE format('CREATE TRIGGER trigger_short_guid BEFORE INSERT ON %I FOR EACH ROW EXECUTE PROCEDURE short_guid();', table_name);
+                ELSE
+                    EXECUTE format('DROP TRIGGER trigger_short_guid ON %I;', table_name);
+                    EXECUTE format('CREATE TRIGGER trigger_short_guid BEFORE INSERT ON %I FOR EACH ROW EXECUTE PROCEDURE short_guid();', table_name);
+                END IF;
+            END LOOP;
+    END;
+$$;

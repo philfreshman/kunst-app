@@ -15,6 +15,7 @@ declare global {
     width: number
     height: number
     price: number
+    rent_price: any
     url: string
     title: string
   }
@@ -40,7 +41,17 @@ declare global {
     start_date: Date | any
     end_date: Date | any
     is_archived?: boolean
-    collection_id: number
+    offer_snapshot_id: string
+  }
+
+  type OfferSnapshot = {
+    collection: Collection[]
+    summary: {
+      net_rental_fee: string
+      tax: number
+      sales_tax: string
+      total: string
+    }
   }
 
   // Bestellung

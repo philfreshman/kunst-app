@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const props = defineProps({
-  height: {type: String, default: "56"}
+  height: { type: String, default: "56" }
 })
 </script>
 
 <template>
-  <a href="https://ui.nuxt.com/getting-started">
+  <a href="https://ui.nuxt.com/getting-started" target="_blank">
     <img
       alt="logo"
       src="~/assets/img/logo.svg"
@@ -15,4 +15,3 @@ const props = defineProps({
     />
   </a>
 </template>
-
