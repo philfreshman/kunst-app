@@ -9,7 +9,10 @@ const offers = useOffers()
 // Modal
 const isModalOpen = ref(false)
 const setModalOpen = () => (isModalOpen.value = true)
-const setModalClosed = () => (isModalOpen.value = false)
+const setModalClosed = async () => {
+  isModalOpen.value = false
+  offers.initOffers().then()
+}
 
 // Search
 const { search, filteredRows } = useFilteredArtworks(offers.data)
@@ -35,7 +38,7 @@ const { search, filteredRows } = useFilteredArtworks(offers.data)
   </Container>
 
   <!--AddModal-->
-  <OffersAddModal v-if="isModalOpen" @closeModal="setModalClosed" />
+  <OffersAddModal :offers v-if="isModalOpen" @closeModal="setModalClosed" />
 </template>
 
 <style lang="sass">

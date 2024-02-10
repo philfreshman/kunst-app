@@ -8,8 +8,9 @@ const emit = defineEmits<{ closeModal: [] }>()
 
 // Data
 const artworks = useArtworks("search")
-const offers = useOffers()
-const { collectionData, offerSnapshot, initCollection, calcRentPrices, createOfferSnapshot } = useOffersSnapshot()
+// const offers = defineProps<OffersType>()
+const offers = defineModel<OffersType>()
+const snap = useOffersSnapshot()
 const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
 
 // Modal
@@ -36,16 +37,17 @@ const artworkById = (id: string) => {
 const tabChange = async (idx: number) => {
   tabIndex.value = idx
   if (tabIndex.value == 2) {
-    await initCollection(selected.value).then()
-    calcRentPrices(formData)
+    await snap.initCollection(selected.value).then()
+    snap.calcRentPrices(formData)
   }
 }
 
 const submitOffer = async () => {
-  if (!offerSnapshot.value) return
+  if (!snap.offerSnapshot.value) return
   try {
-    const { data: snapshotId } = await createOfferSnapshot(offerSnapshot.value)
-    await offers.createOffer({ ...formData, offer_snapshot_id: snapshotId })
+    const { data: snapshotId } = await snap.createOfferSnapshot(snap.offerSnapshot.value)
+    await offers.value.createOffer({ ...formData, offer_snapshot_id: snapshotId })
+    emit("closeModal")
   } catch (error) {
     console.error(error)
   }

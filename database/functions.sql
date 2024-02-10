@@ -61,7 +61,7 @@ END
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION create_offer(offer offers) RETURNS JSON AS $$
+CREATE OR REPLACE FUNCTION insert_offer(offer offers) RETURNS JSON AS $$
 DECLARE
     new_offer_id TEXT;
     result JSON;
@@ -115,5 +115,20 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+/*
+========================================
+               COLLECTION
+========================================
+*/
 
 
+
+CREATE OR REPLACE FUNCTION get_collection(ids TEXT[]) RETURNS SETOF collection AS $$
+BEGIN
+    RETURN QUERY
+        SELECT artworks.id, artworks.article_id, artworks.title, artworks.width, artworks.height, artworks.price, u.url
+        FROM artworks
+                 JOIN public.urls u ON artworks.url_id = u.id
+        WHERE artworks.id = ANY(ids) AND is_available = TRUE;
+END
+$$ LANGUAGE plpgsql;

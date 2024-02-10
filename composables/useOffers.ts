@@ -6,6 +6,10 @@ export default function useOffers() {
   const loading = ref<boolean>(true)
 
   onMounted(async () => {
+    await initOffers()
+  })
+
+  async function initOffers() {
     try {
       loading.value = true
       data.value = await getOffers()
@@ -14,7 +18,7 @@ export default function useOffers() {
     } finally {
       loading.value = false
     }
-  })
+  }
 
   async function getOffers(): Promise<Offer[]> {
     const { data, error } = await supabase.rpc("get_offers")
@@ -24,7 +28,7 @@ export default function useOffers() {
   }
 
   async function createOffer(offer: Offer): Promise<unknown> {
-    const { data, error } = await supabase.rpc("create_offer", { offer })
+    const { data, error } = await supabase.rpc("insert_offer", { offer })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
@@ -33,6 +37,7 @@ export default function useOffers() {
   return {
     data,
     loading,
+    initOffers,
     createOffer
   }
 }

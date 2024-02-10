@@ -1,3 +1,5 @@
+import type { Ref } from "@vue/reactivity"
+
 export {}
 
 declare global {
@@ -91,5 +93,12 @@ declare global {
     url: string
     name: string
     title: string
+  }
+
+  type OffersType = {
+    data: Ref<Offer[] | undefined>
+    loading: Ref<boolean>
+    initOffers: () => Promise<void>
+    createOffer: (offer: Offer) => Promise<unknown>
   }
 }
