@@ -30,7 +30,7 @@ export default function useOffersSnapshot() {
   }
 
   async function createCollection(artworkIds: string[]): Promise<Collection[]> {
-    const { data, error } = await supabase.rpc("create_collection", { ["ids"]: [artworkIds] })
+    const { data, error } = await supabase.rpc("get_collection", { ["ids"]: [artworkIds] })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
