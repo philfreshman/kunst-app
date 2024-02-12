@@ -59,18 +59,6 @@ export const artworksTableColumns = [
 
 export const offersTableColumns = [
   {
-    key: "id",
-    label: "#"
-  },
-  {
-    key: "offer_date",
-    label: "Datum"
-  },
-  {
-    key: "address",
-    label: "Adresse"
-  },
-  {
     key: "production_name",
     label: "Produktion"
   },
@@ -87,12 +75,8 @@ export const offersTableColumns = [
     label: "Ende"
   },
   {
-    key: "is_archived",
-    label: "Archiviert"
-  },
-  {
-    key: "collection_id",
-    label: "Kollektion"
+    key: "address",
+    label: "Adresse"
   },
   {
     key: "actions"

@@ -34,10 +34,18 @@ export default function useOffers() {
     })
   }
 
+  async function deleteOffer(offerId: string): Promise<unknown> {
+    const { data, error } = await supabase.rpc("delete_offer", { ["offer_id"]: offerId })
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
   return {
     data,
     loading,
     initOffers,
-    createOffer
+    createOffer,
+    deleteOffer
   }
 }

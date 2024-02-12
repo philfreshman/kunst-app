@@ -10,8 +10,7 @@ const props = defineProps({
     required: true
   },
   offerSnapshot: {
-    type: (Object as PropType<OfferSnapshot>) || undefined,
-    required: false
+    type: Object as PropType<OfferSnapshot>
   }
 })
 </script>
@@ -55,7 +54,7 @@ const props = defineProps({
         </tr>
       </table>
       <br />
-      <table v-if="offerSnapshot?.summary" class="w-full h-max">
+      <table v-if="offerSnapshot !== undefined" class="w-full h-max">
         <tr>
           <th></th>
           <th class="w-32"></th>

@@ -61,6 +61,21 @@ END
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION delete_offer(offer_id text) RETURNS boolean AS $$
+DECLARE
+    rows_affected INTEGER;
+BEGIN
+    UPDATE offers SET is_archived = true WHERE offers.id = offer_id;
+    GET DIAGNOSTICS rows_affected = ROW_COUNT;
+    RETURN rows_affected > 0;
+EXCEPTION
+    WHEN others THEN
+        RETURN false;
+END
+$$ LANGUAGE plpgsql;
+
+
+
 CREATE OR REPLACE FUNCTION insert_offer(offer offers) RETURNS JSON AS $$
 DECLARE
     new_offer_id TEXT;
@@ -93,6 +108,13 @@ $$ LANGUAGE plpgsql;
                OFFER SNAPSHOTS
 ========================================
 */
+
+
+CREATE OR REPLACE FUNCTION get_offer_snapshot(snapshot_id text) RETURNS SETOF offer_snapshots AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM offer_snapshots WHERE id = snapshot_id;
+END
+$$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION insert_offer_snapshot(collection JSON, summary Summary) RETURNS JSON AS $$

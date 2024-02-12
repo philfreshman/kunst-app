@@ -7,7 +7,7 @@ import BaseSearch from "~/components/BaseSearch.vue"
 
 const artists = useArtist()
 
-const items = (row: Artist) => [
+const dropdownItems = (row: Artist) => [
   [
     {
       label: "Edit",
@@ -57,7 +57,7 @@ const { search, filteredRows } = useFilteredArtworks(artists.data)
     <template #content>
       <UTable :columns="artistsTableColumns" :rows="filteredRows" :loading="artists.loading.value">
         <template #actions-data="{ row }">
-          <UDropdown :items="items(row)">
+          <UDropdown :items="dropdownItems(row)">
             <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
           </UDropdown>
         </template>
