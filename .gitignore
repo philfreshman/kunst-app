@@ -140,3 +140,6 @@ database/data_artists.sql
 database/data_invoices.sql
 database/data_offers.sql
 database/data_urls.sql
+
+Preisliste.numbers
+Preisliste.xlsx

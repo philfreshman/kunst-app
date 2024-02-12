@@ -8,8 +8,6 @@ const emit = defineEmits<{ closeModal: [] }>()
 
 // Data
 const artworks = useArtworks("search")
-// const offers = defineProps<OffersType>()
-const offers = defineModel<OffersType>()
 const snap = useOffersSnapshot()
 const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
 
@@ -37,8 +35,9 @@ const artworkById = (id: string) => {
 const tabChange = async (idx: number) => {
   tabIndex.value = idx
   if (tabIndex.value == 2) {
-    await snap.initCollection(selected.value).then()
+    await snap.initCollection(selected.value)
     snap.calcRentPrices(formData)
+    console.log(snap.offerSnapshot.value?.collection)
   }
 }
 
@@ -46,7 +45,7 @@ const submitOffer = async () => {
   if (!snap.offerSnapshot.value) return
   try {
     const { data: snapshotId } = await snap.createOfferSnapshot(snap.offerSnapshot.value)
-    await offers.value.createOffer({ ...formData, offer_snapshot_id: snapshotId })
+    await useOffers().createOffer({ ...formData, offer_snapshot_id: snapshotId })
     emit("closeModal")
   } catch (error) {
     console.error(error)
@@ -152,8 +151,9 @@ const submitOffer = async () => {
         </template>
 
         <template #summary="{ item }">
+          <!--          <UCard class="w-full h-full overflow-scroll" v-if="snap.offerSnapshot.value">-->
           <UCard class="w-full h-full overflow-scroll">
-            <OfferSummaryAccordion :offerSnapshot :formData />
+            <OfferSummaryAccordion :offerSnapshot="snap.offerSnapshot.value" :formData />
           </UCard>
         </template>
       </UTabs>

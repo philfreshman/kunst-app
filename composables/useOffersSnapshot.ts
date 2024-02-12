@@ -19,6 +19,13 @@ export default function useOffersSnapshot() {
     }
   }
 
+  async function getOfferSnapshot(snap_id: string): Promise<OfferSnapshot> {
+    const { data, error } = await supabase.rpc("get_offer_snapshot", { ["snapshot_id"]: [snap_id] })
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
   async function createOfferSnapshot(offerSnapshot: OfferSnapshot): Promise<any> {
     const { data, error } = await supabase.rpc("insert_offer_snapshot", {
       ["collection"]: offerSnapshot.collection,
@@ -65,6 +72,7 @@ export default function useOffersSnapshot() {
     offerSnapshot,
     initCollection,
     calcRentPrices,
-    createOfferSnapshot
+    createOfferSnapshot,
+    getOfferSnapshot
   }
 }
