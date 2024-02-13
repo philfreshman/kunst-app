@@ -5,9 +5,9 @@ export default function useOffers() {
   const data = ref<Offer[]>()
   const loading = ref<boolean>(true)
 
-  onMounted(async () => {
-    await initOffers()
-  })
+  // onMounted(async () => {
+  //   await initOffers()
+  // })
 
   async function initOffers() {
     try {
@@ -21,6 +21,7 @@ export default function useOffers() {
   }
 
   async function getOffers(): Promise<Offer[]> {
+    // @ts-ignore
     const { data, error } = await supabase.rpc("get_offers")
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
@@ -28,6 +29,7 @@ export default function useOffers() {
   }
 
   async function createOffer(offer: Offer): Promise<unknown> {
+    // @ts-ignore
     const { data, error } = await supabase.rpc("insert_offer", { offer })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
@@ -35,6 +37,7 @@ export default function useOffers() {
   }
 
   async function deleteOffer(offerId: string): Promise<unknown> {
+    // @ts-ignore
     const { data, error } = await supabase.rpc("delete_offer", { ["offer_id"]: offerId })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)

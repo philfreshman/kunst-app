@@ -2,19 +2,18 @@
 const props = defineProps({
   isOpen: {
     type: Boolean,
-    required: false,
-    default: true,
+    default: true
   },
   isWide: {
     type: Boolean,
     required: false,
-    default: false,
-  },
+    default: false
+  }
 })
 
 const isModalOpen: any = computed({
   get: () => props.isOpen,
-  set: (value) => (isModalOpen.value = value),
+  set: (value) => (isModalOpen.value = value)
 })
 </script>
 
@@ -24,7 +23,7 @@ const isModalOpen: any = computed({
     prevent-close
     :ui="{
       base: 'flex flex-col',
-      width: isWide ? 'sm:max-w-2xl' : null,
+      width: isWide ? 'sm:max-w-2xl' : null
     }"
   >
     <UCard
@@ -32,7 +31,7 @@ const isModalOpen: any = computed({
         width: 'sm:max-w-2xl',
         ring: '',
         base: 'flex flex-col',
-        divide: 'divide-y divide-gray-100 dark:divide-gray-800',
+        divide: 'divide-y divide-gray-100 dark:divide-gray-800'
       }"
     >
       <template #header>

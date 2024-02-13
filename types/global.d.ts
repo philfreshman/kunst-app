@@ -3,7 +3,7 @@ import type { Ref } from "@vue/reactivity"
 export {}
 
 declare global {
-  interface Artist {
+  type Artist = {
     id: string
     name: string
     is_archived: boolean
@@ -11,7 +11,7 @@ declare global {
     email: string
   }
 
-  interface Collection {
+  type Collection = {
     id: string
     article_id: string
     width: number
@@ -22,55 +22,38 @@ declare global {
     title: string
   }
 
-  // Rechnung
-  interface Invoice {
-    id?: string | null
-    date: Date
-    invoice_nr: string
-    description: string
-    text1: string
-    text2: string
-    is_archived?: boolean
-  }
-
-  // Angebot
-  type Offer = {
+  type Document = {
     id?: string
-    offer_date: Date | any
+    offer_date: string
     address: string
     production_name: string
     set_name: string
-    start_date: Date | any
-    end_date: Date | any
-    is_archived?: boolean
-    offer_snapshot_id: string
-  }
-
-  type OfferSnapshot = {
-    collection: Collection[]
-    summary: {
-      net_rental_fee: string
-      tax: number
-      sales_tax: string
-      total: string
-    }
-  }
-
-  // Bestellung
-  interface Order {
-    id: string
-    sender: string
-    address1: string
-    address2: string
-    address3: string
-    production_name: string
-    start_date: Date
-    end_date: Date
-    tax: number
+    start_date: string
+    end_date: string
     is_archived: boolean
-    offer_id?: any
-    invoice_id?: any
-    collection_id?: any
+    snapshot_id: string
+  }
+
+  // Rechnung
+  type Invoice = {
+    invoice_number: string
+    special: string
+  } & Document
+
+  // Angebot
+  type Offer = {} & Document
+
+  type snapshotType = "offer" | "invoice"
+
+  type Snapshot = {
+    id?: string
+    collection: Collection[]
+    snapshot_type: snapshotType
+    net_rental_fee: string
+    tax: number
+    sales_tax: string
+    total: string
+    is_archived?: boolean
   }
 
   type Artwork = {

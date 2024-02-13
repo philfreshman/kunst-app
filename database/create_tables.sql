@@ -30,10 +30,12 @@ CREATE TABLE artworks (
     FOREIGN KEY (artist_id) REFERENCES artists (id)
 );
 
+CREATE TYPE snapshot_type AS ENUM ('invoice', 'offer');
 
-CREATE TABLE offer_snapshots (
+CREATE TABLE snapshots (
     id TEXT PRIMARY KEY,
     collection JSON NOT NULL,
+    snapshot_type snapshot_type,
     net_rental_fee TEXT,
     tax FLOAT4,
     sales_tax TEXT,
@@ -50,8 +52,8 @@ CREATE TABLE offers (
     end_date DATE,
     offer_date DATE,
     is_archived BOOLEAN NOT NULL DEFAULT false,
-    offer_snapshot_id TEXT,
-    FOREIGN KEY (offer_snapshot_id) REFERENCES offer_snapshots (id) ON DELETE CASCADE
+    snapshot_id TEXT,
+    FOREIGN KEY (snapshot_id) REFERENCES snapshots (id) ON DELETE CASCADE
 );
 
 

@@ -12,10 +12,10 @@
     "nuxt-mdi": "^1.1.6"
   },
   "devDependencies": {
-    "@nuxt/ui": "^2.12.3",
-    "@nuxtjs/tailwindcss": "^6.11.2",
+    "@nuxt/ui": "^2.13.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
     "@types/node": "^20",
-    "nuxt": "^3.9.3",
+    "nuxt": "^3.10.1",
     "sass": "^1.70.0"
   }
 }
