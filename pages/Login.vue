@@ -9,7 +9,7 @@ definePageMeta({ layout: "auth" })
 
 const state = reactive({
   email: import.meta.env.VITE_AUTH_EMAIL,
-  password: import.meta.env.VITE_AUTH_PASS,
+  password: import.meta.env.VITE_AUTH_PASS
 })
 
 const validate = (state: any | undefined): FormError[] => {
@@ -27,7 +27,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 const signIn = async () => {
   const { error } = await supabase.auth.signInWithPassword({
     email: state.email,
-    password: state.password,
+    password: state.password
   })
   if (error) console.log(error)
 }
@@ -39,23 +39,16 @@ const signOut = async () => {
 </script>
 
 <template>
-  <Pattern class="absolute top-0 h-full" />
+  <BackgroundPattern class="absolute top-0 h-full" />
 
   <div class="h-screen">
-    <div
-      class="absolute w-min h-auto right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-    >
+    <div class="absolute w-min h-auto right-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <div class="relative pb-20">
         <Card class="shadow-xl bg-white">
           <div class="m-2 w-72">
             <h1 class="flex w-full justify-center pb-6 text-3xl">Login</h1>
 
-            <UForm
-              :validate="validate"
-              :state="state"
-              class="space-y-4"
-              @submit="onSubmit"
-            >
+            <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
               <UFormGroup label="Email" name="email">
                 <UInput v-model="state.email" />
               </UFormGroup>

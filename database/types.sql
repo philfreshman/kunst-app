@@ -1,4 +1,5 @@
 CREATE TYPE Summary AS (
+    snapshot_type  TEXT,
     net_rental_fee TEXT,
     tax            INTEGER,
     sales_tax      TEXT,

@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import limitTextarea from "~/utils/textareaLimiter"
 import { offersModalTabs } from "~/utils/tableDefinitions"
-import useOffersSnapshot from "~/composables/useOffersSnapshot"
+import useSnapshot from "~/composables/useSnapshot"
+import { formatArtwork } from "~/utils/formater"
+import { defaultOffer } from "~/utils/defaults"
 
 // Setup
 const emit = defineEmits<{ closeModal: [] }>()
 
 // Data
 const artworks = useArtworks("search")
-const snap = useOffersSnapshot()
+const snap = useSnapshot()
+// const selected = ref([] as string[])
 const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
 
 // Modal
 const tabIndex = ref(0)
+// const formData = reactive<Offer>(defaultOffer())
 const formData = reactive<Offer>({
   address: "LETTERBOX FILMPRODUKTION GMBH\n" + "Jenfelder Allee 80\n" + "D- 22039 Hamburg\n" + "Germany",
   production_name: "The next Level",
@@ -20,32 +24,31 @@ const formData = reactive<Offer>({
   start_date: "2024-01-17",
   end_date: "2024-01-22",
   offer_date: "2024-01-16",
-  offer_snapshot_id: ""
+  is_archived: false,
+  snapshot_id: ""
 })
 
 const removeSelected = (artIndex: string) => {
   selected.value = selected.value.filter((item) => item !== artIndex)
 }
-const formatArtwork = (artwork: ArtworkLight) => {
-  return `${artwork.article_id} | ${artwork.name} | ${artwork.title}`
-}
+
 const artworkById = (id: string) => {
   return artworks.data.value && artworks.data.value.find((artwork) => artwork.id === id)
 }
+
 const tabChange = async (idx: number) => {
   tabIndex.value = idx
   if (tabIndex.value == 2) {
     await snap.initCollection(selected.value)
-    snap.calcRentPrices(formData)
-    console.log(snap.offerSnapshot.value?.collection)
+    snap.calcRentPrices(formData, "offer")
   }
 }
 
 const submitOffer = async () => {
-  if (!snap.offerSnapshot.value) return
+  if (!snap.snapshot.value) return
   try {
-    const { data: snapshotId } = await snap.createOfferSnapshot(snap.offerSnapshot.value)
-    await useOffers().createOffer({ ...formData, offer_snapshot_id: snapshotId })
+    const { data: snapshotId } = await snap.createSnapshot({ ...snap.snapshot.value, snapshot_type: "offer" })
+    await useOffers().createOffer({ ...formData, snapshot_id: snapshotId })
     emit("closeModal")
   } catch (error) {
     console.error(error)
@@ -151,9 +154,8 @@ const submitOffer = async () => {
         </template>
 
         <template #summary="{ item }">
-          <!--          <UCard class="w-full h-full overflow-scroll" v-if="snap.offerSnapshot.value">-->
           <UCard class="w-full h-full overflow-scroll">
-            <OfferSummaryAccordion :offerSnapshot="snap.offerSnapshot.value" :formData />
+            <DocumentSummaryAccordion :snapshot="snap.snapshot.value" :formData />
           </UCard>
         </template>
       </UTabs>

@@ -9,10 +9,13 @@ const props = defineProps({
     type: Object as PropType<Offer>,
     required: true
   },
-  offerSnapshot: {
-    type: Object as PropType<OfferSnapshot>
+  snapshot: {
+    type: Object as PropType<Snapshot>,
+    required: false
   }
 })
+
+const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?.snapshot_type))
 </script>
 
 <template>
@@ -20,7 +23,7 @@ const props = defineProps({
     <template #data>
       <div v-html="textWithLineBreaks(formData.address)" />
       <br />
-      <h1 class="font-bold">ANGEBOT</h1>
+      <h1 class="font-bold">{{ snapType }}</h1>
       <br />
       <div class="w-full flex justify-between">
         <span>
@@ -35,7 +38,7 @@ const props = defineProps({
       </div>
     </template>
     <template #artworks>
-      <table v-if="offerSnapshot?.collection" class="w-full h-max">
+      <table v-if="snapshot?.collection" class="w-full h-max">
         <tr class="mb-2">
           <th class="py-2">Pos.</th>
           <th>Artikel nr.</th>
@@ -44,7 +47,7 @@ const props = defineProps({
           <th>Wert</th>
           <th class="text-right">Preis</th>
         </tr>
-        <tr v-for="(artwork, idx) in offerSnapshot.collection" class="pt-5">
+        <tr v-for="(artwork, idx) in snapshot.collection" class="pt-5">
           <td>{{ idx + 1 }}</td>
           <td>{{ artwork.article_id }}</td>
           <td>{{ artwork.title }}</td>
@@ -54,23 +57,23 @@ const props = defineProps({
         </tr>
       </table>
       <br />
-      <table v-if="offerSnapshot !== undefined" class="w-full h-max">
+      <table v-if="snapshot !== undefined" class="w-full h-max">
         <tr>
           <th></th>
           <th class="w-32"></th>
         </tr>
         <tr>
           <td>Leihgebühr netto:</td>
-          <td class="text-right">{{ `${offerSnapshot.summary.net_rental_fee} €` }}</td>
+          <td class="text-right">{{ `${snapshot.net_rental_fee} €` }}</td>
         </tr>
         <tr>
-          <td>{{ `zzgl. ${offerSnapshot.summary.tax}% Umsatzsteuer` }}</td>
-          <td class="text-right">{{ `${offerSnapshot.summary.sales_tax} €` }}</td>
+          <td>{{ `zzgl. ${snapshot.tax}% Umsatzsteuer` }}</td>
+          <td class="text-right">{{ `${snapshot.sales_tax} €` }}</td>
         </tr>
         <tr>
           <td><strong>GESAMT</strong></td>
           <td class="text-right pt-1">
-            <strong> {{ `${offerSnapshot.summary.total} €` }}</strong>
+            <strong> {{ `${snapshot.total} €` }}</strong>
           </td>
         </tr>
       </table>

@@ -81,12 +81,12 @@ DECLARE
     new_offer_id TEXT;
     result JSON;
 BEGIN
-    INSERT INTO offers (address, end_date, offer_date, offer_snapshot_id, production_name, set_name, start_date)
+    INSERT INTO offers (address, end_date, offer_date, snapshot_id, production_name, set_name, start_date)
     VALUES (
             offer.address,
             offer.end_date,
             offer.offer_date,
-            offer.offer_snapshot_id,
+            offer.snapshot_id,
             offer.production_name,
             offer.set_name,
             offer.start_date
@@ -105,25 +105,34 @@ $$ LANGUAGE plpgsql;
 
 /*
 ========================================
-               OFFER SNAPSHOTS
+              SNAPSHOTS
 ========================================
 */
 
 
-CREATE OR REPLACE FUNCTION get_offer_snapshot(snapshot_id text) RETURNS SETOF offer_snapshots AS $$
+-- CREATE OR REPLACE FUNCTION get_snapshot(snapshot_id text) RETURNS SETOF snapshots AS $$
+-- BEGIN
+--     RETURN QUERY SELECT * FROM snapshots WHERE id = snapshot_id;
+-- END
+-- $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_snapshot(snapshot_id text) RETURNS snapshots AS $$
+DECLARE
+    result snapshots;
 BEGIN
-    RETURN QUERY SELECT * FROM offer_snapshots WHERE id = snapshot_id;
+    SELECT * INTO result FROM snapshots WHERE id = snapshot_id LIMIT 1;
+    RETURN result;
 END
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION insert_offer_snapshot(collection JSON, summary Summary) RETURNS JSON AS $$
+CREATE OR REPLACE FUNCTION insert_snapshot(collection JSON, summary Summary) RETURNS JSON AS $$
 DECLARE
     new_id TEXT;
     result JSON;
 BEGIN
-    INSERT INTO offer_snapshots (collection, net_rental_fee, tax, sales_tax, total)
-    VALUES (collection, summary.net_rental_fee, summary.tax, summary.sales_tax, summary.total)
+    INSERT INTO snapshots (collection, snapshot_type, net_rental_fee, tax, sales_tax, total)
+    VALUES (collection, summary.snapshot_type::snapshot_type, summary.net_rental_fee, summary.tax, summary.sales_tax, summary.total)
     RETURNING id INTO new_id;
 
     SELECT json_build_object('data', new_id) INTO result;
