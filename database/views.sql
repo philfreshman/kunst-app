@@ -53,3 +53,11 @@ BEGIN
         WHERE artworks.id = ANY(ids) AND is_available = true;
 END; $$
     LANGUAGE plpgsql;
+
+
+CREATE VIEW offers_snapshots AS
+SELECT o.*, s.collection, s.snapshot_type, s.net_rental_fee, s.tax, s.sales_tax, s.total
+FROM offers o
+JOIN snapshots s ON o.snapshot_id = s.id;
+
+

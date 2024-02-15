@@ -8,8 +8,15 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false
+  },
+  fullscreen: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
+
+// const isFullscreen = ref(props.fullscreen)
 
 const isModalOpen: any = computed({
   get: () => props.isOpen,
@@ -25,6 +32,7 @@ const isModalOpen: any = computed({
       base: 'flex flex-col',
       width: isWide ? 'sm:max-w-2xl' : null
     }"
+    :fullscreen="props.fullscreen"
   >
     <UCard
       :ui="{
