@@ -56,6 +56,44 @@ declare global {
     is_archived?: boolean
   }
 
+  type InvoiceSnapshots = {
+    id: string
+    address: string
+    collection: JSON
+    start_date: string
+    end_date: string
+    offer_date: string
+    production_name: string
+    invoice_number: string
+    special: string
+    set_name: string
+    snapshot_id: string
+    snapshot_type: snapshotType
+    net_rental_fee: number
+    tax: number
+    sales_tax: number
+    total: string
+    is_archived: boolean
+  }
+
+  type OffersSnapshots = {
+    id: string
+    address: string
+    collection: JSON
+    start_date: string
+    end_date: string
+    offer_date: string
+    production_name: string
+    set_name: string
+    snapshot_id: string
+    snapshot_type: snapshotType
+    net_rental_fee: number
+    tax: number
+    sales_tax: number
+    total: string
+    is_archived: boolean
+  }
+
   type Artwork = {
     id: string
     article_id: string

@@ -4,7 +4,7 @@ overrides:
   - files: "*.js"
     options:
       tabWidth: 2
-printWidth: 150
+printWidth: 120
 singleAttributePerLine: false
 trailingComma: none
 noBracketSpacing: true

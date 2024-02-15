@@ -18,7 +18,7 @@ const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
 const tabIndex = ref(0)
 // const formData = reactive<Offer>(defaultOffer())
 const formData = reactive<Offer>({
-  address: "LETTERBOX FILMPRODUKTION GMBH\n" + "Jenfelder Allee 80\n" + "D- 22039 Hamburg\n" + "Germany",
+  address: "LETTERBOX FILMPRODUKTION GMBH\n" + "Jenfelder Allee 80\n" + "D- 22039 Hamburg\n",
   production_name: "The next Level",
   set_name: "NY Apt Josh",
   start_date: "2024-01-17",
@@ -61,7 +61,13 @@ const submitOffer = async () => {
     <template #header>
       <div class="flex items-center justify-between">
         <h2 class="text-xl font-semibold">Angebot erstellen</h2>
-        <UButton @click="emit('closeModal')" color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" />
+        <UButton
+          @click="emit('closeModal')"
+          color="gray"
+          variant="ghost"
+          icon="i-heroicons-x-mark-20-solid"
+          class="-my-1"
+        />
       </div>
     </template>
 

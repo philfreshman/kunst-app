@@ -12,8 +12,8 @@ const dropdownItems = (row: Offer) => [
   [
     {
       label: "Preview",
-      icon: "i-heroicons-pencil-square-20-solid",
-      click: () => console.log(row)
+      icon: "i-heroicons-eye-20-solid",
+      click: () => initPreviewModalOpen(row)
     },
     {
       label: "Edit",
@@ -53,6 +53,22 @@ const deleteOffer = () => {
   offers.initOffers().then()
 }
 
+// Preview Modal
+const offerSnapshot = ref<OffersSnapshots>()
+const isPreviewModalOpen = ref(false)
+const initPreviewModalOpen = async (row: Offer) => {
+  if (row.id === undefined) return
+  useSnapshot()
+    .getOfferSnapshot(row.id)
+    .then((res) => {
+      offerSnapshot.value = res
+      openPreviewModal()
+    })
+    .catch(() => closePreviewModal())
+}
+const openPreviewModal = () => (isPreviewModalOpen.value = true)
+const closePreviewModal = () => (isPreviewModalOpen.value = false)
+
 // Search
 const { search, filteredRows } = useFilteredArtworks(offers.data)
 </script>
@@ -61,8 +77,9 @@ const { search, filteredRows } = useFilteredArtworks(offers.data)
   <Container>
     <template #controls>
       <BaseSearch v-model="search" />
-
-      <UButton icon="i-mdi:offer" size="md" color="gray" variant="solid" trailing @click="setAddModalOpen"> Neues Angebot </UButton>
+      <UButton icon="i-mdi:offer" size="md" color="gray" variant="solid" trailing @click="setAddModalOpen">
+        Neues Angebot
+      </UButton>
     </template>
 
     <template #content>
@@ -77,10 +94,17 @@ const { search, filteredRows } = useFilteredArtworks(offers.data)
   </Container>
 
   <!--AddModal-->
-  <OffersAddModal :offers v-if="isAddModalOpen" @closeModal="setAddModalClosed" />
+  <OffersAddModal v-if="isAddModalOpen" :offers @closeModal="setAddModalClosed" />
 
   <!--DeleteModal-->
-  <OffersDeleteModal :formData="deleteModalOffer" v-if="isDeleteModalOpen" @closeModal="setDeleteModalClosed" />
+  <OffersDeleteModal
+    v-if="isDeleteModalOpen"
+    :formData="deleteModalOffer"
+    @closeModal="setDeleteModalClosed"
+    @deleteOffer="deleteOffer"
+  />
+
+  <LazyOfferPreviewModal :isOpen="isPreviewModalOpen" :data="offerSnapshot" @closeModal="closePreviewModal" />
 </template>
 
 <style lang="sass">

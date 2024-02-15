@@ -74,10 +74,10 @@ export const offersTableColumns = [
     key: "end_date",
     label: "Ende"
   },
-  {
-    key: "address",
-    label: "Adresse"
-  },
+  // {
+  //   key: "address",
+  //   label: "Adresse"
+  // },
   {
     key: "actions"
   }

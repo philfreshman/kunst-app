@@ -146,6 +146,26 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
+/*
+========================================
+              OFFERS_SNAPSHOTS
+========================================
+*/
+
+
+
+CREATE OR REPLACE FUNCTION get_offer_snapshots(offer_id TEXT) RETURNS offers_snapshots AS $$
+DECLARE
+    result offers_snapshots;
+BEGIN
+     SELECT * INTO result FROM offers_snapshots WHERE offer_id = offer_id;
+     RETURN result;
+END
+$$ LANGUAGE plpgsql;
+
+
+
 /*
 ========================================
                COLLECTION

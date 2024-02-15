@@ -5,10 +5,6 @@ export default function useOffers() {
   const data = ref<Offer[]>()
   const loading = ref<boolean>(true)
 
-  // onMounted(async () => {
-  //   await initOffers()
-  // })
-
   async function initOffers() {
     try {
       loading.value = true
