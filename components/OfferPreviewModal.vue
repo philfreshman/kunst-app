@@ -20,13 +20,13 @@ const emit = defineEmits<{ closeModal: [] }>()
 const saveToPdf = async () => {
   const divC = document.getElementById("pdf-div")
   if (divC === null) return
-  const canvas = await html2canvas(divC, { scale: 1 })
+  const canvas = await html2canvas(divC, { scale: 4 })
   const imgData = canvas.toDataURL("image/png", 1)
   const pdf = new jsPDF({
     orientation: "p",
     unit: "mm",
     format: "a4",
-    compress: true
+    compress: false
   })
   pdf.addImage(imgData, "PDF", 0, 0, 210, 297, "angebot", "SLOW") // "NONE" | "FAST" | "MEDIUM" | "SLOW";
   pdf.save("solution1.pdf")
@@ -38,17 +38,18 @@ onBeforeMount(() => {
   const height = window.screen.height
 
   switch (height) {
-    case 1050:
-      zoomValue.value = "0.265"
-      break
     case 1200:
-      zoomValue.value = "0.31"
+      // zoomValue.value = "0.9635"
+      zoomValue.value = "0.9635"
+      break
+    case 1050:
+      zoomValue.value = "0.83"
       break
     case 900:
-      zoomValue.value = "0.225"
+      zoomValue.value = "0.696"
       break
     default:
-      zoomValue.value = "0.25"
+      zoomValue.value = "0.83"
   }
 })
 
@@ -72,6 +73,7 @@ onMounted(() => {
     >
       <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl">
         <div id="pdf-div" class="bg-white pdf relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />
           <div class="absolute top-0 left-0 w-full h-full text-black">
             <PreviewWindow class="z-50" :data />
           </div>
@@ -92,10 +94,8 @@ onMounted(() => {
 <style lang="sass" scoped>
 
 .pdf
-  width: 1860pt
-  height: 2631pt
-  //width: 210mm
-  //height: 297mm
+  width: 210mm
+  height: 297mm
 
 .aspect-ratio
   aspect-ratio: 2480 / 3508

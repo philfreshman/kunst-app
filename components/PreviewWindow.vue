@@ -15,17 +15,19 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="w-full h-full px-[186pt] font-din-light z-50">
-    <span class="absolute right-0">IMG</span>
+  <div class="w-full h-full px-[79px] font-din-light z-50">
+    <span class="absolute right-0">
+      <img class="w-[185px]" src="/assets/img/pdf-logo.png" alt="logo" />
+    </span>
 
     <!--ANSCHRIFFT-->
     <!--    <span class="absolute top-[52mm] w-auto">-->
-    <span class="absolute top-[482pt] w-auto">
+    <span class="absolute top-[200px] w-auto">
       <p class="text-xs">KUNST FÜR FILM, Kulmer Str. 20 A, 10783 Berlin</p>
-      <!--      <div class="ml-[0.4mm] mt-[1mm] w-[68mm] h-[1px] bg-black">&nbsp</div>-->
-      <!--      <div class="mt-[4mm] w-300px">-->
-      <!--        <p class="text-sm2 leading-[3.6mm] tracking-[0.08mm]" v-html="textWithLineBreaks(data.address)" />-->
-      <!--      </div>-->
+      <div class="ml-[0.4mm] mt-[1mm] w-[68mm] h-[1px] bg-black">&nbsp</div>
+      <div class="mt-[4mm] w-300px pt-[1px]">
+        <p class="text-sm2 leading-[3.6mm] tracking-[0.055mm]" v-html="textWithLineBreaks(data.address)" />
+      </div>
     </span>
 
     <!--    &lt;!&ndash;ANGEBOT&ndash;&gt;-->
@@ -44,11 +46,12 @@ const props = defineProps({
 
 <style lang="css" scoped>
 .text-xs {
-  font-size: 28pt;
+  //-moz-osx-font-smoothing: grayscale;
+  font-size: 9pt;
 }
 
 .text-sm2 {
-  font-size: 0.8rem;
+  font-size: 13px;
 }
 
 .text-lg {
