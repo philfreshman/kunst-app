@@ -59,7 +59,7 @@ declare global {
   type InvoiceSnapshots = {
     id: string
     address: string
-    collection: JSON
+    collection: Collection[]
     start_date: string
     end_date: string
     offer_date: string
@@ -79,7 +79,7 @@ declare global {
   type OffersSnapshots = {
     id: string
     address: string
-    collection: JSON
+    collection: Collection[]
     start_date: string
     end_date: string
     offer_date: string

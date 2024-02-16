@@ -17,6 +17,7 @@ const open = computed(() => {
 })
 
 const emit = defineEmits<{ closeModal: [] }>()
+
 const saveToPdf = async () => {
   const divC = document.getElementById("pdf-div")
   if (divC === null) return
@@ -26,7 +27,8 @@ const saveToPdf = async () => {
     orientation: "p",
     unit: "mm",
     format: "a4",
-    compress: false
+    compress: false,
+    hotfixes: ["fonts"]
   })
   pdf.addImage(imgData, "PDF", 0, 0, 210, 297, "angebot", "SLOW") // "NONE" | "FAST" | "MEDIUM" | "SLOW";
   pdf.save("solution1.pdf")
@@ -64,7 +66,7 @@ onMounted(() => {
 
 <template>
   <div v-if="open" class="absolute top-0 left-0 h-full w-full">
-    <div class="absolute top-0 left-0 h-full w-full z-10" @click="emit('closeModal')">
+    <div class="absolute top-0 left-0 h-full w-full z-10">
       <!--      <BackgroundPattern />-->
     </div>
     <div
@@ -73,7 +75,7 @@ onMounted(() => {
     >
       <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl">
         <div id="pdf-div" class="bg-white pdf relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />
+          <!--          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />-->
           <div class="absolute top-0 left-0 w-full h-full text-black">
             <PreviewWindow class="z-50" :data />
           </div>
