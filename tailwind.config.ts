@@ -9,6 +9,9 @@ export default {
         "din-regular": ["DIN-Regular", "sans-serif"],
         "din-medium": ["DIN-Medium", "sans-serif"],
         "din-bold": ["DIN-Bold", "sans-serif"]
+      },
+      borderWidth: {
+        thin: "1px"
       }
     }
   },
