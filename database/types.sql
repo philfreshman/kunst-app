@@ -14,5 +14,6 @@ CREATE TYPE Collection AS (
     width    INTEGER,
     height   INTEGER,
     price    double precision,
-    url      VARCHAR(255)
+    url      VARCHAR(255),
+    blob     TEXT
 );

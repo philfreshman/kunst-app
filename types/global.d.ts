@@ -19,6 +19,7 @@ declare global {
     price: number
     rent_price: any
     url: string
+    blob: string
     title: string
   }
 

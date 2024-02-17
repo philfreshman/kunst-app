@@ -10,7 +10,8 @@ CREATE TABLE artists (
 
 CREATE TABLE urls (
     id TEXT PRIMARY KEY,
-    url VARCHAR(255)
+    url VARCHAR(255),
+    blob TEXT
 );
 
 
@@ -66,5 +67,3 @@ CREATE TABLE invoices (
     text2 VARCHAR(255),
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
-
-
