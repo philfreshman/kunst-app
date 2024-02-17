@@ -21,9 +21,6 @@ const formatDate = (dateString: string) => {
     day: "numeric"
   }).format(date)
 }
-
-// const rows = ref<Collection[]>(props.data.collection)
-// console.log(rows)
 </script>
 
 <template>
@@ -56,14 +53,14 @@ const formatDate = (dateString: string) => {
 
     <!--DOCUMENT DATE-->
     <div>
-      <p class="absolute top-[365px] right-[71px] text-xs">Berlin, {{ formatDate(data.offer_date) }}</p>
+      <p class="absolute top-[365px] right-[71px] text-xs">Berlin, {{ data.offer_date }}</p>
     </div>
 
     <!--DOCUMENT ARTWORKS TABLE-->
     <div class="relative top-[470px] w-[639px] bg-white">
       <table class="w-full">
         <thead>
-          <tr class="font-din-medium text-xs leading-[6.2mm] border-b border-thin border-black">
+          <tr class="font-din-medium text-xs leading-[6.2mm] border-b border-b-black">
             <th class="w-[35px]">Pos.</th>
             <th class="w-[87px]">Artikelnr.</th>
             <th class="w-[77px]">Bild</th>
@@ -74,7 +71,7 @@ const formatDate = (dateString: string) => {
           </tr>
         </thead>
         <tbody>
-          <tr class="text-xs border-b border-thin border-black" v-for="(artwork, i) in data.collection" :key="artwork">
+          <tr class="text-xs border-b border-b-black" v-for="(artwork, i) in data.collection" :key="artwork">
             <td class="pt-[10px] h-[36px]">
               <p>{{ ++i }}</p>
             </td>
@@ -92,11 +89,6 @@ const formatDate = (dateString: string) => {
 </template>
 
 <style lang="sass">
-
-p
-  position: relative
-
-  margin-top: 10px !important
 
 .bg-trans
   background-color: rgba(0, 255, 0, 0.22)
