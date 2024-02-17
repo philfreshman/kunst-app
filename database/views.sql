@@ -43,7 +43,8 @@ CREATE OR REPLACE FUNCTION create_collection(ids TEXT[])
                       width INTEGER,
                       height INTEGER,
                       price DOUBLE PRECISION,
-                      url VARCHAR(255)
+                      url VARCHAR(255),
+                      blob TEXT
                   ) AS $$
 BEGIN
     RETURN QUERY
@@ -59,5 +60,3 @@ CREATE VIEW offers_snapshots AS
 SELECT o.*, s.collection, s.snapshot_type, s.net_rental_fee, s.tax, s.sales_tax, s.total
 FROM offers o
 JOIN snapshots s ON o.snapshot_id = s.id;
-
-

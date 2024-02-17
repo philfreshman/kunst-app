@@ -177,7 +177,7 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION get_collection(ids TEXT[]) RETURNS SETOF collection AS $$
 BEGIN
     RETURN QUERY
-        SELECT artworks.id, artworks.article_id, artworks.title, artworks.width, artworks.height, artworks.price, u.url
+        SELECT artworks.id, artworks.article_id, artworks.title, artworks.width, artworks.height, artworks.price, u.url, u.blob
         FROM artworks
                  JOIN public.urls u ON artworks.url_id = u.id
         WHERE artworks.id = ANY(ids) AND is_available = TRUE;

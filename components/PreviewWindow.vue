@@ -76,7 +76,7 @@ const formatDate = (dateString: string) => {
               <p>{{ ++i }}</p>
             </td>
             <td class="pt-[10px]">{{ artwork.article_id }}</td>
-            <td class="pl-1"><img class="h-[29px]" :src="artwork.url" alt="img" /></td>
+            <td class=""><img class="h-[29px] relative top-1" :src="artwork.blob" alt="img" /></td>
             <td class="pt-[10px]">{{ artwork.title }}</td>
             <td class="pt-[10px]">{{ `${artwork.width} x ${artwork.height} cm` }}</td>
             <td class="pt-[10px]">{{ artwork.price }} €</td>
