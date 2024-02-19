@@ -1,17 +1,9 @@
-<script setup lang="ts">
-const props = defineProps({
-  height: { type: String, default: "56" }
-})
-</script>
-
 <template>
-  <a href="https://ui.nuxt.com/getting-started" target="_blank">
+  <a class="h-full" href="https://ui.nuxt.com/getting-started" target="_blank">
     <img
-      alt="logo"
+      class="h-full w-auto"
+      alt="kunst-logo"
       src="~/assets/img/logo.svg"
-      :style="{
-        height: `${props.height}px`
-      }"
     />
   </a>
 </template>

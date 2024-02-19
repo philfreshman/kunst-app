@@ -159,8 +159,8 @@ CREATE OR REPLACE FUNCTION get_offer_snapshots(offer_id TEXT) RETURNS offers_sna
 DECLARE
     result offers_snapshots;
 BEGIN
-     SELECT * INTO result FROM offers_snapshots WHERE offer_id = offer_id;
-     RETURN result;
+    SELECT * INTO result FROM offers_snapshots WHERE offers_snapshots.id = offer_id;
+    RETURN result;
 END
 $$ LANGUAGE plpgsql;
 

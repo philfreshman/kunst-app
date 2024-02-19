@@ -14,6 +14,15 @@ export const formatSnapshot = (snapshot_type: snapshotType): string => {
   return formats[snapshot_type] || "Unknown"
 }
 
+export const formatShortDate = (dateString: string): string => {
+  const date = new Date(dateString)
+  const endDay = date.getDate()
+  const endMonth = date.getMonth() + 1
+  const endYear = date.getFullYear().toString()
+
+  return `${endDay}.${endMonth}.${endYear}`
+}
+
 export const formatDateSpan = (start: string, end: string): string => {
   // Parse the start and end strings into Date objects
   const startDate = new Date(start)
@@ -28,4 +37,14 @@ export const formatDateSpan = (start: string, end: string): string => {
 
   // Format the date span string
   return `${startDay}.${startMonth} - ${endDay}.${endMonth}.${endYear}`
+}
+
+
+export const formatDateNumeric = (dateString: string) => {
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat("de-DE", {
+    year: "2-digit",
+    month: "numeric",
+    day: "numeric"
+  }).format(date)
 }
