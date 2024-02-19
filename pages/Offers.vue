@@ -4,10 +4,13 @@ import useOffers from "~/composables/useOffers"
 import { offersTableColumns } from "~/utils/tableDefinitions"
 import BaseSearch from "~/components/BaseSearch.vue"
 import useSnapshot from "~/composables/useSnapshot"
+import { formatDateSpan, formatShortDate } from "~/utils/formater"
 
 const offers = useOffers()
 onMounted(() => offers.initOffers())
 
+// Table
+const { search, filteredRows } = useFilteredArtworks(offers.data)
 const dropdownItems = (row: Offer) => [
   [
     {
@@ -36,16 +39,17 @@ const setAddModalClosed = async () => {
   offers.initOffers().then()
 }
 
+// Edit Modal
+const isEditModalOpen = ref(false)
+const setEditModalOpen = () => (isEditModalOpen.value = true)
+const setEditModalClosed = () => (isEditModalOpen.value = false)
+
+
 // Delete Modal
 const deleteModalOffer = ref<Offer>()
 const isDeleteModalOpen = ref(false)
-const setDeleteModalOpen = (row: Offer) => {
-  deleteModalOffer.value = row
-  isDeleteModalOpen.value = true
-}
-const setDeleteModalClosed = () => {
-  isDeleteModalOpen.value = false
-}
+const setDeleteModalClosed = () => isDeleteModalOpen.value = false
+const setDeleteModalOpen = (row: Offer) => deleteModalOffer.value = row; isDeleteModalOpen.value = true
 const deleteOffer = () => {
   if (deleteModalOffer.value?.id === undefined) return
   isDeleteModalOpen.value = false
@@ -56,6 +60,8 @@ const deleteOffer = () => {
 // Preview Modal
 const offerSnapshot = ref<OffersSnapshots>()
 const isPreviewModalOpen = ref(false)
+const openPreviewModal = () => (isPreviewModalOpen.value = true)
+const closePreviewModal = () => (isPreviewModalOpen.value = false)
 const initPreviewModalOpen = async (row: Offer) => {
   if (row.id === undefined) return
   useSnapshot()
@@ -66,24 +72,26 @@ const initPreviewModalOpen = async (row: Offer) => {
     })
     .catch(() => closePreviewModal())
 }
-const openPreviewModal = () => (isPreviewModalOpen.value = true)
-const closePreviewModal = () => (isPreviewModalOpen.value = false)
 
-// Search
-const { search, filteredRows } = useFilteredArtworks(offers.data)
 </script>
 
 <template>
   <Container>
     <template #controls>
       <BaseSearch v-model="search" />
-      <UButton icon="i-mdi:offer" size="md" color="gray" variant="solid" trailing @click="setAddModalOpen">
+      <UButton size="md" color="gray" variant="solid" trailing @click="setAddModalOpen">
         Neues Angebot
       </UButton>
     </template>
 
     <template #content>
       <UTable :columns="offersTableColumns" :rows="filteredRows" :loading="offers.loading.value">
+        <template #date_span-data="{ row }">
+          {{ formatDateSpan(row.start_date, row.end_date)  }}
+        </template>
+        <template #offer_date-data="{ row }">
+          {{ formatShortDate(row.offer_date)  }}
+        </template>
         <template #actions-data="{ row }">
           <UDropdown :items="dropdownItems(row)">
             <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />

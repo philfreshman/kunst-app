@@ -1,6 +1,4 @@
 <script setup>
-import { defineProps } from "vue"
-
 const props = defineProps({
   color: {
     type: Boolean,
@@ -11,7 +9,7 @@ const props = defineProps({
 <!--#1C3452-->
 <!--#1A2536-->
 <template>
-  <div class="h-full w-full bg-white dark:bg-[#1A2536]">
+  <div class="h-full w-full bg-white dark:bg-gray-950">
     <svg class="h-full w-full stroke-gray-900/10 dark:stroke-white/10" fill="none">
       <defs>
         <pattern

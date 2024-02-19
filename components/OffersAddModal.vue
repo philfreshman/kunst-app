@@ -13,6 +13,12 @@ const artworks = useArtworks("search")
 const snap = useSnapshot()
 // const selected = ref([] as string[])
 const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
+const maxLength = 7
+watch(selected, (newVal) => {
+  if (newVal.length > maxLength) {
+    selected.value = newVal.slice(0, maxLength)
+  }
+})
 
 // Modal
 const tabIndex = ref(0)

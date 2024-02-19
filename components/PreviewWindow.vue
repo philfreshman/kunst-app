@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatDateSpan, formatSnapshot, textWithLineBreaks } from "~/utils/formater"
+import { formatDateSpan, formatDateNumeric, formatSnapshot, textWithLineBreaks } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 
 const props = defineProps({
@@ -13,14 +13,7 @@ const props = defineProps({
   }
 })
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString)
-  return new Intl.DateTimeFormat("de-DE", {
-    year: "2-digit",
-    month: "numeric",
-    day: "numeric"
-  }).format(date)
-}
+
 </script>
 
 <template>
@@ -32,7 +25,7 @@ const formatDate = (dateString: string) => {
     <!--ANSCHRIFFT-->
     <!--    <span class="absolute top-[52mm] w-auto">-->
     <span class="absolute top-[200px] w-auto">
-      <p class="text-xs">KUNST FÜR FILM, Kulmer Str. 20 A, 10783 Berlin</p>
+      <p class="text-xs">KUNST FÜR FILM, Meininger Straße 12, 10823 Berlin</p>
       <div class="ml-[0.4mm] mt-[1mm] w-[68mm] h-[1px] bg-black"><p>&nbsp</p></div>
       <div class="mt-[4mm] w-300px pt-[1px]">
         <p class="text-sm2 leading-[3.6mm] tracking-[0.055mm]" v-html="textWithLineBreaks(data.address)" />
@@ -57,10 +50,10 @@ const formatDate = (dateString: string) => {
     </div>
 
     <!--DOCUMENT ARTWORKS TABLE-->
-    <div class="relative top-[470px] w-[639px] bg-white">
+    <div class="relative top-[470px] w-[639px] ">
       <table class="w-full">
         <thead>
-          <tr class="font-din-medium text-xs leading-[6.2mm] border-b border-b-black">
+          <tr class="font-din-medium text-xs leading-[5.2mm] border-b border-b-black">
             <th class="w-[35px]">Pos.</th>
             <th class="w-[87px]">Artikelnr.</th>
             <th class="w-[77px]">Bild</th>
@@ -84,7 +77,74 @@ const formatDate = (dateString: string) => {
           </tr>
         </tbody>
       </table>
+      <!--SUMMARY-->
+      <div class="pt-[13px] w-[639px] text-xs2 leading-[6.2mm]">
+        <div class="flex justify-between">
+          <p class="">Leihgebühr netto:</p>
+          <p class="">{{ data.net_rental_fee }} €</p>
+        </div>
+        <div class="flex justify-between">
+          <p class="">zzgl. 19% Umsatzsteuer</p>
+          <p class="">{{  data.sales_tax }} €</p>
+        </div>
+        <div class="flex justify-between font-din-bold">
+          <p class="">GESAMT</p>
+          <p class="">{{  data.total }} €</p>
+        </div>
+        <div class="ml-[0.4mm] mt-[1mm] w-full h-[1px] bg-black"><p>&nbsp</p></div>
+      </div>
+
+      <!--INFO-->
+      <div class="pt-[33px] w-[639px] text-sm2 leading-[5.2mm] tracking-[0.04mm]">
+          <p>Bei Annahme des Angebotes erklärt sich der Mieter mit folgendem einverstanden:</p>
+          <p>Bei Verlust oder Totalschaden wird der volle Warenwert fällig. Bei Teilschaden wird die vom Vermieter</p>
+          <p>veranschlagte Reparatursumme sofort in Rechnung gestellt.</p>
+        <br>
+          <p>Mit freundlichen Grüßen</p>
+          <p>Kasia Swiezak</p>
+      </div>
     </div>
+
+
+    <!--DOCUMENT FOOTER-->
+    <div class="absolute bottom-[15px] flex w-[660px] text-footer leading-[3.4mm] tracking-[0] bggg">
+      <div class="w-1/4">
+        <p class="">KUNST FÜR FILM</p>
+        <p>&nbsp</p>
+        <p class="">0176-215 291 86</p>
+        <p>mail@kunstfuerfilm.de</p>
+        <p>www.kunstfürfilm.de</p>
+      </div>
+      <div class="w-1/4">
+        <p>Lageradresse:</p>
+        <p>Kunst für Film</p>
+        <p>Kulmer Str. 20 A</p>
+        <p>2. Hinterhof</p>
+        <p>10783 Berlin</p>
+      </div>
+      <div class="w-1/4">
+        <p>Rechnungsadresse</p>
+        <p>Kunst für Film</p>
+        <p>Katharina Swiezak</p>
+        <p>Meininger Str. 12</p>
+        <p>10823 Berlin</p>
+      </div>
+      <div class="w-1/4">
+        <p>Kontoverbindung</p>
+        <p>Katharina Swiezak</p>
+        <p>Consorsbank</p>
+        <p>BIC CSDBDE71</p>
+        <p>IBAN DE62 7603 0080 0220 7325 74</p>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
   </div>
 </template>
 
@@ -96,8 +156,14 @@ const formatDate = (dateString: string) => {
 .text-right
   text-align: right
 
+.text-footer
+  font-size: 8pt
+
 .text-xs
   font-size: 9pt
+
+.text-xs2
+  font-size: 10pt
 
 .text-sm2
   font-size: 13px
