@@ -40,8 +40,13 @@ export default function useOffers() {
     })
   }
 
-  function localOfferById(offerId: string): Offer | undefined {
-    return data.value?.find((offer) => offer.id === offerId)
+  function localOfferById(offerId: string): Offer {
+    console.log(offerId)
+    console.log(data.value)
+    const offer = data.value?.find((offer) => offer.id === offerId)
+
+    console.log(offer)
+    return offer || ({} as Offer)
   }
 
   return {

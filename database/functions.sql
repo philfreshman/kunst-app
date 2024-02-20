@@ -155,11 +155,11 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION get_offer_snapshots(offer_id TEXT) RETURNS offers_snapshots AS $$
+CREATE OR REPLACE FUNCTION get_snapshots(snap_id TEXT) RETURNS snapshots AS $$
 DECLARE
-    result offers_snapshots;
+    result snapshots;
 BEGIN
-    SELECT * INTO result FROM offers_snapshots WHERE offers_snapshots.id = offer_id;
+    SELECT * INTO result FROM snapshots WHERE snapshots.id = snap_id;
     RETURN result;
 END
 $$ LANGUAGE plpgsql;

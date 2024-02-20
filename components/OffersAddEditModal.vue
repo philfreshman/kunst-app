@@ -3,10 +3,16 @@ import limitTextarea from "~/utils/textareaLimiter"
 import { offersModalTabs } from "~/utils/tableDefinitions"
 import useSnapshot from "~/composables/useSnapshot"
 import { formatArtwork } from "~/utils/formater"
-import { defaultOffer } from "~/utils/defaults"
+import type { PropType } from "@vue/runtime-core"
 
-// Setup
 const emit = defineEmits<{ closeModal: [] }>()
+const props = defineProps({
+  editOffer: {
+    type: Object as PropType<Offer>,
+    required: true,
+    default: defaultOffer()
+  }
+})
 
 // Data
 const artworks = useArtworks("search")
@@ -22,17 +28,8 @@ watch(selected, (newVal) => {
 
 // Modal
 const tabIndex = ref(0)
-// const formData = reactive<Offer>(defaultOffer())
-const formData = reactive<Offer>({
-  address: "LETTERBOX FILMPRODUKTION GMBH\n" + "Jenfelder Allee 80\n" + "D- 22039 Hamburg\n",
-  production_name: "The next Level",
-  set_name: "NY Apt Josh",
-  start_date: "2024-01-17",
-  end_date: "2024-01-22",
-  offer_date: "2024-01-16",
-  is_archived: false,
-  snapshot_id: ""
-})
+
+const formData = reactive<Offer>(props.editOffer)
 
 const removeSelected = (artIndex: string) => {
   selected.value = selected.value.filter((item) => item !== artIndex)
@@ -60,6 +57,15 @@ const submitOffer = async () => {
     console.error(error)
   }
 }
+
+onMounted(() => {
+  // mute nuxt ui bug warnings
+  console.warn = () => {}
+
+  // snap.getSnapshotById(props.editOffer.snapshot_id).then((res) => {
+  //   console.log(res)
+  // })
+})
 </script>
 
 <template>
