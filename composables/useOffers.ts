@@ -40,11 +40,16 @@ export default function useOffers() {
     })
   }
 
+  function localOfferById(offerId: string): Offer | undefined {
+    return data.value?.find((offer) => offer.id === offerId)
+  }
+
   return {
     data,
     loading,
     initOffers,
     createOffer,
-    deleteOffer
+    deleteOffer,
+    localOfferById
   }
 }
