@@ -21,7 +21,7 @@ const dropdownItems = (row: Offer) => [
     {
       label: "Edit",
       icon: "i-heroicons-pencil-square-20-solid",
-      click: () => console.log(row)
+      click: () => setEditOfferId(row)
     },
     {
       label: "Delete",
@@ -31,25 +31,28 @@ const dropdownItems = (row: Offer) => [
   ]
 ]
 
-// Add Modal
+// Add-Edit Modal
 const isAddModalOpen = ref(false)
-const setAddModalOpen = () => (isAddModalOpen.value = true)
-const setAddModalClosed = async () => {
+const editOffer = ref<Offer | undefined>()
+const setAddEditModalOpen = () => (isAddModalOpen.value = true)
+const setAddEditModalClosed = async () => {
   isAddModalOpen.value = false
   offers.initOffers().then()
 }
-
-// Edit Modal
-const isEditModalOpen = ref(false)
-const setEditModalOpen = () => (isEditModalOpen.value = true)
-const setEditModalClosed = () => (isEditModalOpen.value = false)
-
+const setEditOfferId = (row: Offer) => {
+  if (offers.data.value === undefined) return
+  editOffer.value = offers.data.value.find((offer) => offer.id === row.id)
+  setAddEditModalOpen()
+}
 
 // Delete Modal
 const deleteModalOffer = ref<Offer>()
 const isDeleteModalOpen = ref(false)
-const setDeleteModalClosed = () => isDeleteModalOpen.value = false
-const setDeleteModalOpen = (row: Offer) => deleteModalOffer.value = row; isDeleteModalOpen.value = true
+const setDeleteModalClosed = () => (isDeleteModalOpen.value = false)
+const setDeleteModalOpen = (row: Offer) => {
+  deleteModalOffer.value = row
+  isDeleteModalOpen.value = true
+}
 const deleteOffer = () => {
   if (deleteModalOffer.value?.id === undefined) return
   isDeleteModalOpen.value = false
@@ -65,21 +68,31 @@ const closePreviewModal = () => (isPreviewModalOpen.value = false)
 const initPreviewModalOpen = async (row: Offer) => {
   if (row.id === undefined) return
   useSnapshot()
-    .getOfferSnapshot(row.id)
+    .getSnapshotById(row.id)
     .then((res) => {
       offerSnapshot.value = res
       openPreviewModal()
     })
     .catch(() => closePreviewModal())
 }
-
 </script>
 
 <template>
   <Container>
     <template #controls>
       <BaseSearch v-model="search" />
-      <UButton size="md" color="gray" variant="solid" trailing @click="setAddModalOpen">
+      <UButton
+        size="md"
+        color="gray"
+        variant="solid"
+        trailing
+        @click="
+          () => {
+            editOffer = undefined
+            setAddEditModalOpen()
+          }
+        "
+      >
         Neues Angebot
       </UButton>
     </template>
@@ -87,10 +100,10 @@ const initPreviewModalOpen = async (row: Offer) => {
     <template #content>
       <UTable :columns="offersTableColumns" :rows="filteredRows" :loading="offers.loading.value">
         <template #date_span-data="{ row }">
-          {{ formatDateSpan(row.start_date, row.end_date)  }}
+          {{ formatDateSpan(row.start_date, row.end_date) }}
         </template>
         <template #offer_date-data="{ row }">
-          {{ formatShortDate(row.offer_date)  }}
+          {{ formatShortDate(row.offer_date) }}
         </template>
         <template #actions-data="{ row }">
           <UDropdown :items="dropdownItems(row)">
@@ -102,7 +115,7 @@ const initPreviewModalOpen = async (row: Offer) => {
   </Container>
 
   <!--AddModal-->
-  <OffersAddModal v-if="isAddModalOpen" :offers @closeModal="setAddModalClosed" />
+  <OffersAddEditModal v-if="isAddModalOpen" :editOffer @closeModal="setAddEditModalClosed" />
 
   <!--DeleteModal-->
   <OffersDeleteModal
