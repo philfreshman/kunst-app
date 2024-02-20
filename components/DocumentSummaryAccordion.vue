@@ -80,5 +80,3 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
     </template>
   </UAccordion>
 </template>
-
-<style scoped></style>

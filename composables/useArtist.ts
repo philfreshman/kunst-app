@@ -22,6 +22,7 @@ export default function useArtist() {
   }
 
   async function getArtists(): Promise<Artist[]> {
+    // @ts-ignore
     const { data, error } = await supabase.rpc("get_artists")
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
@@ -29,6 +30,7 @@ export default function useArtist() {
   }
 
   async function updateArtist(artist: Artist) {
+    // @ts-ignore
     const { error } = await supabase.rpc("update_artist", { artist })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(null)
