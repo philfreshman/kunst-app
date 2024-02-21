@@ -3,7 +3,7 @@ import { ref } from "vue"
 export default function useOffers() {
   const supabase = useSupabaseClient<Database>()
   const data = ref<Offer[]>()
-  const loading = ref<boolean>(true)
+  const loading = ref(true)
 
   async function initOffers() {
     try {
@@ -26,7 +26,7 @@ export default function useOffers() {
 
   async function createOffer(offer: Offer): Promise<unknown> {
     // @ts-ignore
-    const { data, error } = await supabase.rpc("insert_offer", { offer })
+    const { data, error } = await supabase.rpc("create_offer", { offer })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
@@ -48,22 +48,12 @@ export default function useOffers() {
     })
   }
 
-  function localOfferById(offerId: string): Offer {
-    console.log(offerId)
-    console.log(data.value)
-    const offer = data.value?.find((offer) => offer.id === offerId)
-
-    console.log(offer)
-    return offer || ({} as Offer)
-  }
-
   return {
     data,
     loading,
     initOffers,
     createOffer,
     updateOffer,
-    deleteOffer,
-    localOfferById
+    deleteOffer
   }
 }

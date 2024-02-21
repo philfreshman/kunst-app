@@ -7,7 +7,11 @@ CREATE TABLE artists (
     is_archived BOOLEAN NOT NULL DEFAULT false
 );
 
-
+CREATE TABLE images (
+    id TEXT PRIMARY KEY,
+    url TEXT,
+    blob TEXT
+);
 
 CREATE TABLE artworks (
     id TEXT PRIMARY KEY,
