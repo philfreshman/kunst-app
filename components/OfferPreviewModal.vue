@@ -52,44 +52,51 @@ onBeforeMount(() => {
   }
 })
 
+const closeModalOnEscape = (e) => {
+  if (e.key === "Escape") emit("closeModal")
+}
+
 onMounted(() => {
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      emit("closeModal")
-    }
-  })
+  window.addEventListener("keydown", closeModalOnEscape)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("keydown", closeModalOnEscape)
 })
 </script>
 
 <template>
-
   <div v-if="open" class="absolute top-0 left-0 h-full w-full">
-
-
     <div
       class="absolute w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-700"
       :style="{ zoom: zoomValue }"
     >
-      <BackgroundPattern class="absolute h-full overflow-hidden"/>
+      <BackgroundPattern class="absolute h-full overflow-hidden" />
       <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl">
         <div id="pdf-div" class="bg-white pdf relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-<!--          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />-->
+          <!--          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />-->
           <div class="absolute top-0 left-0 w-full h-full text-black">
-              <PreviewWindow class="z-50" :data />
+            <PreviewWindow class="z-50" :data />
           </div>
         </div>
       </div>
     </div>
 
+    <UButton
+      icon="i-heroicons-x-mark-20-solid"
+      color="red"
+      class="absolute top-0 left-0 m-4 p-2 bg-red-500 rounded text-white z-20"
+      @click="emit('closeModal')"
+    />
 
-    <UButton icon="i-heroicons-x-mark-20-solid" color="red" class="absolute top-0 left-0 m-4 p-2 bg-red-500 rounded text-white z-20" @click="emit('closeModal')"/>
-
-    <UButton icon="i-heroicons-arrow-down-tray" class="absolute top-0 right-0 m-4 p-2 bg-green-500 rounded text-white z-20" @click="saveToPdf">
+    <UButton
+      icon="i-heroicons-arrow-down-tray"
+      class="absolute top-0 right-0 m-4 p-2 bg-green-500 rounded text-white z-20"
+      @click="saveToPdf"
+    >
       PDF
     </UButton>
-
   </div>
-
 </template>
 
 <style lang="sass" scoped>

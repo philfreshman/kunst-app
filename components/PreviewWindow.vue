@@ -13,7 +13,10 @@ const props = defineProps({
   }
 })
 
-
+onMounted(() => {
+  console.log("mounted")
+  console.log(props.data)
+})
 </script>
 
 <template>
@@ -24,13 +27,13 @@ const props = defineProps({
 
     <!--ANSCHRIFFT-->
     <!--    <span class="absolute top-[52mm] w-auto">-->
-    <span class="absolute top-[200px] w-auto">
+    <div class="absolute top-[200px] w-auto">
       <p class="text-xs">KUNST FÜR FILM, Meininger Straße 12, 10823 Berlin</p>
       <div class="ml-[0.4mm] mt-[1mm] w-[68mm] h-[1px] bg-black"><p>&nbsp</p></div>
       <div class="mt-[4mm] w-300px pt-[1px]">
         <p class="text-sm2 leading-[3.6mm] tracking-[0.055mm]" v-html="textWithLineBreaks(data.address)" />
       </div>
-    </span>
+    </div>
 
     <!--ANGEBOT-->
     <div class="absolute top-[329px]">
@@ -50,7 +53,7 @@ const props = defineProps({
     </div>
 
     <!--DOCUMENT ARTWORKS TABLE-->
-    <div class="relative top-[470px] w-[639px] ">
+    <div class="relative top-[470px] w-[639px]">
       <table class="w-full">
         <thead>
           <tr class="font-din-medium text-xs leading-[5.2mm] border-b border-b-black">
@@ -85,26 +88,25 @@ const props = defineProps({
         </div>
         <div class="flex justify-between">
           <p class="">zzgl. 19% Umsatzsteuer</p>
-          <p class="">{{  data.sales_tax }} €</p>
+          <p class="">{{ data.sales_tax }} €</p>
         </div>
         <div class="flex justify-between font-din-bold">
           <p class="">GESAMT</p>
-          <p class="">{{  data.total }} €</p>
+          <p class="">{{ data.total }} €</p>
         </div>
         <div class="ml-[0.4mm] mt-[1mm] w-full h-[1px] bg-black"><p>&nbsp</p></div>
       </div>
 
       <!--INFO-->
       <div class="pt-[33px] w-[639px] text-sm2 leading-[5.2mm] tracking-[0.04mm]">
-          <p>Bei Annahme des Angebotes erklärt sich der Mieter mit folgendem einverstanden:</p>
-          <p>Bei Verlust oder Totalschaden wird der volle Warenwert fällig. Bei Teilschaden wird die vom Vermieter</p>
-          <p>veranschlagte Reparatursumme sofort in Rechnung gestellt.</p>
-        <br>
-          <p>Mit freundlichen Grüßen</p>
-          <p>Kasia Swiezak</p>
+        <p>Bei Annahme des Angebotes erklärt sich der Mieter mit folgendem einverstanden:</p>
+        <p>Bei Verlust oder Totalschaden wird der volle Warenwert fällig. Bei Teilschaden wird die vom Vermieter</p>
+        <p>veranschlagte Reparatursumme sofort in Rechnung gestellt.</p>
+        <br />
+        <p>Mit freundlichen Grüßen</p>
+        <p>Kasia Swiezak</p>
       </div>
     </div>
-
 
     <!--DOCUMENT FOOTER-->
     <div class="absolute bottom-[15px] flex w-[660px] text-footer leading-[3.4mm] tracking-[0] bggg">
@@ -136,15 +138,7 @@ const props = defineProps({
         <p>BIC CSDBDE71</p>
         <p>IBAN DE62 7603 0080 0220 7325 74</p>
       </div>
-
-
-
-
     </div>
-
-
-
-
   </div>
 </template>
 

@@ -16,7 +16,7 @@ const props = defineProps({
 const snapshot = ref<Snapshot>()
 onBeforeMount(async () => {
   try {
-    snapshot.value = await snap.getSnapshot(props.formData.snapshot_id)
+    snapshot.value = await snap.getSnapshotById(props.formData.snapshot_id)
   } catch (e) {
     console.log(e)
   }

@@ -6,6 +6,7 @@ CREATE TYPE Summary AS (
     total text
 );
 
+
 CREATE TYPE Collection AS (
     id text,
     article_id varchar ( 255),

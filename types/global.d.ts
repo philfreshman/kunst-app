@@ -14,13 +14,13 @@ declare global {
   type Collection = {
     id: string
     article_id: string
+    title: string
     width: number
     height: number
     price: number
-    rent_price: any
     url: string
     blob: string
-    title: string
+    rent_price: any
   }
 
   type Document = {

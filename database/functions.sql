@@ -103,6 +103,28 @@ $$ LANGUAGE plpgsql;
 
 
 
+CREATE OR REPLACE FUNCTION update_offer(offer offers) RETURNS JSON AS $$
+DECLARE
+    result JSON;
+BEGIN
+    UPDATE offers
+    SET address = offer.address,
+        end_date = offer.end_date,
+        offer_date = offer.offer_date,
+        production_name = offer.production_name,
+        set_name = offer.set_name,
+        start_date = offer.start_date
+--         snapshot_id = offer.snapshot_id,
+    WHERE id = offer.id;
+
+    RETURN json_build_object('id', offer.id);
+EXCEPTION
+    WHEN others THEN
+        SELECT json_build_object('error', SQLERRM) INTO result;
+        RETURN result;
+END;
+$$ LANGUAGE plpgsql;
+
 /*
 ========================================
               SNAPSHOTS
@@ -146,6 +168,24 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION update_snapshot(snapshot_id text, new_collection JSON, new_summary Summary) RETURNS text AS $$
+BEGIN
+    UPDATE snapshots
+    SET collection = new_collection,
+        snapshot_type = new_summary.snapshot_type::snapshot_type,
+        net_rental_fee = new_summary.net_rental_fee,
+        tax = new_summary.tax,
+        sales_tax = new_summary.sales_tax,
+        total = new_summary.total
+    WHERE id = snapshot_id;
+    RETURN 'Snapshot updated successfully';
+EXCEPTION
+    WHEN others THEN
+        RETURN 'Error updating snapshot';
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 /*
 ========================================
@@ -155,11 +195,11 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION get_snapshots(snap_id TEXT) RETURNS snapshots AS $$
+CREATE OR REPLACE FUNCTION get_offer_snapshot(offer_id TEXT) RETURNS public.offers_snapshots AS $$
 DECLARE
-    result snapshots;
+    result offers_snapshots;
 BEGIN
-    SELECT * INTO result FROM snapshots WHERE snapshots.id = snap_id;
+    SELECT * INTO result FROM offers_snapshots WHERE id = offer_id;
     RETURN result;
 END
 $$ LANGUAGE plpgsql;
@@ -182,4 +222,19 @@ BEGIN
                  JOIN public.urls u ON artworks.url_id = u.id
         WHERE artworks.id = ANY(ids) AND is_available = TRUE;
 END
+$$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION get_collection_ids_from_snap(snapshot_id text)
+    RETURNS json AS $$
+DECLARE
+    ids text[];
+BEGIN
+    SELECT array_agg(json_object->>'id') INTO ids
+    FROM snapshots, json_array_elements(snapshots.collection::json) AS json_object
+    WHERE snapshots.id = snapshot_id;
+
+    RETURN json_build_object('artwork_ids', ids);
+END;
 $$ LANGUAGE plpgsql;
