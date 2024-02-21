@@ -1,20 +1,23 @@
+create type snapshot_type as enum ('invoice', 'offer');
+
+
 CREATE TYPE Summary AS (
-    snapshot_type text,
-    net_rental_fee text,
+    snapshot_type TEXT,
+    net_rental_fee TEXT,
     tax integer,
-    sales_tax text,
-    total text
+    sales_tax TEXT,
+    total TEXT
 );
 
 
 CREATE TYPE Collection AS (
-    id text,
-    article_id varchar ( 255),
-    title VARCHAR(255),
+    id TEXT,
+    article_id TEXT,
+    title TEXT,
     width INTEGER,
     height INTEGER,
     price double precision,
-    url VARCHAR(255),
+    url TEXT,
     blob TEXT
 );
 
