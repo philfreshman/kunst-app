@@ -10,7 +10,7 @@ SELECT
 FROM
     artworks
     JOIN public.artists a ON artworks.artist_id = a.id
-    JOIN public.urls u ON artworks.url_id = u.id
+    JOIN public.images u ON artworks.img_id = u.id
 WHERE
     is_available = TRUE;
 
@@ -25,7 +25,7 @@ SELECT
 FROM
     artworks
     JOIN public.artists a ON artworks.artist_id = a.id
-    JOIN public.urls u ON artworks.url_id = u.id
+    JOIN public.images u ON artworks.img_id = u.id
 WHERE
     is_available = TRUE;
 
@@ -54,7 +54,7 @@ BEGIN
             u.url
         FROM
             artworks
-                JOIN public.urlS u ON artworks.url_id = u.id
+                JOIN public.images u ON artworks.img_id = u.id
         WHERE
             artworks.id = ANY (ids)
           AND is_available = TRUE;

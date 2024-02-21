@@ -135,11 +135,8 @@ bun.lockb
 .idea/
 package-lock.json
 
-database/data_artworks.sql
-database/data_artists.sql
-database/data_invoices.sql
-database/data_offers.sql
-database/data_urls.sql
+
+database/data/
 
 Preisliste.numbers
 Preisliste.xlsx
