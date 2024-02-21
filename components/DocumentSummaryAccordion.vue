@@ -6,7 +6,7 @@ import { accordionTabs } from "~/utils/tableDefinitions"
 // Setup
 const props = defineProps({
   formData: {
-    type: Object as PropType<Offer>,
+    type: Object as PropType<Offer | Invoice>,
     required: true
   },
   snapshot: {

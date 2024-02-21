@@ -87,7 +87,37 @@ export const offersTableColumns = [
   }
 ]
 
-export const offersModalTabs = [
+export const invoiceTableColumns = [
+  {
+    key: "id",
+    label: "#"
+  },
+  {
+    key: "production_name",
+    label: "Produktion"
+  },
+  {
+    key: "set_name",
+    label: "Set"
+  },
+  {
+    key: "date_span",
+    label: "Zeitraum"
+  },
+  {
+    key: "invoice_date",
+    label: "Rechnungsdatum"
+  },
+  // {
+  //   key: "address",
+  //   label: "Adresse"
+  // },
+  {
+    key: "actions"
+  }
+]
+
+export const addEditModalTabs = [
   {
     index: 0,
     slot: "data",

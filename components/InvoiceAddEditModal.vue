@@ -5,22 +5,23 @@ import useSnapshot from "~/composables/useSnapshot"
 import { formatArtwork } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 
+// const invoice = useInvoices()
 const snap = useSnapshot()
 const emit = defineEmits<{ closeModal: [] }>()
 const props = defineProps({
-  editOffer: {
-    type: Object as PropType<Offer>,
+  editInvoice: {
+    type: Object as PropType<Invoice>,
     required: true,
-    default: defaultOffer()
+    default: defaultInvoice()
   }
 })
 
 const modalType = computed(() => {
-  return props.editOffer.id ? "edit" : "add"
+  return props.editInvoice.id ? "edit" : "add"
 })
 
 // Data
-const formData = reactive<Offer>(props.editOffer)
+const formData = reactive<Invoice>(props.editInvoice)
 const artworks = useArtworks("search")
 const selected = ref([] as string[])
 const maxLength = 7
@@ -36,7 +37,7 @@ const tabChange = async (idx: number) => {
   tabIndex.value = idx
   if (tabIndex.value == 2) {
     await snap.initCollection(selected.value)
-    snap.calcRentPrices(formData, "offer")
+    snap.calcRentPrices(formData, "invoice")
   }
 }
 
@@ -48,26 +49,29 @@ const artworkById = (id: string) => {
   return artworks.data.value && artworks.data.value.find((artwork) => artwork.id === id)
 }
 
-const addOffer = async () => {
+const addInvoice = async () => {
   if (!snap.snapshot.value) return
   try {
-    const { data: snapshotId } = await snap.createSnapshot({ ...snap.snapshot.value, snapshot_type: "offer" })
-    await useOffers().createOffer({ ...formData, snapshot_id: snapshotId })
+    const { data: snapshotId } = await snap.createSnapshot({ ...snap.snapshot.value, snapshot_type: "invoice" })
+    // @ts-ignore
+    await useInvoices().createInvoice({ ...(formData as Invoice), snapshot_id: snapshotId } as Invoice)
     emit("closeModal")
   } catch (error) {
     console.error(error)
   }
 }
 
-const editOffer = async () => {
+const editInvoice = async () => {
+  console.log("check")
+  console.log(snap.snapshot.value)
   if (!snap.snapshot.value) return
   try {
     const { data: snapshotId } = await snap.updateSnapshot({
-      id: props.editOffer.snapshot_id,
+      id: props.editInvoice.snapshot_id,
       ...snap.snapshot.value,
-      snapshot_type: "offer"
+      snapshot_type: "invoice"
     })
-    await useOffers().updateOffer({ ...formData })
+    await useInvoices().updateInvoice({ ...formData } as Invoice)
     emit("closeModal")
   } catch (error) {
     console.error(error)
@@ -82,7 +86,7 @@ onMounted(async () => {
 
   // If editing an offer, get the collection ids from the snapshot
   snap
-    .getCollectionIdsFromSnapshot(props.editOffer.snapshot_id)
+    .getCollectionIdsFromSnapshot(props.editInvoice.snapshot_id)
     .then(({ artwork_ids }) => (selected.value = artwork_ids))
     .catch((e) => console.log(e))
 })
@@ -92,7 +96,7 @@ onMounted(async () => {
   <BaseModal :isWide="tabIndex !== 0">
     <template #header>
       <div class="flex items-center justify-between">
-        <h2 class="text-xl font-semibold">{{ modalType === "add" ? "Angebot erstellen" : "Angebot bearbeiten" }}</h2>
+        <h2 class="text-xl font-semibold">{{ modalType === "add" ? "Rechnung erstellen" : "Rechnung bearbeiten" }}</h2>
         <UButton
           @click="emit('closeModal')"
           color="gray"
@@ -104,7 +108,7 @@ onMounted(async () => {
     </template>
 
     <div>
-      <UTabs :items="addEditModalTabs" class="h-[464px] w-full custom-height flex flex-col" @change="tabChange">
+      <UTabs :items="addEditModalTabs" class="min-h-[464px] w-full custom-height flex flex-col" @change="tabChange">
         <template #data="{ item }">
           <UCard>
             <UForm :state="formData" class="label-padding">
@@ -117,6 +121,14 @@ onMounted(async () => {
               <UFormGroup label="Set">
                 <UInput v-model="formData.set_name" type="text" />
               </UFormGroup>
+              <!--              <UFormGroup label="Custom">-->
+              <!--                <span>-->
+              <!--                  <UInput class="w-1/3" v-model="formData.custom_field" type="text" />-->
+              <!--                </span>-->
+              <!--                <span>-->
+              <!--                  <UInput class="w-1/3" v-model="formData.custom_field" type="text" />-->
+              <!--                </span>-->
+              <!--              </UFormGroup>-->
               <div class="w-full flex flex-row">
                 <UFormGroup label="Leih-Zeitraum" class="w-[47%]">
                   <UInput v-model="formData.start_date" type="date" />
@@ -130,7 +142,7 @@ onMounted(async () => {
               </div>
               <div class="w-[47%]">
                 <UFormGroup label="Rechnungsdatum">
-                  <UInput v-model="formData.offer_date" type="date" />
+                  <UInput v-model="formData.invoice_date" type="date" />
                 </UFormGroup>
               </div>
             </UForm>
@@ -201,7 +213,9 @@ onMounted(async () => {
 
     <template #footer>
       <div class="w-full flex justify-center">
-        <UButton :disabled="!snap.snapshot.value" @click="modalType === 'add' ? addOffer() : editOffer()">Save</UButton>
+        <UButton :disabled="!snap.snapshot.value" @click="modalType === 'add' ? addInvoice() : editInvoice()">
+          Save
+        </UButton>
       </div>
     </template>
   </BaseModal>

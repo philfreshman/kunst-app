@@ -75,3 +75,16 @@ SELECT
 FROM
     offers o
     JOIN snapshots s ON o.snapshot_id = s.id;
+
+CREATE VIEW invoices_snapshots AS
+SELECT
+    i.*,
+    s.collection,
+    s.snapshot_type,
+    s.net_rental_fee,
+    s.tax,
+    s.sales_tax,
+    s.total
+FROM
+    invoices i
+        JOIN snapshots s ON i.snapshot_id = s.id;

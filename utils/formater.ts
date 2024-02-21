@@ -39,7 +39,6 @@ export const formatDateSpan = (start: string, end: string): string => {
   return `${startDay}.${startMonth} - ${endDay}.${endMonth}.${endYear}`
 }
 
-
 export const formatDateNumeric = (dateString: string) => {
   const date = new Date(dateString)
   return new Intl.DateTimeFormat("de-DE", {

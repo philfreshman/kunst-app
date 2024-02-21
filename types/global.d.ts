@@ -25,7 +25,6 @@ declare global {
 
   type Document = {
     id?: string
-    offer_date: string
     address: string
     production_name: string
     set_name: string
@@ -37,12 +36,15 @@ declare global {
 
   // Rechnung
   type Invoice = {
+    invoice_date: string
     invoice_number: string
-    special: string
+    custom_field: Json
   } & Document
 
   // Angebot
-  type Offer = {} & Document
+  type Offer = {
+    offer_date: string
+  } & Document
 
   type snapshotType = "offer" | "invoice"
 
@@ -57,7 +59,7 @@ declare global {
     is_archived?: boolean
   }
 
-  type InvoiceSnapshots = {
+  type InvoiceSnapshot = {
     id: string
     address: string
     collection: Collection[]
@@ -77,7 +79,7 @@ declare global {
     is_archived: boolean
   }
 
-  type OffersSnapshots = {
+  type OfferSnapshot = {
     id: string
     address: string
     collection: Collection[]

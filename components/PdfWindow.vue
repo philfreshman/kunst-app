@@ -8,13 +8,13 @@ const props = defineProps({
     default: false
   },
   data: {
-    type: Object as PropType<OffersSnapshots | InvoiceSnapshots>,
+    type: Object as PropType<OfferSnapshot | InvoiceSnapshot>,
     required: true
   }
 })
 
 onMounted(() => {
-  console.log("mounted")
+  console.log("preview window mounted")
   console.log(props.data)
 })
 </script>
@@ -29,7 +29,7 @@ onMounted(() => {
     <!--    <span class="absolute top-[52mm] w-auto">-->
     <div class="absolute top-[200px] w-auto">
       <p class="text-xs">KUNST FÜR FILM, Meininger Straße 12, 10823 Berlin</p>
-      <div class="ml-[0.4mm] mt-[1mm] w-[68mm] h-[1px] bg-black"><p>&nbsp</p></div>
+      <div class="ml-[0.2mm] mt-[1mm] w-[74mm] h-[1px] bg-black"><p>&nbsp</p></div>
       <div class="mt-[4mm] w-300px pt-[1px]">
         <p class="text-sm2 leading-[3.6mm] tracking-[0.055mm]" v-html="textWithLineBreaks(data.address)" />
       </div>
@@ -49,7 +49,7 @@ onMounted(() => {
 
     <!--DOCUMENT DATE-->
     <div>
-      <p class="absolute top-[365px] right-[71px] text-xs">Berlin, {{ data.offer_date }}</p>
+      <p class="absolute top-[365px] right-[71px] text-xs">Berlin, {{ data.offer_date || data.invoice_date }}</p>
     </div>
 
     <!--DOCUMENT ARTWORKS TABLE-->
