@@ -137,6 +137,7 @@ package-lock.json
 
 
 database/data
+pdf/
 
 Preisliste.numbers
 Preisliste.xlsx
