@@ -83,8 +83,8 @@ export default function useArtworks(variant?: string) {
   async function fetchArtworksLight2() {
     // const { data, error } = await supabase.rpc("get_all_artworks_search_materialized")
     //
-    // if (error) console.log(error)
-    // console.log(data)
+    // if (error) console.helpers(error)
+    // console.helpers(data)
   }
 
   async function fetchArtworksLight() {

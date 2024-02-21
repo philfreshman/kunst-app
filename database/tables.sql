@@ -59,6 +59,7 @@ CREATE TABLE invoices (
     address TEXT,
     production_name TEXT,
     custom_field JSON,
+    invoice_number TEXT,
     set_name TEXT,
     start_date DATE,
     end_date DATE,

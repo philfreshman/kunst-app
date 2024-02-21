@@ -13,7 +13,7 @@
 <!--const { data: tasks } = await useAsyncData('tasks', async () => {-->
 <!--  const { data } = await client.from('tasks').select('id, title, completed').eq('id', 1)-->
 
-<!--  console.log(data)-->
+<!--  console.helpers(data)-->
 <!--  return data-->
 <!--})-->
 
@@ -62,6 +62,5 @@
 <!--<style scoped>-->
 
 <!--</style>-->
-
 
 <template></template>

@@ -13,7 +13,7 @@
 <!--}-->
 
 <!--watchEffect(() => {-->
-<!--  console.log(user.value)-->
+<!--  console.helpers(user.value)-->
 <!--  if (user.value){-->
 <!--    router.push("/tasks")-->
 <!--  }-->
@@ -40,5 +40,4 @@
 
 <!--</style>-->
 <template></template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

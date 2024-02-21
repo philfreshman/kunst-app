@@ -118,7 +118,7 @@ const initPreviewModalOpen = async (row: Offer) => {
   <OffersAddEditModal v-if="isAddModalOpen" :editOffer @closeModal="setAddEditModalClosed" />
 
   <!--PreviewModal-->
-  <OfferPreviewModal :isOpen="isPreviewModalOpen" :data="offerSnapshot" @closeModal="closePreviewModal" />
+  <PreviewModal :isOpen="isPreviewModalOpen" :data="offerSnapshot" @closeModal="closePreviewModal" />
 
   <!--DeleteModal-->
   <OffersDeleteModal

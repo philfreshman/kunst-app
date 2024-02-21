@@ -8,7 +8,7 @@ const props = defineProps({
     default: false
   },
   data: {
-    type: Object as PropType<OffersSnapshots>
+    type: Object as PropType<OfferSnapshot | InvoiceSnapshot>
   }
 })
 
@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
         <div id="pdf-div" class="bg-white pdf relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
           <!--          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />-->
           <div class="absolute top-0 left-0 w-full h-full text-black">
-            <PreviewWindow class="z-50" :data />
+            <PdfWindow class="z-50" :data />
           </div>
         </div>
       </div>

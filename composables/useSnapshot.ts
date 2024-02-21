@@ -35,6 +35,14 @@ export default function useSnapshot() {
     })
   }
 
+  async function getInvoiceSnapshotById(invoice_id: string): Promise<Snapshot> {
+    // @ts-ignore
+    const { data, error } = await supabase.rpc("get_invoice_snapshot", { ["invoice_id"]: invoice_id })
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
   async function getCollectionIdsFromSnapshot(snapshot_id: string): Promise<any> {
     // @ts-ignore
     const { data, error } = await supabase.rpc("get_collection_ids_from_snap", { ["snapshot_id"]: snapshot_id })
@@ -119,6 +127,7 @@ export default function useSnapshot() {
     updateSnapshot,
     getSnapshotById,
     getOfferSnapshotById,
+    getInvoiceSnapshotById,
     getCollectionIdsFromSnapshot
   }
 }
