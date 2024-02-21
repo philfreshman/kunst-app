@@ -34,7 +34,7 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
       </div>
       <span class="font-bold">Set: </span><span> {{ formData.set_name }}</span>
       <div>
-        <span class="font-bold">Leih-Zeitraum: {{ formData.start_date }} - {{ formData.end_date }}</span>
+        <span class="font-bold">Leih-Zeitraum: </span><span> {{ formData.start_date }} - {{ formData.end_date }}</span>
       </div>
     </template>
     <template #artworks>

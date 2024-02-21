@@ -61,14 +61,14 @@ const deleteOffer = () => {
 }
 
 // Preview Modal
-const offerSnapshot = ref<OffersSnapshots>()
+const offerSnapshot = ref<Snapshot>()
 const isPreviewModalOpen = ref(false)
 const openPreviewModal = () => (isPreviewModalOpen.value = true)
 const closePreviewModal = () => (isPreviewModalOpen.value = false)
 const initPreviewModalOpen = async (row: Offer) => {
   if (row.id === undefined) return
   useSnapshot()
-    .getSnapshotById(row.id)
+    .getOfferSnapshotById(row.id)
     .then((res) => {
       offerSnapshot.value = res
       openPreviewModal()

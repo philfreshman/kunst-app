@@ -32,6 +32,14 @@ export default function useOffers() {
     })
   }
 
+  async function updateOffer(offer: Offer): Promise<unknown> {
+    // @ts-ignore
+    const { data, error } = await supabase.rpc("update_offer", { offer })
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
   async function deleteOffer(offerId: string): Promise<unknown> {
     // @ts-ignore
     const { data, error } = await supabase.rpc("delete_offer", { ["offer_id"]: offerId })
@@ -54,6 +62,7 @@ export default function useOffers() {
     loading,
     initOffers,
     createOffer,
+    updateOffer,
     deleteOffer,
     localOfferById
   }

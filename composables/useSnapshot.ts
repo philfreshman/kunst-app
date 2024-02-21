@@ -19,19 +19,25 @@ export default function useSnapshot() {
     }
   }
 
-  async function getSnapshot(snap_id: string): Promise<Snapshot> {
+  async function getSnapshotById(snapshot_id: string): Promise<Snapshot> {
     // @ts-ignore
-    const { data, error } = await supabase.rpc("get_snapshot", { ["snapshot_id"]: snap_id })
+    const { data, error } = await supabase.rpc("get_snapshot", { ["snapshot_id"]: snapshot_id })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
   }
 
-  async function getSnapshotById(snap_id: string): Promise<OffersSnapshots> {
-    console.log(snap_id)
+  async function getOfferSnapshotById(offer_id: string): Promise<Snapshot> {
     // @ts-ignore
-    const { data, error } = await supabase.rpc("get_snapshots", { ["snap_id"]: snap_id })
-    console.log(data, error)
+    const { data, error } = await supabase.rpc("get_offer_snapshot", { ["offer_id"]: offer_id })
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
+  async function getCollectionIdsFromSnapshot(snapshot_id: string): Promise<any> {
+    // @ts-ignore
+    const { data, error } = await supabase.rpc("get_collection_ids_from_snap", { ["snapshot_id"]: snapshot_id })
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
@@ -42,6 +48,25 @@ export default function useSnapshot() {
     const { data, error } = await supabase.rpc("insert_snapshot", {
       ["collection"]: snapshot.collection,
       ["summary"]: {
+        ["snapshot_type"]: snapshot.snapshot_type,
+        ["net_rental_fee"]: snapshot.net_rental_fee,
+        ["tax"]: snapshot.tax,
+        ["sales_tax"]: snapshot.sales_tax,
+        ["total"]: snapshot.total
+      }
+    })
+    return new Promise((resolve, reject) => {
+      error ? reject(error) : resolve(data)
+    })
+  }
+
+  // write a update snapshot function
+  async function updateSnapshot(snapshot: Snapshot): Promise<any> {
+    // @ts-ignore
+    const { data, error } = await supabase.rpc("update_snapshot", {
+      ["snapshot_id"]: snapshot.id,
+      ["new_collection"]: snapshot.collection,
+      ["new_summary"]: {
         ["snapshot_type"]: snapshot.snapshot_type,
         ["net_rental_fee"]: snapshot.net_rental_fee,
         ["tax"]: snapshot.tax,
@@ -91,7 +116,9 @@ export default function useSnapshot() {
     initCollection,
     calcRentPrices,
     createSnapshot,
-    getSnapshot,
-    getSnapshotById
+    updateSnapshot,
+    getSnapshotById,
+    getOfferSnapshotById,
+    getCollectionIdsFromSnapshot
   }
 }

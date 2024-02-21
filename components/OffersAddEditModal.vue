@@ -5,6 +5,7 @@ import useSnapshot from "~/composables/useSnapshot"
 import { formatArtwork } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 
+const snap = useSnapshot()
 const emit = defineEmits<{ closeModal: [] }>()
 const props = defineProps({
   editOffer: {
@@ -14,22 +15,30 @@ const props = defineProps({
   }
 })
 
+const modalType = computed(() => {
+  return props.editOffer.id ? "edit" : "add"
+})
+
 // Data
+const formData = reactive<Offer>(props.editOffer)
 const artworks = useArtworks("search")
-const snap = useSnapshot()
-// const selected = ref([] as string[])
-const selected = ref(["Y2MwOGViNjQ", "ZDgwYzczOTI", "MWIzZjMzNGE"])
+const selected = ref([] as string[])
 const maxLength = 7
 watch(selected, (newVal) => {
-  if (newVal.length > maxLength) {
+  if (newVal?.length && newVal.length > maxLength) {
     selected.value = newVal.slice(0, maxLength)
   }
 })
 
 // Modal
 const tabIndex = ref(0)
-
-const formData = reactive<Offer>(props.editOffer)
+const tabChange = async (idx: number) => {
+  tabIndex.value = idx
+  if (tabIndex.value == 2) {
+    await snap.initCollection(selected.value)
+    snap.calcRentPrices(formData, "offer")
+  }
+}
 
 const removeSelected = (artIndex: string) => {
   selected.value = selected.value.filter((item) => item !== artIndex)
@@ -39,15 +48,7 @@ const artworkById = (id: string) => {
   return artworks.data.value && artworks.data.value.find((artwork) => artwork.id === id)
 }
 
-const tabChange = async (idx: number) => {
-  tabIndex.value = idx
-  if (tabIndex.value == 2) {
-    await snap.initCollection(selected.value)
-    snap.calcRentPrices(formData, "offer")
-  }
-}
-
-const submitOffer = async () => {
+const addOffer = async () => {
   if (!snap.snapshot.value) return
   try {
     const { data: snapshotId } = await snap.createSnapshot({ ...snap.snapshot.value, snapshot_type: "offer" })
@@ -58,13 +59,32 @@ const submitOffer = async () => {
   }
 }
 
-onMounted(() => {
+const editOffer = async () => {
+  if (!snap.snapshot.value) return
+  try {
+    const { data: snapshotId } = await snap.updateSnapshot({
+      id: props.editOffer.snapshot_id,
+      ...snap.snapshot.value,
+      snapshot_type: "offer"
+    })
+    await useOffers().updateOffer({ ...formData })
+    emit("closeModal")
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(async () => {
   // mute nuxt ui bug warnings
   console.warn = () => {}
 
-  // snap.getSnapshotById(props.editOffer.snapshot_id).then((res) => {
-  //   console.log(res)
-  // })
+  if (modalType.value === "add") return
+
+  // If editing an offer, get the collection ids from the snapshot
+  snap
+    .getCollectionIdsFromSnapshot(props.editOffer.snapshot_id)
+    .then(({ artwork_ids }) => (selected.value = artwork_ids))
+    .catch((e) => console.log(e))
 })
 </script>
 
@@ -72,7 +92,7 @@ onMounted(() => {
   <BaseModal :isWide="tabIndex !== 0">
     <template #header>
       <div class="flex items-center justify-between">
-        <h2 class="text-xl font-semibold">Angebot erstellen</h2>
+        <h2 class="text-xl font-semibold">{{ modalType === "add" ? "Angebot erstellen" : "Angebot bearbeiten" }}</h2>
         <UButton
           @click="emit('closeModal')"
           color="gray"
@@ -181,7 +201,7 @@ onMounted(() => {
 
     <template #footer>
       <div class="w-full flex justify-center">
-        <UButton @click="submitOffer">Save</UButton>
+        <UButton @click="modalType === 'add' ? addOffer() : editOffer()">Save</UButton>
       </div>
     </template>
   </BaseModal>
