@@ -9,9 +9,9 @@
 CREATE OR REPLACE FUNCTION get_collection(ids TEXT[]) RETURNS SETOF collection AS $$
 BEGIN
     RETURN QUERY
-        SELECT artworks.id, artworks.article_id, artworks.title, artworks.width, artworks.height, artworks.price, u.url, u.blob
+        SELECT artworks.id, artworks.article_id, artworks.title, artworks.width, artworks.height, artworks.price, i.url, i.blob
         FROM artworks
-                 JOIN public.images u ON artworks.img_id = u.id
+                 JOIN public.images i ON artworks.img_id = i.id
         WHERE artworks.id = ANY(ids) AND is_available = TRUE;
 END
 $$ LANGUAGE plpgsql;

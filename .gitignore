@@ -139,5 +139,5 @@ package-lock.json
 database/data
 pdf/
 
-Preisliste.numbers
-Preisliste.xlsx
+pdf/Preisliste.numbers
+pdf/Preisliste.xlsx

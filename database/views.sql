@@ -1,7 +1,7 @@
 CREATE VIEW artworks_available AS
 SELECT
     article_id,
-    u.url,
+    i.url,
     a.name,
     title,
     height,
@@ -10,36 +10,37 @@ SELECT
 FROM
     artworks
     JOIN public.artists a ON artworks.artist_id = a.id
-    JOIN public.images u ON artworks.img_id = u.id
+    JOIN public.images i ON artworks.img_id = i.id
 WHERE
     is_available = TRUE;
+
 
 
 CREATE VIEW artworks_search AS
 SELECT
     artworks.id,
     artworks.title,
-    u.url,
+    i.url,
     a.name,
     article_id
 FROM
     artworks
     JOIN public.artists a ON artworks.artist_id = a.id
-    JOIN public.images u ON artworks.img_id = u.id
+    JOIN public.images i ON artworks.img_id = i.id
 WHERE
     is_available = TRUE;
 
 
 CREATE OR REPLACE FUNCTION create_collection (ids text[])
     RETURNS TABLE (
-        id text,
-        article_id varchar(255),
-        title varchar(255),
-        width integer,
-        height integer,
-        price double precision,
-        url varchar(255),
-        blob text
+        id TEXT,
+        article_id TEXT,
+        title TEXT,
+        width INTEGER,
+        height INTEGER,
+        price DOUBLE PRECISION,
+        url TEXT,
+        blob TEXT
         )
 AS $$
 BEGIN
@@ -51,10 +52,10 @@ BEGIN
             artworks.width,
             artworks.height,
             artworks.price,
-            u.url
+            i.url
         FROM
             artworks
-                JOIN public.images u ON artworks.img_id = u.id
+                JOIN public.images i ON artworks.img_id = i.id
         WHERE
             artworks.id = ANY (ids)
           AND is_available = TRUE;

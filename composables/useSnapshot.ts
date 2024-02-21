@@ -45,7 +45,7 @@ export default function useSnapshot() {
 
   async function createSnapshot(snapshot: Snapshot): Promise<any> {
     // @ts-ignore
-    const { data, error } = await supabase.rpc("insert_snapshot", {
+    const { data, error } = await supabase.rpc("create_snapshot", {
       ["collection"]: snapshot.collection,
       ["summary"]: {
         ["snapshot_type"]: snapshot.snapshot_type,

@@ -117,15 +117,16 @@ const initPreviewModalOpen = async (row: Offer) => {
   <!--AddModal-->
   <OffersAddEditModal v-if="isAddModalOpen" :editOffer @closeModal="setAddEditModalClosed" />
 
+  <!--PreviewModal-->
+  <OfferPreviewModal :isOpen="isPreviewModalOpen" :data="offerSnapshot" @closeModal="closePreviewModal" />
+
   <!--DeleteModal-->
   <OffersDeleteModal
     v-if="isDeleteModalOpen"
     :formData="deleteModalOffer"
     @closeModal="setDeleteModalClosed"
-    @deleteOffer="deleteOffer"
+    @delete="deleteOffer"
   />
-
-  <LazyOfferPreviewModal :isOpen="isPreviewModalOpen" :data="offerSnapshot" @closeModal="closePreviewModal" />
 </template>
 
 <style lang="sass">
