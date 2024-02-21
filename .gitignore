@@ -136,7 +136,7 @@ bun.lockb
 package-lock.json
 
 
-database/data/
+database/data
 
 Preisliste.numbers
 Preisliste.xlsx
