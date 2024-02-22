@@ -13,7 +13,6 @@ export function defaultOffer(): Offer {
 
 export function defaultInvoice(): Invoice {
   return {
-    offer_date: "",
     address: "",
     production_name: "",
     set_name: "",
@@ -22,6 +21,9 @@ export function defaultInvoice(): Invoice {
     is_archived: false,
     snapshot_id: "",
     invoice_number: "",
-    custom_field: {}
-  }
+    custom_field: {
+      key: "",
+      value: ""
+    }
+  } as Invoice
 }

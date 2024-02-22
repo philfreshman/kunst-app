@@ -42,6 +42,7 @@ BEGIN
         invoice.start_date,
         invoice.end_date,
         invoice.invoice_date,
+        invoice.invoice_number,
         invoice.snapshot_id
     )
     RETURNING id INTO new_invoice_id;
@@ -67,7 +68,8 @@ BEGIN
         set_name = invoice.set_name,
         start_date = invoice.start_date,
         end_date = invoice.end_date,
-        invoice_date = invoice.invoice_date
+        invoice_date = invoice.invoice_date,
+        invoice_number = invoice.invoice_number
     WHERE id = invoice.id;
 
     RETURN json_build_object('id', invoice.id);

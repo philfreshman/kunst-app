@@ -141,12 +141,12 @@ export const accordionTabs = [
   {
     index: 0,
     slot: "data",
-    label: "Daten"
+    label: "Daten",
+    defaultOpen: true
   },
   {
     index: 1,
     slot: "artworks",
-    label: "Kunstwerke",
-    defaultOpen: true
+    label: "Kunstwerke"
   }
 ]

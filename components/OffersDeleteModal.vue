@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { PropType } from "@vue/runtime-core"
 import useSnapshot from "~/composables/useSnapshot"
+import useEsc from "~/composables/uscEsc"
 
 const snap = useSnapshot()
 const emit = defineEmits<{ closeModal: []; delete: [] }>()
+useEsc().eventListener(emit)
 
 const props = defineProps({
   formData: {
