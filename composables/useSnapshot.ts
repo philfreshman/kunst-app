@@ -68,7 +68,6 @@ export default function useSnapshot() {
     })
   }
 
-  // write a update snapshot function
   async function updateSnapshot(snapshot: Snapshot): Promise<any> {
     // @ts-ignore
     const { data, error } = await supabase.rpc("update_snapshot", {
