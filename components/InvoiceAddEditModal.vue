@@ -4,10 +4,13 @@ import { addEditModalTabs } from "~/utils/tableDefinitions"
 import useSnapshot from "~/composables/useSnapshot"
 import { formatArtwork } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
+import useEsc from "~/composables/uscEsc"
 
 // const invoice = useInvoices()
 const snap = useSnapshot()
 const emit = defineEmits<{ closeModal: [] }>()
+useEsc().eventListener(emit)
+
 const props = defineProps({
   editInvoice: {
     type: Object as PropType<Invoice>,
@@ -53,7 +56,6 @@ const addInvoice = async () => {
   if (!snap.snapshot.value) return
   try {
     const { data: snapshotId } = await snap.createSnapshot({ ...snap.snapshot.value, snapshot_type: "invoice" })
-    // @ts-ignore
     await useInvoices().createInvoice({ ...(formData as Invoice), snapshot_id: snapshotId } as Invoice)
     emit("closeModal")
   } catch (error) {
@@ -62,8 +64,6 @@ const addInvoice = async () => {
 }
 
 const editInvoice = async () => {
-  console.log("check")
-  console.log(snap.snapshot.value)
   if (!snap.snapshot.value) return
   try {
     const { data: snapshotId } = await snap.updateSnapshot({
@@ -81,10 +81,9 @@ const editInvoice = async () => {
 onMounted(async () => {
   // mute nuxt ui bug warnings
   console.warn = () => {}
-
   if (modalType.value === "add") return
 
-  // If editing an offer, get the collection ids from the snapshot
+  // If editing an invoice, get the collection ids from the snapshot
   snap
     .getCollectionIdsFromSnapshot(props.editInvoice.snapshot_id)
     .then(({ artwork_ids }) => (selected.value = artwork_ids))
@@ -115,20 +114,15 @@ onMounted(async () => {
               <UFormGroup label="Anschrift" class="label-no-padding">
                 <UTextarea v-model="formData.address" :rows="4" type="text" @input="limitTextarea" />
               </UFormGroup>
+
               <UFormGroup label="Production">
                 <UInput v-model="formData.production_name" type="text" />
               </UFormGroup>
+
               <UFormGroup label="Set">
                 <UInput v-model="formData.set_name" type="text" />
               </UFormGroup>
-              <!--              <UFormGroup label="Custom">-->
-              <!--                <span>-->
-              <!--                  <UInput class="w-1/3" v-model="formData.custom_field" type="text" />-->
-              <!--                </span>-->
-              <!--                <span>-->
-              <!--                  <UInput class="w-1/3" v-model="formData.custom_field" type="text" />-->
-              <!--                </span>-->
-              <!--              </UFormGroup>-->
+
               <div class="w-full flex flex-row">
                 <UFormGroup label="Leih-Zeitraum" class="w-[47%]">
                   <UInput v-model="formData.start_date" type="date" />
@@ -140,11 +134,26 @@ onMounted(async () => {
                   <UInput v-model="formData.end_date" type="date" />
                 </UFormGroup>
               </div>
-              <div class="w-[47%]">
-                <UFormGroup label="Rechnungsdatum">
+
+              <div class="w-full flex flex-row">
+                <UFormGroup label="Rechnungsdatum" class="w-[47%]">
                   <UInput v-model="formData.invoice_date" type="date" />
                 </UFormGroup>
+                <div class="w-[6%] flex justify-end flex-col">
+                  <h1 class="pl-1 pb-1">&nbsp</h1>
+                </div>
+                <UFormGroup label="Rechnungsnummer" class="w-[47%]">
+                  <UInput v-model="formData.invoice_number" type="text" />
+                </UFormGroup>
               </div>
+
+              <UFormGroup label="Custom">
+                <div class="flex flex-row">
+                  <UInput placeholder="Key" class="w-[47%]" v-model="formData.custom_field.key" type="text" />
+                  <span class="w-[6%]">&nbsp</span>
+                  <UInput placeholder="Value" class="w-[47%]" v-model="formData.custom_field.value" type="text" />
+                </div>
+              </UFormGroup>
             </UForm>
           </UCard>
         </template>

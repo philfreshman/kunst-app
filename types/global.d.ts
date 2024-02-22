@@ -23,7 +23,7 @@ declare global {
     rent_price: any
   }
 
-  type Document = {
+  type KunstDocument = {
     id?: string
     address: string
     production_name: string
@@ -38,13 +38,16 @@ declare global {
   type Invoice = {
     invoice_date: string
     invoice_number: string
-    custom_field: Json
-  } & Document
+    custom_field: {
+      key: string
+      value: string
+    }
+  } & KunstDocument
 
   // Angebot
   type Offer = {
     offer_date: string
-  } & Document
+  } & KunstDocument
 
   type snapshotType = "offer" | "invoice"
 
@@ -60,42 +63,22 @@ declare global {
   }
 
   type InvoiceSnapshot = {
-    id: string
-    address: string
-    collection: Collection[]
-    start_date: string
-    end_date: string
-    offer_date: string
-    production_name: string
-    invoice_number: string
-    special: string
-    set_name: string
-    snapshot_id: string
     snapshot_type: snapshotType
     net_rental_fee: number
     tax: number
     sales_tax: number
     total: string
-    is_archived: boolean
-  }
+    collection: Collection[]
+  } & Invoice
 
   type OfferSnapshot = {
-    id: string
-    address: string
-    collection: Collection[]
-    start_date: string
-    end_date: string
-    offer_date: string
-    production_name: string
-    set_name: string
-    snapshot_id: string
     snapshot_type: snapshotType
     net_rental_fee: number
     tax: number
     sales_tax: number
     total: string
-    is_archived: boolean
-  }
+    collection: Collection[]
+  } & Offer
 
   type Artwork = {
     id: string
@@ -117,12 +100,5 @@ declare global {
     url: string
     name: string
     title: string
-  }
-
-  type OffersType = {
-    data: Ref<Offer[] | undefined>
-    loading: Ref<boolean>
-    initOffers: () => Promise<void>
-    createOffer: (offer: Offer) => Promise<unknown>
   }
 }

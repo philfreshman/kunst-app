@@ -4,9 +4,8 @@ import { addEditModalTabs } from "~/utils/tableDefinitions"
 import useSnapshot from "~/composables/useSnapshot"
 import { formatArtwork } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
+import useEsc from "~/composables/uscEsc"
 
-const snap = useSnapshot()
-const emit = defineEmits<{ closeModal: [] }>()
 const props = defineProps({
   editOffer: {
     type: Object as PropType<Offer>,
@@ -14,6 +13,10 @@ const props = defineProps({
     default: defaultOffer()
   }
 })
+
+const snap = useSnapshot()
+const emit = defineEmits<{ closeModal: [] }>()
+useEsc().eventListener(emit)
 
 const modalType = computed(() => {
   return props.editOffer.id ? "edit" : "add"

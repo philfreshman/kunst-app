@@ -1,24 +1,20 @@
 <script setup lang="ts">
 import jsPDF from "jspdf"
 import html2canvas from "html2canvas"
+import useEsc from "~/composables/uscEsc"
 
 const props = defineProps({
-  isOpen: {
-    type: Boolean,
-    default: false
-  },
   data: {
     type: Object as PropType<OfferSnapshot | InvoiceSnapshot>
   }
 })
 
-const open = computed(() => props.isOpen)
-
 const emit = defineEmits<{ closeModal: [] }>()
+useEsc().eventListener(emit)
 
 const saveToPdf = async () => {
   const divC = document.getElementById("pdf-div")
-  if (divC === null) return
+  if (!divC) return
   const canvas = await html2canvas(divC, { scale: 4 })
   const imgData = canvas.toDataURL("image/png", 1)
   const pdf = new jsPDF({
@@ -28,11 +24,11 @@ const saveToPdf = async () => {
     compress: false,
     hotfixes: ["fonts"]
   })
-  pdf.addImage(imgData, "PDF", 0, 0, 210, 297, "angebot", "SLOW") // "NONE" | "FAST" | "MEDIUM" | "SLOW";
-  pdf.save("solution1.pdf")
+  pdf.addImage(imgData, "PDF", 0, 0, 210, 297, "", "SLOW") // "NONE" | "FAST" | "MEDIUM" | "SLOW";
+  pdf.save("document.pdf")
 }
 
-const zoomValue = ref<string>("0.31")
+const zoomValue = ref("0.31")
 
 onBeforeMount(() => {
   const height = window.screen.height
@@ -51,30 +47,20 @@ onBeforeMount(() => {
       zoomValue.value = "0.83"
   }
 })
-
-const closeModalOnEscape = (e) => {
-  if (e.key === "Escape") emit("closeModal")
-}
-
-onMounted(() => {
-  window.addEventListener("keydown", closeModalOnEscape)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener("keydown", closeModalOnEscape)
-})
 </script>
 
 <template>
-  <div v-if="open" class="absolute top-0 left-0 h-full w-full">
+  <div class="absolute top-0 left-0 h-full w-full">
     <div
       class="absolute w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-700"
       :style="{ zoom: zoomValue }"
     >
       <BackgroundPattern class="absolute h-full overflow-hidden" />
-      <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl">
-        <div id="pdf-div" class="bg-white pdf relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-          <!--          <img class="w-full h=auto" src="../assets/Angebot.png" alt="pdf" />-->
+      <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl" style="aspect-ratio: 2480 / 3508">
+        <div
+          id="pdf-div"
+          class="bg-white w-[210mm] h-[297mm] relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
+        >
           <div class="absolute top-0 left-0 w-full h-full text-black">
             <PdfWindow class="z-50" :data />
           </div>
@@ -98,13 +84,3 @@ onBeforeUnmount(() => {
     </UButton>
   </div>
 </template>
-
-<style lang="sass" scoped>
-
-.pdf
-  width: 210mm
-  height: 297mm
-
-.aspect-ratio
-  aspect-ratio: 2480 / 3508
-</style>

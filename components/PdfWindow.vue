@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends OfferSnapshot & InvoiceSnapshot">
 import { formatDateSpan, formatDateNumeric, formatSnapshot, textWithLineBreaks } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 
@@ -8,14 +8,9 @@ const props = defineProps({
     default: false
   },
   data: {
-    type: Object as PropType<OfferSnapshot | InvoiceSnapshot>,
+    type: Object as PropType<T>,
     required: true
   }
-})
-
-onMounted(() => {
-  console.log("preview window mounted")
-  console.log(props.data)
 })
 </script>
 
@@ -45,6 +40,9 @@ onMounted(() => {
       <p class="text-sm2">Produktion: {{ data.production_name }}</p>
       <p class="text-sm2">Set: {{ data.set_name }}</p>
       <p class="text-sm2">Leih-Zeitraum: {{ formatDateSpan(data.start_date, data.end_date) }}</p>
+      <p v-if="data.invoice_number" class="text-sm2">Rechnungsnummer: {{ data.invoice_number }}</p>
+      <!--      <p v-if="data.offer_number" class="text-sm2">Angebot-Nr.: {{ data.offer_number }}</p>-->
+      <p v-if="data.custom_field" class="text-sm2">{{ data.custom_field.key }}: {{ data.custom_field.value }}</p>
     </div>
 
     <!--DOCUMENT DATE-->

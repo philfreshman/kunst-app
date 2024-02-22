@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends Offer & Invoice">
 import { textWithLineBreaks } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 import { accordionTabs } from "~/utils/tableDefinitions"
@@ -6,7 +6,7 @@ import { accordionTabs } from "~/utils/tableDefinitions"
 // Setup
 const props = defineProps({
   formData: {
-    type: Object as PropType<Offer | Invoice>,
+    type: Object as PropType<T>,
     required: true
   },
   snapshot: {
@@ -26,15 +26,23 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
       <h1 class="font-bold">{{ snapType }}</h1>
       <br />
       <div class="w-full flex justify-between">
-        <span>
-          <span class="font-bold">Production:</span>
-          <span> {{ formData.production_name }}</span>
-        </span>
-        <span> {{ formData.offer_date }}</span>
+        <div>
+          <strong>Production: </strong> <span> {{ formData.production_name }}</span>
+        </div>
+        <span> {{ formData.offer_date || formData.invoice_date }}</span>
       </div>
-      <span class="font-bold">Set: </span><span> {{ formData.set_name }}</span>
+      <strong>Set: </strong><span> {{ formData.set_name }}</span>
       <div>
-        <span class="font-bold">Leih-Zeitraum: </span><span> {{ formData.start_date }} - {{ formData.end_date }}</span>
+        <strong>Leih-Zeitraum: </strong>
+        <span> {{ formData.start_date }} - {{ formData.end_date }}</span>
+      </div>
+      <div v-if="formData.hasOwnProperty('invoice_number')">
+        <strong> Rechnungsnummer: </strong>
+        <span> {{ formData.invoice_number }}</span>
+      </div>
+      <div v-if="formData.hasOwnProperty('custom_field')">
+        <strong v-if="formData.custom_field.key"> {{ formData.custom_field.key }}: </strong>
+        <span> {{ formData.custom_field.value }} </span>
       </div>
     </template>
     <template #artworks>
@@ -52,7 +60,7 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
           <td>{{ artwork.article_id }}</td>
           <td>{{ artwork.title }}</td>
           <td>{{ `${artwork.width} - ${artwork.height}` }}</td>
-          <td>{{ `${artwork.price} €` }}</td>
+          <td class="text-right">{{ `${artwork.price} €` }}</td>
           <td class="text-right">{{ `${artwork.rent_price} €` }}</td>
         </tr>
       </table>

@@ -118,7 +118,7 @@ const initPreviewModalOpen = async (row: Invoice) => {
   <InvoiceAddEditModal v-if="isAddModalOpen" :editInvoice @closeModal="setAddEditModalClosed" />
 
   <!--PreviewModal-->
-  <PreviewModal :isOpen="isPreviewModalOpen" :data="invoiceSnapshot" @closeModal="closePreviewModal" />
+  <LazyPreviewModal v-if="isPreviewModalOpen" :data="invoiceSnapshot" @closeModal="closePreviewModal" />
 
   <!--DeleteModal-->
   <InvoiceDeleteModal
@@ -130,11 +130,11 @@ const initPreviewModalOpen = async (row: Invoice) => {
 </template>
 
 <style lang="sass">
-.label-padding
-  label
-    padding-top: 12px
-
-.label-no-padding
-  label
-    padding-top: 0
+//.label-padding
+//  label
+//    padding-top: 12px
+//
+//.label-no-padding
+//  label
+//    padding-top: 0
 </style>

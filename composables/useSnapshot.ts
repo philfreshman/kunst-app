@@ -95,7 +95,7 @@ export default function useSnapshot() {
     })
   }
 
-  function calcRentPrices(formData: Offer, snapshotType: snapshotType) {
+  function calcRentPrices(formData: KunstDocument, snapshotType: snapshotType) {
     if (!data.value) return
     data.value.forEach((item) => {
       item.rent_price = calcPrice(formData.start_date, formData.end_date, item.price)
