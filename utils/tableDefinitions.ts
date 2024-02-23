@@ -59,7 +59,7 @@ export const artworksTableColumns = [
 
 export const offersTableColumns = [
   {
-    key: "id",
+    key: "internal_id",
     label: "#"
   },
   {
@@ -89,7 +89,7 @@ export const offersTableColumns = [
 
 export const invoiceTableColumns = [
   {
-    key: "id",
+    key: "internal_id",
     label: "#"
   },
   {

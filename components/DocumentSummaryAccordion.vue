@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Offer & Invoice">
-import { textWithLineBreaks } from "~/utils/formater"
+import { dotToComma, textWithLineBreaks } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 import { accordionTabs } from "~/utils/tableDefinitions"
 
@@ -52,7 +52,7 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
           <th>Artikel nr.</th>
           <th>Titel des Bildes</th>
           <th>Größe</th>
-          <th>Wert</th>
+          <th class="text-right">Wert</th>
           <th class="text-right">Preis</th>
         </tr>
         <tr v-for="(artwork, idx) in snapshot.collection" class="pt-5">
@@ -61,7 +61,7 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
           <td>{{ artwork.title }}</td>
           <td>{{ `${artwork.width} - ${artwork.height}` }}</td>
           <td class="text-right">{{ `${artwork.price} €` }}</td>
-          <td class="text-right">{{ `${artwork.rent_price} €` }}</td>
+          <td class="text-right">{{ `${artwork.rent_price},00 €` }}</td>
         </tr>
       </table>
       <br />
@@ -72,16 +72,16 @@ const snapType = computed(() => props.snapshot && formatSnapshot(props.snapshot?
         </tr>
         <tr>
           <td>Leihgebühr netto:</td>
-          <td class="text-right">{{ `${snapshot.net_rental_fee} €` }}</td>
+          <td class="text-right">{{ `${dotToComma(snapshot.net_rental_fee)} €` }}</td>
         </tr>
         <tr>
-          <td>{{ `zzgl. ${snapshot.tax}% Umsatzsteuer` }}</td>
-          <td class="text-right">{{ `${snapshot.sales_tax} €` }}</td>
+          <td>{{ `zzgl. ${dotToComma(snapshot.tax)}% Umsatzsteuer` }}</td>
+          <td class="text-right">{{ `${dotToComma(snapshot.sales_tax)} €` }}</td>
         </tr>
         <tr>
           <td><strong>GESAMT</strong></td>
           <td class="text-right pt-1">
-            <strong> {{ `${snapshot.total} €` }}</strong>
+            <strong> {{ `${dotToComma(snapshot.total)} €` }}</strong>
           </td>
         </tr>
       </table>

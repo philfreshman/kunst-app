@@ -2,6 +2,8 @@ export const textWithLineBreaks = (input: string): string => {
   return input.replace(/\n/g, "<br/>")
 }
 
+export const dotToComma = (value: any) => value.toString().replace(".", ",")
+
 export const formatArtwork = (artwork: ArtworkLight): string => {
   return `${artwork.article_id} | ${artwork.name} | ${artwork.title}`
 }

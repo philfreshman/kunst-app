@@ -43,6 +43,7 @@ CREATE TABLE snapshots (
 
 CREATE TABLE offers (
     id TEXT PRIMARY KEY,
+    internal_id SMALLSERIAL,
     address TEXT,
     production_name TEXT,
     set_name TEXT,
@@ -56,6 +57,7 @@ CREATE TABLE offers (
 
 CREATE TABLE invoices (
     id TEXT PRIMARY KEY,
+    internal_id SMALLSERIAL,
     address TEXT,
     production_name TEXT,
     custom_field JSON,

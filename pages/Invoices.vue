@@ -75,6 +75,11 @@ const initPreviewModalOpen = async (row: Invoice) => {
     })
     .catch(() => closePreviewModal())
 }
+
+const sort = ref({
+  column: "internal_id",
+  direction: "asc"
+})
 </script>
 
 <template>
@@ -98,7 +103,8 @@ const initPreviewModalOpen = async (row: Invoice) => {
     </template>
 
     <template #content>
-      <UTable :columns="invoiceTableColumns" :rows="filteredRows" :loading="invoices.loading.value">
+      <UTable :sort :columns="invoiceTableColumns" :rows="filteredRows" :loading="invoices.loading.value">
+        <template #id-data="{ row }"> {{ id }} </template>
         <template #date_span-data="{ row }">
           {{ formatDateSpan(row.start_date, row.end_date) }}
         </template>

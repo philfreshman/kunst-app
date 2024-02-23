@@ -4,7 +4,8 @@ import {
   formatDateNumeric,
   formatSnapshot,
   textWithLineBreaks,
-  formatShortDate
+  formatShortDate,
+  dotToComma
 } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 
@@ -77,12 +78,12 @@ const props = defineProps({
             <td class="pt-[10px] h-[36px]">
               <p>{{ ++i }}</p>
             </td>
-            <td>{{ artwork.article_id }}</td>
+            <td class="pt-[10px]">{{ artwork.article_id }}</td>
             <td><img class="h-[29px] relative top-1" :src="artwork.blob" alt="img" /></td>
-            <td>{{ artwork.title }}</td>
-            <td>{{ `${artwork.width} x ${artwork.height} cm` }}</td>
-            <td>{{ artwork.price }} €</td>
-            <td class="text-right">{{ artwork.rent_price }} €</td>
+            <td class="pt-[10px]">{{ artwork.title }}</td>
+            <td class="pt-[10px]">{{ `${artwork.width} x ${artwork.height} cm` }}</td>
+            <td class="pt-[10px]">{{ artwork.price }} €</td>
+            <td class="pt-[10px] text-right">{{ artwork.rent_price }},00 €</td>
           </tr>
         </tbody>
       </table>
@@ -90,15 +91,15 @@ const props = defineProps({
       <div class="pt-[13px] w-[639px] text-13 leading-[6.2mm]">
         <div class="flex justify-between">
           <p class="">Leihgebühr netto:</p>
-          <p class="">{{ data.net_rental_fee }} €</p>
+          <p class="">{{ dotToComma(data.net_rental_fee) }} €</p>
         </div>
         <div class="flex justify-between">
           <p class="">zzgl. 19% Umsatzsteuer</p>
-          <p class="">{{ data.sales_tax }} €</p>
+          <p class="">{{ dotToComma(data.sales_tax) }} €</p>
         </div>
         <div class="flex justify-between font-din-bold">
           <p class="">GESAMT</p>
-          <p class="">{{ data.total }} €</p>
+          <p class="">{{ dotToComma(data.total) }} €</p>
         </div>
         <div class="ml-[0.4mm] mt-[1mm] w-full h-[1px] bg-black"><p>&nbsp</p></div>
       </div>
@@ -155,6 +156,9 @@ const props = defineProps({
 
 .text-right
   text-align: right
+
+.text-center
+  text-align: center
 
 .text-footer
   font-size: 8pt
