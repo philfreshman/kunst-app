@@ -125,19 +125,19 @@ onMounted(async () => {
 
               <div class="w-full flex flex-row">
                 <UFormGroup label="Leih-Zeitraum" class="w-[47%]">
-                  <UInput v-model="formData.start_date" type="date" />
+                  <UInput v-model="formData.start_date" type="date" required />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
                   <h1 class="pl-1 pb-1">-></h1>
                 </div>
                 <UFormGroup label="&nbsp" class="w-[47%]">
-                  <UInput v-model="formData.end_date" type="date" />
+                  <UInput v-model="formData.end_date" type="date" required />
                 </UFormGroup>
               </div>
 
               <div class="w-full flex flex-row">
                 <UFormGroup label="Rechnungsdatum" class="w-[47%]">
-                  <UInput v-model="formData.invoice_date" type="date" />
+                  <UInput v-model="formData.invoice_date" type="date" required />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
                   <h1 class="pl-1 pb-1">&nbsp</h1>

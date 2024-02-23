@@ -12,9 +12,29 @@ const props = defineProps({
 const emit = defineEmits<{ closeModal: [] }>()
 useEsc().eventListener(emit)
 
+const fileName = computed(() => {
+  if (!props.data) return ""
+  const prefix = props.data.snapshot_type === "invoice" ? "Rechnung" : "Angebot"
+  const date = new Date()
+  const day = date.getDate()
+  const month = (date.getMonth() + 1).toString().padStart(2, "0")
+  const year = date.getFullYear().toString().slice(-2)
+  return `${prefix}${year}${month}${day}_.pdf`
+})
+
+const isRendering = ref(false)
+watchEffect(() => {
+  if (isRendering.value) {
+    document.body.style.cursor = "progress"
+  } else {
+    document.body.style.cursor = "default"
+  }
+})
+
 const saveToPdf = async () => {
   const divC = document.getElementById("pdf-div")
   if (!divC) return
+  isRendering.value = true
   const canvas = await html2canvas(divC, { scale: 4 })
   const imgData = canvas.toDataURL("image/png", 1)
   const pdf = new jsPDF({
@@ -25,27 +45,18 @@ const saveToPdf = async () => {
     hotfixes: ["fonts"]
   })
   pdf.addImage(imgData, "PDF", 0, 0, 210, 297, "", "SLOW") // "NONE" | "FAST" | "MEDIUM" | "SLOW";
-  pdf.save("document.pdf")
+  isRendering.value = false
+  pdf.save(fileName.value)
 }
 
 const zoomValue = ref("0.31")
 
+// linear function to calculate zoom value based on screen height
 onBeforeMount(() => {
-  const height = window.screen.height
-
-  switch (height) {
-    case 1200:
-      zoomValue.value = "0.9635"
-      break
-    case 1050:
-      zoomValue.value = "0.83"
-      break
-    case 900:
-      zoomValue.value = "0.696"
-      break
-    default:
-      zoomValue.value = "0.83"
-  }
+  const screenHeight = window.screen.height
+  const slope = (0.9635 - 0.696) / (1200 - 900)
+  const yIntercept = 0.9635 - slope * 1200
+  zoomValue.value = (slope * screenHeight + yIntercept).toFixed(4)
 })
 </script>
 
@@ -69,13 +80,16 @@ onBeforeMount(() => {
     </div>
 
     <UButton
+      :disabled="isRendering"
       icon="i-heroicons-x-mark-20-solid"
       color="red"
       class="absolute top-0 left-0 m-4 p-2 bg-red-500 rounded text-white z-20"
-      @click="emit('closeModal')"
+      @click="!isRendering && emit('closeModal')"
     />
 
     <UButton
+      :loading="isRendering"
+      :disabled="isRendering"
       icon="i-heroicons-arrow-down-tray"
       class="absolute top-0 right-0 m-4 p-2 bg-green-500 rounded text-white z-20"
       @click="saveToPdf"

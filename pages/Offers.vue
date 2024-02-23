@@ -75,6 +75,11 @@ const initPreviewModalOpen = async (row: Offer) => {
     })
     .catch(() => closePreviewModal())
 }
+
+const sort = ref({
+  column: "set_name",
+  direction: "desc"
+})
 </script>
 
 <template>
@@ -98,7 +103,7 @@ const initPreviewModalOpen = async (row: Offer) => {
     </template>
 
     <template #content>
-      <UTable :columns="offersTableColumns" :rows="filteredRows" :loading="offers.loading.value">
+      <UTable :sort="sort" :columns="offersTableColumns" :rows="filteredRows" :loading="offers.loading.value">
         <template #date_span-data="{ row }">
           {{ formatDateSpan(row.start_date, row.end_date) }}
         </template>
@@ -128,13 +133,3 @@ const initPreviewModalOpen = async (row: Offer) => {
     @delete="deleteOffer"
   />
 </template>
-
-<style lang="sass">
-//.label-padding
-//  label
-//    padding-top: 12px
-//
-//.label-no-padding
-//  label
-//    padding-top: 0
-</style>

@@ -39,7 +39,8 @@ export function calcPrice(startDate: string | any, endDate: string | any, price:
   }
 
   function truncate(num) {
-    return Math.floor(num * 100) / 100
+    // rounds up to the nearest whole number
+    return Math.ceil(num)
   }
 
   return truncate(result)
