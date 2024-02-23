@@ -33,17 +33,18 @@ DECLARE
     new_invoice_id TEXT;
     result JSON;
 BEGIN
-    INSERT INTO invoices (address, production_name, custom_field, set_name, start_date, end_date, invoice_date, snapshot_id)
+    INSERT INTO invoices (address, custom_field, end_date, invoice_date, invoice_number, is_archived, production_name, set_name, start_date, snapshot_id)
     VALUES (
-        invoice.address,
-        invoice.production_name,
-        invoice.custom_field,
-        invoice.set_name,
-        invoice.start_date,
-        invoice.end_date,
-        invoice.invoice_date,
-        invoice.invoice_number,
-        invoice.snapshot_id
+               invoice.address,
+               invoice.custom_field,
+               invoice.end_date,
+               invoice.invoice_date,
+               invoice.invoice_number,
+               invoice.is_archived,
+               invoice.production_name,
+               invoice.set_name,
+               invoice.start_date,
+               invoice.snapshot_id
     )
     RETURNING id INTO new_invoice_id;
 
