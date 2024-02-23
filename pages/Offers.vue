@@ -53,11 +53,11 @@ const setDeleteModalOpen = (row: Offer) => {
   deleteModalOffer.value = row
   isDeleteModalOpen.value = true
 }
-const deleteOffer = () => {
+const deleteOffer = async () => {
   if (deleteModalOffer.value?.id === undefined) return
   isDeleteModalOpen.value = false
-  offers.deleteOffer(deleteModalOffer.value.id).then()
-  offers.initOffers().then()
+  await offers.deleteOffer(deleteModalOffer.value.id)
+  await offers.initOffers()
 }
 
 // Preview Modal

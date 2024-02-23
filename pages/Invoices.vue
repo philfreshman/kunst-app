@@ -53,11 +53,11 @@ const setDeleteModalOpen = (row: Invoice) => {
   deleteModalInvoice.value = row
   isDeleteModalOpen.value = true
 }
-const deleteInvoice = () => {
+const deleteInvoice = async () => {
   if (deleteModalInvoice.value?.id === undefined) return
   isDeleteModalOpen.value = false
-  invoices.deleteInvoice(deleteModalInvoice.value.id).then()
-  invoices.initInvoices().then()
+  await invoices.deleteInvoice(deleteModalInvoice.value.id)
+  await invoices.initInvoices()
 }
 
 // Preview Modal

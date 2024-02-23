@@ -6,7 +6,6 @@ import { formatArtwork } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 import useEsc from "~/composables/uscEsc"
 
-// const invoice = useInvoices()
 const snap = useSnapshot()
 const emit = defineEmits<{ closeModal: [] }>()
 useEsc().eventListener(emit)
@@ -115,7 +114,7 @@ onMounted(async () => {
                 <UTextarea v-model="formData.address" :rows="4" type="text" @input="limitTextarea" />
               </UFormGroup>
 
-              <UFormGroup label="Production">
+              <UFormGroup label="Production" name="production_name">
                 <UInput v-model="formData.production_name" type="text" />
               </UFormGroup>
 
@@ -124,20 +123,20 @@ onMounted(async () => {
               </UFormGroup>
 
               <div class="w-full flex flex-row">
-                <UFormGroup label="Leih-Zeitraum" class="w-[47%]">
-                  <UInput v-model="formData.start_date" type="date" required />
+                <UFormGroup label="Leih-Zeitraum" class="w-[47%]" name="start_date">
+                  <UInput v-model="formData.start_date" type="date" />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
                   <h1 class="pl-1 pb-1">-></h1>
                 </div>
-                <UFormGroup label="&nbsp" class="w-[47%]">
-                  <UInput v-model="formData.end_date" type="date" required />
+                <UFormGroup label="&nbsp" class="w-[47%]" name="end_date">
+                  <UInput v-model="formData.end_date" type="date" />
                 </UFormGroup>
               </div>
 
               <div class="w-full flex flex-row">
                 <UFormGroup label="Rechnungsdatum" class="w-[47%]">
-                  <UInput v-model="formData.invoice_date" type="date" required />
+                  <UInput v-model="formData.invoice_date" type="date" />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
                   <h1 class="pl-1 pb-1">&nbsp</h1>
