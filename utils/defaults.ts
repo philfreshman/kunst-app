@@ -21,9 +21,10 @@ export function defaultInvoice(): Invoice {
     is_archived: false,
     snapshot_id: "",
     invoice_number: "",
+    invoice_date: "",
     custom_field: {
       key: "",
       value: ""
     }
-  } as Invoice
+  }
 }

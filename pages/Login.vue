@@ -8,8 +8,8 @@ const user = useSupabaseUser()
 definePageMeta({ layout: "auth" })
 
 const state = reactive({
-  email: import.meta.env.VITE_AUTH_EMAIL,
-  password: import.meta.env.VITE_AUTH_PASS
+  email: "",
+  password: ""
 })
 
 const validate = (state: any | undefined): FormError[] => {
