@@ -19,6 +19,12 @@ export default function useInvoices() {
   async function getInvoices(): Promise<Invoice[]> {
     // @ts-ignore
     const { data, error } = await supabase.rpc("get_invoices")
+    let count = 1
+    if (data !== null) {
+      ;(data as Invoice[]).forEach((offer: Invoice) => {
+        offer.internal_id = count++
+      })
+    }
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })

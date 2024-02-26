@@ -25,7 +25,7 @@ declare global {
 
   type KunstDocument = {
     id?: string
-    internal_id: number
+    internal_id?: number
     address: string
     production_name: string
     set_name: string
