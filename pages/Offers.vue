@@ -77,8 +77,8 @@ const initPreviewModalOpen = async (row: Offer) => {
 }
 
 const sort = ref({
-  column: "set_name",
-  direction: "desc"
+  column: "internal",
+  direction: "asc"
 })
 </script>
 

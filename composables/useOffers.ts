@@ -19,6 +19,12 @@ export default function useOffers() {
   async function getOffers(): Promise<Offer[]> {
     // @ts-ignore
     const { data, error } = await supabase.rpc("get_offers")
+    let count = 1
+    if (data !== null) {
+      ;(data as Offer[]).forEach((offer: Offer) => {
+        offer.internal_id = count++
+      })
+    }
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
     })
