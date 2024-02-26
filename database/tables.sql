@@ -51,6 +51,9 @@ CREATE TABLE offers (
     offer_date DATE,
     is_archived BOOLEAN NOT NULL DEFAULT false,
     snapshot_id TEXT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP,
+    deleted_at TIMESTAMP,
     FOREIGN KEY (snapshot_id) REFERENCES snapshots (id) ON DELETE CASCADE
 );
 
@@ -66,5 +69,8 @@ CREATE TABLE invoices (
     invoice_date DATE,
     is_archived BOOLEAN NOT NULL DEFAULT false,
     snapshot_id TEXT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP,
+    deleted_at TIMESTAMP,
     FOREIGN KEY (snapshot_id) REFERENCES snapshots (id) ON DELETE CASCADE
 );
