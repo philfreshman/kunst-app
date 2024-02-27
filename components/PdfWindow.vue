@@ -63,7 +63,7 @@ const props = defineProps({
     <div class="relative top-[470px] w-[639px]">
       <table class="w-full">
         <thead>
-          <tr class="font-din-medium text-13 leading-[5.2mm] border-b border-b-black">
+          <tr class="font-din-medium text-13 leading-[5.2mm] border-b-[0.5px] border-black">
             <th class="w-[35px]">Pos.</th>
             <th class="w-[87px]">Artikelnr.</th>
             <th class="w-[77px]">Bild</th>
@@ -74,7 +74,7 @@ const props = defineProps({
           </tr>
         </thead>
         <tbody>
-          <tr class="text-13 border-b border-b-black" v-for="(artwork, i) in data.collection" :key="artwork">
+          <tr class="text-13 border-b-[0.5px] border-black" v-for="(artwork, i) in data.collection" :key="artwork">
             <td class="pt-[10px] h-[36px]">
               <p>{{ ++i }}</p>
             </td>
@@ -116,7 +116,7 @@ const props = defineProps({
     </div>
 
     <!--DOCUMENT FOOTER-->
-    <div class="absolute bottom-[15px] flex w-[660px] text-footer leading-[3.4mm] tracking-[0] bggg">
+    <div class="absolute bottom-[15px] flex w-[660px] text-footer leading-[3.4mm] tracking-[0]">
       <div class="w-1/4">
         <p class="">KUNST FÜR FILM</p>
         <p>0176-215 291 86</p>
