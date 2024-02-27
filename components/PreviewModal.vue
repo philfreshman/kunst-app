@@ -61,11 +61,12 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="absolute top-0 left-0 h-full w-full">
+  <div class="absolute top-0 left-0 h-full w-full overflow-hidden">
     <div
       class="absolute w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-700"
       :style="{ zoom: zoomValue }"
     >
+      <!--      :style="{ transform: `scale(${zoomValue})`, transformOrigin: '0 0' }"-->
       <BackgroundPattern class="absolute h-full overflow-hidden" />
       <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl" style="aspect-ratio: 2480 / 3508">
         <div
