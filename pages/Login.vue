@@ -46,19 +46,19 @@ const signOut = async () => {
       <div class="relative pb-20">
         <Card class="shadow-xl bg-white">
           <div class="m-2 w-72">
-            <h1 class="flex w-full justify-center pb-6 text-3xl">Login</h1>
+            <h1 class="flex w-full justify-center pb-6 text-3xl">{{ $t("login.title") }}</h1>
 
             <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
-              <UFormGroup label="Email" name="email">
+              <UFormGroup :label="$t('login.email')" name="email">
                 <UInput v-model="state.email" />
               </UFormGroup>
 
-              <UFormGroup label="Passwort" name="password">
+              <UFormGroup :label="$t('login.password')" name="password">
                 <UInput v-model="state.password" type="password" />
               </UFormGroup>
 
               <div class="pt-6 flex w-full justify-center">
-                <UButton type="submit"> Einloggen </UButton>
+                <UButton type="submit"> {{ $t("login.submit") }} </UButton>
               </div>
             </UForm>
           </div>
