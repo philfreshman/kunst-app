@@ -111,17 +111,20 @@ onMounted(async () => {
         <template #data="{ item }">
           <UCard>
             <UForm :state="formData" class="label-padding">
-              <UFormGroup label="Anschrift" class="label-no-padding">
+              <UFormGroup :label="$t('common.address')" class="label-no-padding">
                 <UTextarea v-model="formData.address" :rows="4" type="text" @input="limitTextarea" />
               </UFormGroup>
-              <UFormGroup label="Production">
+
+              <UFormGroup :label="$t('common.production')" name="production_name">
                 <UInput v-model="formData.production_name" type="text" />
               </UFormGroup>
-              <UFormGroup label="Set">
+
+              <UFormGroup :label="$t('common.set')">
                 <UInput v-model="formData.set_name" type="text" />
               </UFormGroup>
+
               <div class="w-full flex flex-row">
-                <UFormGroup label="Leih-Zeitraum" class="w-[47%]">
+                <UFormGroup :label="$t('common.rental-period')" class="w-[47%]" name="start_date">
                   <UInput v-model="formData.start_date" type="date" />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
@@ -132,7 +135,7 @@ onMounted(async () => {
                 </UFormGroup>
               </div>
               <div class="w-[47%]">
-                <UFormGroup label="Rechnungsdatum">
+                <UFormGroup :label="$t('common.offer-date')" class="w-[47%]">
                   <UInput v-model="formData.offer_date" type="date" />
                 </UFormGroup>
               </div>
@@ -144,7 +147,7 @@ onMounted(async () => {
           <div class="h-full">
             <UCard class="w-full h-full">
               <USelectMenu
-                placeholder="Suche Kunstwerke..."
+                :placeholder="$t('messages.search-artworks') + '...'"
                 icon="i-heroicons-magnifying-glass-20-solid"
                 v-model="selected"
                 multiple
@@ -204,7 +207,9 @@ onMounted(async () => {
 
     <template #footer>
       <div class="w-full flex justify-center">
-        <UButton :disabled="!snap.snapshot.value" @click="modalType === 'add' ? addOffer() : editOffer()">Save</UButton>
+        <UButton :disabled="!snap.snapshot.value" @click="modalType === 'add' ? addOffer() : editOffer()">
+          {{ $t("actions.save") }}
+        </UButton>
       </div>
     </template>
   </BaseModal>

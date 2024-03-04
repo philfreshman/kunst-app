@@ -1,35 +1,4 @@
 {
-  "login": {
-    "title": "Login",
-    "email": "Email",
-    "password": "Password",
-    "submit": "Login",
-    "forgot": "Forgot password?"
-  },
-  "sidenav": {
-    "artists": "Artists",
-    "artworks": "Artworks",
-    "offers": "Offers",
-    "invoices": "Invoices"
-  },
-  "common": {
-    "name": "Name",
-    "phone": "Phone",
-    "email": "Email",
-    "artist": "Artist",
-    "artwork": "Artwork",
-    "title": "Title",
-    "price": "Price",
-    "worth": "Worth",
-    "height": "Height",
-    "width": "Width",
-    "production": "Production",
-    "set": "Set",
-    "period": "Period",
-    "invoice-date": "Invoice date",
-    "offer-date": "Offer date",
-    "article-id": "Article ID"
-  },
   "actions": {
     "accept": "Accept",
     "back": "Back",
@@ -43,15 +12,70 @@
     "preview": "Preview",
     "reject": "Reject",
     "save": "Save",
-    "send": "Send",
     "search": "Search",
+    "send": "Send",
     "toggle": "Light / Dark"
   },
-  "nouns": {
-    "pdf": "PDF",
-    "language": "Language"
+  "common": {
+    "address": "Address",
+    "article-id": "Article ID",
+    "artist": "Artist",
+    "artwork": "Artwork",
+    "email": "Email",
+    "height": "Height",
+    "image": "Image",
+    "image-title": "Image title",
+    "invoice-date": "Invoice date",
+    "invoice-number": "Invoice number",
+    "key": "Key",
+    "name": "Name",
+    "offer-date": "Offer date",
+    "period": "Period",
+    "phone": "Phone",
+    "price": "Price",
+    "production": "Production",
+    "rental-period": "Rental period",
+    "set": "Set",
+    "size": "Size",
+    "title": "Title",
+    "value": "Value",
+    "width": "Width",
+    "worth": "Worth"
+  },
+  "login": {
+    "email": "Email",
+    "forgot": "Forgot password?",
+    "password": "Password",
+    "submit": "Login",
+    "title": "Login"
   },
   "messages": {
-    "no-data": "No data available"
+    "no-data": "No data available",
+    "search-artworks": "Suche nach Kunstwerken",
+    "offer-delete-confirm": "Are you sure you want to delete this offer?",
+    "invoice-delete-confirm": "Are you sure you want to delete this invoice?"
+  },
+  "nouns": {
+    "language": "Language",
+    "pdf": "PDF"
+  },
+  "sidenav": {
+    "artists": "Artists",
+    "artworks": "Artworks",
+    "invoices": "Invoices",
+    "offers": "Offers"
+  },
+  "pdf": {
+    "value-of-goods": "Value of goods",
+    "rental-fee-net": "Rental fee net",
+    "plus-vat": "Plus 19% VAT",
+    "total": "Total",
+    "info-text-1": "The rental fee is to be paid in advance.",
+    "info-text-2": "In case of loss or total damage, the full value of the goods is due. In case of partial damage, the",
+    "info-text-3": "repair sum estimated by the landlord is immediately invoiced.",
+    "info-text-4": "Kind regards",
+    "footer-text-1": "Storage address",
+    "footer-text-2": "Invoice address",
+    "footer-text-3": "Bank details"
   }
 }

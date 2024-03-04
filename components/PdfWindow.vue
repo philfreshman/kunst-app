@@ -44,10 +44,10 @@ const props = defineProps({
 
     <!--ANGEBOT DETAILS-->
     <div class="absolute top-[366px] leading-[4.2mm] tracking-[0.04mm] text-13">
-      <p>Produktion: {{ data.production_name }}</p>
+      <p>{{ $t("common.production") }}: {{ data.production_name }}</p>
       <p>Set: {{ data.set_name }}</p>
-      <p>Leih-Zeitraum: {{ formatDateSpan(data.start_date, data.end_date) }}</p>
-      <p v-if="data.invoice_number">Rechnungsnummer: {{ data.invoice_number }}</p>
+      <p>{{ $t("common.rental-period") }}: {{ formatDateSpan(data.start_date, data.end_date) }}</p>
+      <p v-if="data.invoice_number">{{ $t("invoice-number") }}: {{ data.invoice_number }}</p>
       <!--      <p v-if="data.offer_number">Angebot-Nr.: {{ data.offer_number }}</p>-->
       <p v-if="data.custom_field">{{ data.custom_field.key }}: {{ data.custom_field.value }}</p>
     </div>
@@ -65,12 +65,12 @@ const props = defineProps({
         <thead>
           <tr class="font-din-medium text-13 leading-[5.2mm] border-b-[0.5px] border-black">
             <th class="w-[35px]">Pos.</th>
-            <th class="w-[87px]">Artikelnr.</th>
-            <th class="w-[77px]">Bild</th>
-            <th class="w-[197px]">Titel des Bildes</th>
-            <th class="w-[125px]">Größe</th>
-            <th class="w-[63px]">Warenwert</th>
-            <th class="text-right !important">Preis</th>
+            <th class="w-[87px]">{{ $t("common.article-id") }}.</th>
+            <th class="w-[77px]">{{ $t("common.image") }}</th>
+            <th class="w-[197px]">{{ $t("common.image-title") }}</th>
+            <th class="w-[125px]">{{ $t("common.size") }}</th>
+            <th class="w-[63px]">{{ $t("pdf.value-of-goods") }}</th>
+            <th class="text-right !important">{{ $t("common.price") }}</th>
           </tr>
         </thead>
         <tbody>
@@ -90,15 +90,15 @@ const props = defineProps({
       <!--SUMMARY-->
       <div class="pt-[13px] w-[639px] text-13 leading-[6.2mm]">
         <div class="flex justify-between">
-          <p class="">Leihgebühr netto:</p>
+          <p class="">{{ $t("pdf.rental-fee-net") }}:</p>
           <p class="">{{ dotToComma(data.net_rental_fee) }} €</p>
         </div>
         <div class="flex justify-between">
-          <p class="">zzgl. 19% Umsatzsteuer</p>
+          <p class="">{{ $t("pdf.plus-vat") }}</p>
           <p class="">{{ dotToComma(data.sales_tax) }} €</p>
         </div>
         <div class="flex justify-between font-din-bold">
-          <p class="">GESAMT</p>
+          <p class="">{{ $t("pdf.total").toUpperCase() }}</p>
           <p class="">{{ dotToComma(data.total) }} €</p>
         </div>
         <div class="ml-[0.4mm] mt-[1mm] w-full h-[1px] bg-black"><p>&nbsp</p></div>
@@ -106,11 +106,11 @@ const props = defineProps({
 
       <!--INFO-->
       <div class="pt-[33px] w-[639px] text-13 leading-[5.2mm] tracking-[0.04mm]">
-        <p>Bei Annahme des Angebotes erklärt sich der Mieter mit folgendem einverstanden:</p>
-        <p>Bei Verlust oder Totalschaden wird der volle Warenwert fällig. Bei Teilschaden wird die vom Vermieter</p>
-        <p>veranschlagte Reparatursumme sofort in Rechnung gestellt.</p>
+        <p>{{ $t("pdf.info-text-1") }}</p>
+        <p>{{ $t("pdf.info-text-2") }}</p>
+        <p>{{ $t("pdf.info-text-3") }}</p>
         <br />
-        <p>Mit freundlichen Grüßen</p>
+        <p>{{ $t("pdf.info-text-4") }}</p>
         <p>Kasia Swiezak</p>
       </div>
     </div>
@@ -125,21 +125,21 @@ const props = defineProps({
         <p>St.-Nr. 18/553/00947</p>
       </div>
       <div class="w-1/4">
-        <p>Lageradresse:</p>
+        <p>{{ $t("pdf.footer-text-1") }}</p>
         <p>Kunst für Film</p>
         <p>c/o Swiezak/Bell</p>
         <p>Meininger Str. 12</p>
         <p>10823 Berlin</p>
       </div>
       <div class="w-1/4">
-        <p>Rechnungsadresse:</p>
+        <p>{{ $t("pdf.footer-text-2") }}</p>
         <p>Kunst für Film</p>
         <p>Katharina Swiezak</p>
         <p>Meininger Str. 12</p>
         <p>10823 Berlin</p>
       </div>
       <div class="w-1/4">
-        <p>Kontoverbindung:</p>
+        <p>{{ $t("pdf.footer-text-3") }}</p>
         <p>Katharina Swiezak</p>
         <p>Consorsbank</p>
         <p>BIC CSDBDE71</p>

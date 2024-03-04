@@ -22,8 +22,8 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
-      redirectOn: "root", // recommended,
-      alwaysRedirect: true
+      redirectOn: "all",
+      alwaysRedirect: false
     }
   },
   devtools: {

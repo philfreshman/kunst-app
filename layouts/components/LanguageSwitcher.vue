@@ -1,11 +1,7 @@
 <script setup lang="ts">
-const { locale, locales, setLocale } = useI18n()
+const { locale } = useI18n()
 const router = useRouter()
 const switchLocalePath = useSwitchLocalePath()
-
-const availableLocales = computed(() => {
-  return locales.value.filter((i) => i.code !== locale.value)
-})
 
 onMounted(() => {
   disableLanguageOption()
@@ -25,14 +21,14 @@ const disableLanguageOption = () => {
 }
 
 const switchToGerman = () => {
-  isOpen.value = false
+  isDropdownOpen.value = false
   router.push(switchLocalePath("de").toString().toLowerCase())
   languageOptions[0][0].disabled = true
   languageOptions[1][0].disabled = false
 }
 
 const switchToEnglish = () => {
-  isOpen.value = false
+  isDropdownOpen.value = false
   router.push(switchLocalePath("en").toString().toLowerCase())
   languageOptions[0][0].disabled = false
   languageOptions[1][0].disabled = true
@@ -61,13 +57,13 @@ const languageOptions = reactive([
   ]
 ])
 
-const isOpen = ref(false)
+const isDropdownOpen = ref(false)
 </script>
 
 <template>
   <UDropdown :items="languageOptions" :popper="{ offsetDistance: 5, placement: 'top-end' }" :ui="{ width: '' }">
-    <UTooltip :prevent="isOpen" :text="$t('nouns.language')">
-      <UButton color="gray" icon="i-heroicons-outline:translate" @click="isOpen = true" />
+    <UTooltip :prevent="isDropdownOpen" :text="$t('nouns.language')">
+      <UButton color="gray" icon="i-heroicons-outline:translate" @click="isDropdownOpen = true" />
     </UTooltip>
   </UDropdown>
 </template>
