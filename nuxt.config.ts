@@ -18,7 +18,13 @@ export default defineNuxtConfig({
     ],
     defaultLocale: "en",
     // strategy: "prefix",
-    langDir: "./locales/"
+    langDir: "./locales/",
+    lazy: false
+    // detectBrowserLanguage: {
+    //   useCookie: true,
+    //   cookieKey: "i18n_redirected",
+    // },
+    // vueI18nLoader: true,
   },
   devtools: {
     enabled: false
