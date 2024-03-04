@@ -1,9 +1,12 @@
 name: Deploy to Vercel
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_DEMO_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_DEMO_PROJECT_ID }}
 
 on:
   push:
     branches:
-      - demo
+      - main
 
 jobs:
   build-and-deploy:
@@ -25,4 +28,4 @@ jobs:
         run: bun i -g vercel
 
       - name: Deploy to Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --name kunst-vue-demo
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
