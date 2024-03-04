@@ -5,5 +5,11 @@
     "password": "Password",
     "submit": "Login",
     "forgot": "Forgot password?"
+  },
+  "sidenav": {
+    "artists": "Artists",
+    "artworks": "Artworks",
+    "offers": "Offers",
+    "invoices": "Invoices"
   }
 }

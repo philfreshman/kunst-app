@@ -10,7 +10,7 @@
         color="gray"
         variant="solid"
       >
-        Künstler
+        {{ $t("sidenav.artists") }}
       </UButton>
     </NuxtLink>
 
@@ -23,7 +23,7 @@
         color="gray"
         variant="solid"
       >
-        Kunstwerke
+        {{ $t("sidenav.artworks") }}
       </UButton>
     </NuxtLink>
 
@@ -36,7 +36,7 @@
         color="gray"
         variant="solid"
       >
-        Angebote
+        {{ $t("sidenav.offers") }}
       </UButton>
     </NuxtLink>
 
@@ -49,7 +49,7 @@
         color="gray"
         variant="solid"
       >
-        Rechnungen
+        {{ $t("sidenav.invoices") }}
       </UButton>
     </NuxtLink>
   </div>

@@ -1,26 +1,31 @@
 <script setup lang="ts">
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+
+const availableLocales = computed(() => {
+  return locales.value.filter((i) => i.code !== locale.value)
+})
+
 const items = [
   [
     {
       label: "DE",
       click() {
-        console.log("setting DE")
+        switchLocalePath("de")
       }
     }
   ],
   [
     {
       label: "EN",
-      click() {
-        console.log("setting EN")
-      }
+      click() {}
     }
   ]
 ]
 
-defineShortcuts({
-  escape: () => console.log("ooo")
-})
+// defineShortcuts({
+//   escape: () => console.log("ooo")
+// })
 </script>
 
 <template>
