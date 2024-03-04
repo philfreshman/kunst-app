@@ -5,5 +5,11 @@
     "password": "Passwort",
     "submit": "Anmelden",
     "forgot": "Passwort vergessen?"
+  },
+  "sidenav": {
+    "artists": "Künstler",
+    "artworks": "Kunstwerke",
+    "offers": "Angebote",
+    "invoices": "Rechnungen"
   }
 }
