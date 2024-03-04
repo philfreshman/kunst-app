@@ -11,20 +11,20 @@ onMounted(() => invoices.initInvoices())
 
 // Table
 const { search, filteredRows } = useFilteredArtworks(invoices.data)
-const dropdownItems = (row: Invoice) => [
+const dropdownItems = (t: any, row: Invoice) => [
   [
     {
-      label: "Preview",
+      label: t("common.preview"),
       icon: "i-heroicons-eye-20-solid",
       click: () => initPreviewModalOpen(row)
     },
     {
-      label: "Edit",
+      label: t("common.edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () => setEditInvoiceId(row)
     },
     {
-      label: "Delete",
+      label: t("common.delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => setDeleteModalOpen(row)
     }
@@ -98,12 +98,18 @@ const sort = ref({
           }
         "
       >
-        Neue Rechnung
+        {{ $t("actions.new-invoice") }}
       </UButton>
     </template>
 
     <template #content>
-      <UTable :sort :columns="invoiceTableColumns" :rows="filteredRows" :loading="invoices.loading.value">
+      <UTable
+        :sort
+        :columns="invoiceTableColumns($t)"
+        :rows="filteredRows"
+        :loading="invoices.loading.value"
+        :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: $t('messages.no-data') }"
+      >
         <template #id-data="{ row }"> {{ id }} </template>
         <template #date_span-data="{ row }">
           {{ formatDateSpan(row.start_date, row.end_date) }}
@@ -112,7 +118,7 @@ const sort = ref({
           {{ formatShortDate(row.invoice_date) }}
         </template>
         <template #actions-data="{ row }">
-          <UDropdown :items="dropdownItems(row)">
+          <UDropdown :items="dropdownItems($t, row)">
             <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
           </UDropdown>
         </template>
@@ -134,13 +140,3 @@ const sort = ref({
     @delete="deleteInvoice"
   />
 </template>
-
-<style lang="sass">
-//.label-padding
-//  label
-//    padding-top: 12px
-//
-//.label-no-padding
-//  label
-//    padding-top: 0
-</style>

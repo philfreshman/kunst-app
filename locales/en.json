@@ -11,5 +11,47 @@
     "artworks": "Artworks",
     "offers": "Offers",
     "invoices": "Invoices"
+  },
+  "common": {
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "artist": "Artist",
+    "artwork": "Artwork",
+    "title": "Title",
+    "price": "Price",
+    "worth": "Worth",
+    "height": "Height",
+    "width": "Width",
+    "production": "Production",
+    "set": "Set",
+    "period": "Period",
+    "invoice-date": "Invoice date",
+    "offer-date": "Offer date",
+    "article-id": "Article ID"
+  },
+  "actions": {
+    "accept": "Accept",
+    "back": "Back",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "edit": "Edit",
+    "logout": "Logout",
+    "new-invoice": "New Invoice",
+    "new-offer": "New Offer",
+    "preview": "Preview",
+    "reject": "Reject",
+    "save": "Save",
+    "send": "Send",
+    "search": "Search",
+    "toggle": "Light / Dark"
+  },
+  "nouns": {
+    "pdf": "PDF",
+    "language": "Language"
+  },
+  "messages": {
+    "no-data": "No data available"
   }
 }

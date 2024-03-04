@@ -1,117 +1,109 @@
-export const artistsTableColumns = [
+export const artistsTableColumns = (t: any) => [
   {
     key: "internal_id",
     label: "#"
   },
   {
     key: "name",
-    label: "Name"
+    label: t("common.name")
   },
   {
     key: "phone",
-    label: "Phone"
+    label: t("common.phone")
   },
   {
     key: "email",
-    label: "Email"
+    label: t("common.email")
   },
   {
     key: "actions"
   }
 ]
 
-export const artworksTableColumns = [
+export const artworksTableColumns = (t: any) => [
   {
     key: "article_id",
-    label: "Artikel ID",
+    label: t("common.article-id"),
     sortable: true
   },
   {
     key: "url",
-    label: "Bild"
+    label: t("common.artwork")
   },
   {
     key: "name",
-    label: "Künstler",
+    label: t("common.artwork"),
     sortable: true
   },
   {
     key: "title",
-    label: "Titel",
+    label: t("common.title"),
     sortable: true
   },
   {
     key: "height",
-    label: "Größe",
+    label: t("common.height"),
     sortable: true
   },
   {
     key: "width",
-    label: "Breite",
+    label: t("common.width"),
     sortable: true
   },
   {
     key: "price",
-    label: "Wert",
+    label: t("common.price"),
     sortable: true
   }
 ]
 
-export const offersTableColumns = [
+export const offersTableColumns = (t: any) => [
   {
     key: "internal_id",
     label: "#"
   },
   {
     key: "production_name",
-    label: "Produktion"
+    label: t("common.production")
   },
   {
     key: "set_name",
-    label: "Set"
+    label: t("common.set")
   },
   {
     key: "date_span",
-    label: "Zeitraum"
+    label: t("common.period")
   },
   {
     key: "offer_date",
-    label: "Rechnungsdatum"
+    label: t("common.offer-date")
   },
-  // {
-  //   key: "address",
-  //   label: "Adresse"
-  // },
   {
     key: "actions"
   }
 ]
 
-export const invoiceTableColumns = [
+export const invoiceTableColumns = (t: any) => [
   {
     key: "internal_id",
     label: "#"
   },
   {
     key: "production_name",
-    label: "Produktion"
+    label: t("common.production")
   },
   {
     key: "set_name",
-    label: "Set"
+    label: t("common.set")
   },
   {
     key: "date_span",
-    label: "Zeitraum"
+    label: t("common.period")
   },
   {
     key: "invoice_date",
-    label: "Rechnungsdatum"
+    label: t("common.invoice-date")
   },
-  // {
-  //   key: "address",
-  //   label: "Adresse"
-  // },
   {
     key: "actions"
   }

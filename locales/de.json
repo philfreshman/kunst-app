@@ -11,5 +11,47 @@
     "artworks": "Kunstwerke",
     "offers": "Angebote",
     "invoices": "Rechnungen"
+  },
+  "common": {
+    "name": "Name",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "artist": "Künstler",
+    "artwork": "Kunstwerk",
+    "title": "Titel",
+    "price": "Preis",
+    "worth": "Wert",
+    "height": "Höhe",
+    "width": "Breite",
+    "production": "Produktion",
+    "set": "Set",
+    "period": "Zeitraum",
+    "invoice-date": "Rechnungsdatum",
+    "offer-date": "Angebotsdatum",
+    "article-id": "Artikelnummer"
+  },
+  "actions": {
+    "accept": "Akzeptieren",
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "create": "Erstellen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "logout": "Abmelden",
+    "new-invoice": "Neue Rechnung",
+    "new-offer": "Neues Angebot",
+    "preview": "Vorschau",
+    "reject": "Ablehnen",
+    "save": "Speichern",
+    "send": "Senden",
+    "search": "Suchen",
+    "toggle": "Hell / Dunkel"
+  },
+  "nouns": {
+    "pdf": "PDF",
+    "language": "Sprache"
+  },
+  "messages": {
+    "no-data": "Keine Daten vorhanden"
   }
 }
