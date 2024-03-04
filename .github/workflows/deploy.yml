@@ -2,9 +2,6 @@ name: Deploy to Vercel
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_DEMO_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_DEMO_PROJECT_ID }}
-#  SUPABASE_URL: ${{ secrets.SUPABASE_DEMO_URL }}
-#  SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_DEMO_SERVICE_KEY }}
-#  SUPABASE_KEY: ${{ secrets.SUPABASE_DEMO_KEY }}
 
 on:
   push:

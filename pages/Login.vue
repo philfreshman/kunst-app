@@ -54,7 +54,7 @@ const signOut = async () => {
               </UFormGroup>
 
               <UFormGroup :label="$t('login.password')" name="password">
-                <UInput v-model="state.password" type="password" />
+                <UInput v-model="state.password" type="password" autocomplete="off" />
               </UFormGroup>
 
               <div class="pt-6 flex w-full justify-center">
