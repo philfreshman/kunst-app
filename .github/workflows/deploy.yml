@@ -9,7 +9,21 @@ on:
       - demo
 
 jobs:
+  # checks if commit message contains 'vercel-deploy'
+  check_commit:
+    runs-on: ubuntu-latest
+    outputs:
+      trigger: ${{ steps.check.outputs.trigger }}
+    steps:
+      - name: Check commit
+        id: check
+        run: |
+          echo "::set-output name=trigger::$(git log -1 --pretty=%B | grep -q 'vercel-deploy' && echo true || echo false)"
+  
+
   build-and-deploy:
+    needs: check_commit
+    if: ${{ needs.check_commit.outputs.trigger == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
