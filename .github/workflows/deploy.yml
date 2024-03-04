@@ -8,8 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    container:
-      image: alpine:3.19
 
     steps:
       - name: Checkout code
@@ -27,4 +25,4 @@ jobs:
         run: bun i -g vercel
 
       - name: Deploy to Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm --name fresh-kunst
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --name fresh-kunst
