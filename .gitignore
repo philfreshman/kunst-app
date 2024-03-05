@@ -142,3 +142,6 @@ pdf/
 pdf/Preisliste.numbers
 pdf/Preisliste.xlsx
 .env*.local
+
+
+.github/workflows/deploy.yml
