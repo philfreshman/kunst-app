@@ -33,16 +33,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v1
-
       - name: Install dependencies
-        run: bun install
+        run: npm install
 
       - name: Build
-        run: bun run build
+        run: npm run build
 
       - name: Install Vercel CLI
-        run: bun i -g vercel
+        run: npm i -g vercel
 
       - name: Deploy to Vercel
         run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
