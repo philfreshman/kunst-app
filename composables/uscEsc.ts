@@ -1,5 +1,3 @@
-import type { EmitsOptions } from "@vue/runtime-core"
-
 export default function useEsc() {
   function eventListener(emit: any) {
     const closeModalOnEscape = (event: KeyboardEvent) => {

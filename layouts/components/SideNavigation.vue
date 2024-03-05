@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const localePath = useLocalePath()
+</script>
 <template>
   <div class="h-auto flex flex-col">
-    <NuxtLink to="/artists">
+    <NuxtLink :to="localePath('/artists').toLowerCase()">
       <UButton
-        :class="{ 'active-link': $route.path === '/artists' }"
+        :class="{ 'active-link': $route.path.endsWith('/artists') }"
         class="w-full mb-1.5"
         icon="i-mdi:alien-outline"
         size="md"
@@ -14,9 +16,9 @@
       </UButton>
     </NuxtLink>
 
-    <NuxtLink to="/artworks">
+    <NuxtLink :to="localePath('/artworks').toLowerCase()">
       <UButton
-        :class="{ 'active-link': $route.path === '/artworks' }"
+        :class="{ 'active-link': $route.path.endsWith('/artworks') }"
         class="w-full my-1.5"
         icon="i-mdi:palette-outline"
         size="md"
@@ -27,9 +29,9 @@
       </UButton>
     </NuxtLink>
 
-    <NuxtLink to="/offers">
+    <NuxtLink :to="localePath('/offers').toLowerCase()">
       <UButton
-        :class="{ 'active-link': $route.path === '/offers' }"
+        :class="{ 'active-link': $route.path.endsWith('/offers') }"
         class="w-full my-1.5"
         icon="i-mdi:offer"
         size="md"
@@ -40,9 +42,9 @@
       </UButton>
     </NuxtLink>
 
-    <NuxtLink to="/invoices">
+    <NuxtLink :to="localePath('/invoices').toLowerCase()">
       <UButton
-        :class="{ 'active-link': $route.path === '/invoices' }"
+        :class="{ 'active-link': $route.path.endsWith('/invoices') }"
         class="w-full my-1.5"
         icon="i-mdi:receipt-text-outline"
         size="md"

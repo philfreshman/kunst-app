@@ -9,11 +9,18 @@ const search = defineModel({ required: true })
       icon="i-heroicons-magnifying-glass-20-solid"
       v-model="search"
       size="md"
-      placeholder="Suche..."
+      :placeholder="$t('actions.search') + '...'"
       :ui="{ icon: { trailing: { pointer: '' } } }"
     >
       <template #trailing>
-        <UButton v-show="search !== ''" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid" :padded="false" @click="() => (search = '')" />
+        <UButton
+          v-show="search !== ''"
+          color="gray"
+          variant="link"
+          icon="i-heroicons-x-mark-20-solid"
+          :padded="false"
+          @click="() => (search = '')"
+        />
       </template>
     </UInput>
   </div>

@@ -6,10 +6,6 @@ import { formatArtwork } from "~/utils/formater"
 import type { PropType } from "@vue/runtime-core"
 import useEsc from "~/composables/uscEsc"
 
-const snap = useSnapshot()
-const emit = defineEmits<{ closeModal: [] }>()
-useEsc().eventListener(emit)
-
 const props = defineProps({
   editInvoice: {
     type: Object as PropType<Invoice>,
@@ -17,6 +13,10 @@ const props = defineProps({
     default: defaultInvoice()
   }
 })
+
+const snap = useSnapshot()
+const emit = defineEmits<{ closeModal: [] }>()
+useEsc().eventListener(emit)
 
 const modalType = computed(() => {
   return props.editInvoice.id ? "edit" : "add"
@@ -110,20 +110,20 @@ onMounted(async () => {
         <template #data="{ item }">
           <UCard>
             <UForm :state="formData" class="label-padding">
-              <UFormGroup label="Anschrift" class="label-no-padding">
+              <UFormGroup :label="$t('common.address')" class="label-no-padding">
                 <UTextarea v-model="formData.address" :rows="4" type="text" @input="limitTextarea" />
               </UFormGroup>
 
-              <UFormGroup label="Production" name="production_name">
+              <UFormGroup :label="$t('common.production')" name="production_name">
                 <UInput v-model="formData.production_name" type="text" />
               </UFormGroup>
 
-              <UFormGroup label="Set">
+              <UFormGroup :label="$t('common.set')">
                 <UInput v-model="formData.set_name" type="text" />
               </UFormGroup>
 
               <div class="w-full flex flex-row">
-                <UFormGroup label="Leih-Zeitraum" class="w-[47%]" name="start_date">
+                <UFormGroup :label="$t('common.rental-period')" class="w-[47%]" name="start_date">
                   <UInput v-model="formData.start_date" type="date" />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
@@ -135,22 +135,32 @@ onMounted(async () => {
               </div>
 
               <div class="w-full flex flex-row">
-                <UFormGroup label="Rechnungsdatum" class="w-[47%]">
+                <UFormGroup :label="$t('common.invoice-date')" class="w-[47%]">
                   <UInput v-model="formData.invoice_date" type="date" />
                 </UFormGroup>
                 <div class="w-[6%] flex justify-end flex-col">
                   <h1 class="pl-1 pb-1">&nbsp</h1>
                 </div>
-                <UFormGroup label="Rechnungsnummer" class="w-[47%]">
+                <UFormGroup :label="$t('common.invoice-number')" class="w-[47%]">
                   <UInput v-model="formData.invoice_number" type="text" />
                 </UFormGroup>
               </div>
 
               <UFormGroup label="Custom">
                 <div class="flex flex-row">
-                  <UInput placeholder="Key" class="w-[47%]" v-model="formData.custom_field.key" type="text" />
+                  <UInput
+                    :placeholder="$t('common.key')"
+                    class="w-[47%]"
+                    v-model="formData.custom_field.key"
+                    type="text"
+                  />
                   <span class="w-[6%]">&nbsp</span>
-                  <UInput placeholder="Value" class="w-[47%]" v-model="formData.custom_field.value" type="text" />
+                  <UInput
+                    :placeholder="$t('common.value')"
+                    class="w-[47%]"
+                    v-model="formData.custom_field.value"
+                    type="text"
+                  />
                 </div>
               </UFormGroup>
             </UForm>
@@ -161,7 +171,7 @@ onMounted(async () => {
           <div class="h-full">
             <UCard class="w-full h-full">
               <USelectMenu
-                placeholder="Suche Kunstwerke..."
+                :placeholder="$t('messages.search-artworks') + '...'"
                 icon="i-heroicons-magnifying-glass-20-solid"
                 v-model="selected"
                 multiple
@@ -222,7 +232,7 @@ onMounted(async () => {
     <template #footer>
       <div class="w-full flex justify-center">
         <UButton :disabled="!snap.snapshot.value" @click="modalType === 'add' ? addInvoice() : editInvoice()">
-          Save
+          {{ $t("actions.save") }}
         </UButton>
       </div>
     </template>

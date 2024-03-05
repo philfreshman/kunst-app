@@ -1,7 +1,5 @@
-<script setup lang="ts">
-onMounted(() => {
-  console.log("Kunst-App demo")
-})
+<script lang="ts" setup>
+onMounted(() => console.log("Live"))
 </script>
 
 <template>
