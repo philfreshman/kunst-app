@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Update uuid
+        run: npm install uuid@latest
+
       - name: Build
         run: npm run build
 
