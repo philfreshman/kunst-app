@@ -17,6 +17,8 @@ Welcome to Kunst-App, a web application built with Vue, Nuxt, Tailwind, Supabase
 1.  **Offer and Invoice Management:** Easily create, track, and manage offers and invoices within the application.
     
 2.  **PDF Document Generation:** The app allows users to generate and download PDF documents for offers and invoices, ensuring a professional and organized presentation.
+
+3.  **Production and demo enviroment:** Deployment github-action triggerd via a `vercel-deploy` keyword in the commit message. 
     
 
 ## To-do  🚧
