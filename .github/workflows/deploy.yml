@@ -1,15 +1,15 @@
 name: Deploy to Vercel
 env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_DEMO_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_DEMO_PROJECT_ID }}
 
 on:
   push:
     branches:
-      - main
+      - demo
 
 jobs:
-# checks if commit message contains 'vercel-deploy'
+  # checks if commit message contains 'vercel-deploy'
   check_commit:
     runs-on: ubuntu-latest
     outputs:
@@ -18,8 +18,8 @@ jobs:
       - name: Check commit
         id: check
         run: |
-          echo "::set-output name=trigger::$(git log -1 --pretty=%B | grep -q 'vercel-deploy' && echo true || echo false)"
-  
+          git log -1 --pretty=%B | grep -q 'vercel-deploy' && echo 'trigger=true' >> $GITHUB_ENV || echo 'trigger=false' >> $GITHUB_ENV
+
 
   build-and-deploy:
     needs: check_commit
