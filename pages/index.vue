@@ -1,4 +1,5 @@
 <script lang="ts" setup>
-onBeforeMount(() => useRouter().push("/artists"))
+const localePath = useLocalePath()
+onBeforeMount(() => useRouter().push(localePath("/artists").toLowerCase()))
 </script>
 <template></template>

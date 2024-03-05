@@ -11,20 +11,20 @@ onMounted(() => offers.initOffers())
 
 // Table
 const { search, filteredRows } = useFilteredArtworks(offers.data)
-const dropdownItems = (row: Offer) => [
+const dropdownItems = (t: any, row: Offer) => [
   [
     {
-      label: "Preview",
+      label: t("actions.preview"),
       icon: "i-heroicons-eye-20-solid",
       click: () => initPreviewModalOpen(row)
     },
     {
-      label: "Edit",
+      label: t("actions.edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () => setEditOfferId(row)
     },
     {
-      label: "Delete",
+      label: t("actions.delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => setDeleteModalOpen(row)
     }
@@ -98,12 +98,12 @@ const sort = ref({
           }
         "
       >
-        Neues Angebot
+        {{ $t("actions.new-offer") }}
       </UButton>
     </template>
 
     <template #content>
-      <UTable :sort="sort" :columns="offersTableColumns" :rows="filteredRows" :loading="offers.loading.value">
+      <UTable :sort="sort" :columns="offersTableColumns($t)" :rows="filteredRows" :loading="offers.loading.value">
         <template #date_span-data="{ row }">
           {{ formatDateSpan(row.start_date, row.end_date) }}
         </template>
@@ -111,7 +111,7 @@ const sort = ref({
           {{ formatShortDate(row.offer_date) }}
         </template>
         <template #actions-data="{ row }">
-          <UDropdown :items="dropdownItems(row)">
+          <UDropdown :items="dropdownItems($t, row)">
             <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
           </UDropdown>
         </template>

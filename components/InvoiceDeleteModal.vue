@@ -25,14 +25,18 @@ onBeforeMount(async () => {
 
 <template>
   <BaseModal :isOpen="snapshot !== undefined" :isWide="true">
-    <template #header> Möchtest du sicher diese Angebot löschen? </template>
+    <template #header> {{ $t("message.invoice-delete-confirm") }} </template>
     <template #default>
       <DocumentSummaryAccordion :formData :snapshot />
     </template>
     <template #footer>
       <div class="flex justify-center">
-        <UButton class="mr-3" color="red" variant="solid" @click="emit('closeModal')">Cancel</UButton>
-        <UButton class="ml-3" color="green" variant="solid" @click="emit('delete')">Delete</UButton>
+        <UButton class="mr-3" color="red" variant="solid" @click="emit('closeModal')">
+          {{ $t("actions.cancel") }}
+        </UButton>
+        <UButton class="ml-3" color="green" variant="solid" @click="emit('delete')">
+          {{ $t("actions.delete") }}
+        </UButton>
       </div>
     </template>
   </BaseModal>

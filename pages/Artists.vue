@@ -7,15 +7,15 @@ import BaseSearch from "~/components/BaseSearch.vue"
 
 const artists = useArtist()
 
-const dropdownItems = (row: Artist) => [
+const dropdownItems = (t: any, row: Artist) => [
   [
     {
-      label: "Edit",
+      label: t("actions.edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () => openEditModal(row)
     },
     {
-      label: "Delete",
+      label: t("actions.delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => console.log("delete"),
       disabled: true
@@ -55,11 +55,11 @@ const { search, filteredRows } = useFilteredArtworks(artists.data)
       <BaseSearch v-model="search" />
     </template>
     <template #content>
-      <UTable :columns="artistsTableColumns" :rows="filteredRows" :loading="artists.loading.value">
+      <UTable :columns="artistsTableColumns($t)" :rows="filteredRows" :loading="artists.loading.value">
         <template #actions-data="{ row }">
-          <UDropdown :items="dropdownItems(row)">
+          <LazyUDropdown :items="dropdownItems($t, row)">
             <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
-          </UDropdown>
+          </LazyUDropdown>
         </template>
       </UTable>
     </template>
@@ -69,26 +69,32 @@ const { search, filteredRows } = useFilteredArtworks(artists.data)
   <BaseModal :isOpen="isModalOpen">
     <template #header>
       <div class="flex items-center justify-between">
-        <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Edit</h3>
-        <UButton @click="setModalClosed" color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" />
+        <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">{{ $t("actions.edit") }}</h3>
+        <UButton
+          @click="setModalClosed"
+          color="gray"
+          variant="ghost"
+          icon="i-heroicons-x-mark-20-solid"
+          class="-my-1"
+        />
       </div>
     </template>
 
     <UForm :state="modalData" @submit="submitEdit">
-      <UFormGroup label="Name" @keyup.enter="submitEdit">
+      <UFormGroup :label="$t('common.name')" @keyup.enter="submitEdit">
         <UInput v-model="modalData.name" type="text" />
       </UFormGroup>
-      <UFormGroup label="Phone">
+      <UFormGroup :label="$t('common.phone')">
         <UInput v-model="modalData.phone" type="text" />
       </UFormGroup>
-      <UFormGroup label="Email">
+      <UFormGroup :label="$t('common.email')">
         <UInput v-model="modalData.email" type="text" />
       </UFormGroup>
     </UForm>
 
     <template #footer>
       <div class="w-full flex justify-center">
-        <UButton @click="submitEdit">Save</UButton>
+        <UButton @click="submitEdit">{{ $t("actions.save") }}</UButton>
       </div>
     </template>
   </BaseModal>

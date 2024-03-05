@@ -17,14 +17,14 @@ export default defineNuxtConfig({
       }
     ],
     defaultLocale: "en",
-    // strategy: "prefix",
     langDir: "./locales/",
-    lazy: false
-    // detectBrowserLanguage: {
-    //   useCookie: true,
-    //   cookieKey: "i18n_redirected",
-    // },
-    // vueI18nLoader: true,
+    lazy: true,
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "all",
+      alwaysRedirect: false
+    }
   },
   devtools: {
     enabled: false

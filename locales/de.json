@@ -1,15 +1,81 @@
 {
-  "login": {
-    "title": "Anmelden",
+  "actions": {
+    "accept": "Akzeptieren",
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "create": "Erstellen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "logout": "Abmelden",
+    "new-invoice": "Neue Rechnung",
+    "new-offer": "Neues Angebot",
+    "preview": "Vorschau",
+    "reject": "Ablehnen",
+    "save": "Speichern",
+    "send": "Senden",
+    "search": "Suchen",
+    "toggle": "Hell / Dunkel"
+  },
+  "common": {
+    "address": "Anschrift",
+    "article-id": "Artikelnr",
+    "artist": "Künstler",
+    "artwork": "Kunstwerk",
     "email": "E-Mail",
+    "height": "Höhe",
+    "image": "Bild",
+    "image-title": "Titel des Bildes",
+    "invoice-date": "Rechnungsdatum",
+    "invoice-number": "Rechnungsnummer",
+    "key": "Schlüssel",
+    "name": "Name",
+    "offer-date": "Angebotsdatum",
+    "period": "Zeitraum",
+    "phone": "Telefon",
+    "price": "Preis",
+    "production": "Produktion",
+    "rental-period": "Leih-Zeitraum",
+    "set": "Set",
+    "size": "Größe",
+    "title": "Titel",
+    "value": "Wert",
+    "width": "Breite",
+    "worth": "Wert"
+  },
+  "login": {
+    "email": "E-Mail",
+    "forgot": "Passwort vergessen?",
     "password": "Passwort",
     "submit": "Anmelden",
-    "forgot": "Passwort vergessen?"
+    "title": "Anmelden"
+  },
+  "messages": {
+    "no-data": "Keine Daten vorhanden",
+    "search-artworks": "Suche nach Kunstwerken",
+    "offer-delete-confirm": "Möchten Sie das Angebot wirklich löschen?",
+    "invoice-delete-confirm": "Möchten Sie die Rechnung wirklich löschen?"
+  },
+  "nouns": {
+    "language": "Sprache",
+    "pdf": "PDF"
   },
   "sidenav": {
     "artists": "Künstler",
     "artworks": "Kunstwerke",
-    "offers": "Angebote",
-    "invoices": "Rechnungen"
+    "invoices": "Rechnungen",
+    "offers": "Angebote"
+  },
+  "pdf": {
+    "value-of-goods": "Warenwert",
+    "rental-fee-net":"Leihgebühr netto",
+    "plus-vat": "zzgl. 19% Umsatzsteuer",
+    "total": "Gesamt",
+    "info-text-1": "Die Leihgebühr ist im Voraus zu zahlen.",
+    "info-text-2": "Bei Verlust oder Totalschaden wird der volle Warenwert fällig. Bei Teilschaden wird die vom Vermieter",
+    "info-text-3": "veranschlagte Reparatursumme sofort in Rechnung gestellt.",
+    "info-text-4": "Mit freundlichen Grüßen",
+    "footer-text-1": "Lageradresse",
+    "footer-text-2": "Rechnungsadresse",
+    "footer-text-3": "Kontoverbindung"
   }
 }

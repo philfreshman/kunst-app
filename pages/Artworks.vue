@@ -17,7 +17,10 @@ const { search, filteredRows } = useFilteredArtworks(artworks.data)
     </template>
 
     <template #content>
-      <UTable :columns="artworksTableColumns" :rows="filteredRows" :loading="artworks.loading.value">
+      <UTable :columns="artworksTableColumns($t)" :rows="filteredRows" :loading="artworks.loading.value">
+        <template #article_id-data="{ row }">
+          <div class="min-w-28">{{ row.article_id }}</div>
+        </template>
         <template #url-data="{ row }" class="hello">
           <LazyUPopover class="h-20 w-fit content-fit" mode="hover" :popper="{ placement: 'right' }">
             <template #panel>

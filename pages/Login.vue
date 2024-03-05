@@ -8,8 +8,8 @@ const user = useSupabaseUser()
 definePageMeta({ layout: "auth" })
 
 const state = reactive({
-  email: "",
-  password: ""
+  email: import.meta.env.VITE_USERNAME,
+  password: import.meta.env.VITE_PASSWORD
 })
 
 const validate = (state: any | undefined): FormError[] => {
@@ -54,7 +54,7 @@ const signOut = async () => {
               </UFormGroup>
 
               <UFormGroup :label="$t('login.password')" name="password">
-                <UInput v-model="state.password" type="password" />
+                <UInput v-model="state.password" type="password" autocomplete="off" />
               </UFormGroup>
 
               <div class="pt-6 flex w-full justify-center">
