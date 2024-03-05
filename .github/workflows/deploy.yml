@@ -9,24 +9,8 @@ on:
       - main
 
 jobs:
-# checks if commit message contains 'vercel-deploy'
-  check_commit:
-    runs-on: ubuntu-latest
-    outputs:
-      trigger: ${{ steps.check.outputs.trigger }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Check commit
-        id: check
-        run: |
-          echo "::set-output name=trigger::$(git log -1 --pretty=%B | grep -q 'vercel-deploy' && echo true || echo false)"
-  
-
   build-and-deploy:
-    needs: check_commit
-    if: ${{ needs.check_commit.outputs.trigger == 'true' }}
+    if: "contains(github.event.head_commit.message, 'vercel-deploy')"
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Update uuid
+        run: npm install uuid@latest
+
       - name: Build
         run: npm run build
 
@@ -43,4 +30,4 @@ jobs:
         run: npm i -g vercel
 
       - name: Deploy to Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
