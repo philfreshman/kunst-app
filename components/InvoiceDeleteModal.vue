@@ -25,7 +25,7 @@ onBeforeMount(async () => {
 
 <template>
   <BaseModal :isOpen="snapshot !== undefined" :isWide="true">
-    <template #header> {{ $t("message.invoice-delete-confirm") }} </template>
+    <template #header> {{ $t("messages.invoice-delete-confirm") }} </template>
     <template #default>
       <DocumentSummaryAccordion :formData :snapshot />
     </template>

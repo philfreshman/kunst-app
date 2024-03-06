@@ -134,11 +134,10 @@ onMounted(async () => {
                   <UInput v-model="formData.end_date" type="date" />
                 </UFormGroup>
               </div>
-              <div class="w-[47%]">
-                <UFormGroup :label="$t('common.offer-date')" class="w-[47%]">
-                  <UInput v-model="formData.offer_date" type="date" />
-                </UFormGroup>
-              </div>
+
+              <UFormGroup :label="$t('common.offer-date')" class="w-[47%]">
+                <UInput v-model="formData.offer_date" type="date" />
+              </UFormGroup>
             </UForm>
           </UCard>
         </template>

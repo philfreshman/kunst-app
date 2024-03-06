@@ -1,4 +1,5 @@
 export function calcPrice(startDate: string | any, endDate: string | any, price: number | any) {
+  console.log("-----------------------------------")
   if (typeof startDate !== "string" || typeof endDate !== "string") return "Date??"
   if (typeof price !== "number" || price === 0) return "Price??"
 
@@ -7,8 +8,11 @@ export function calcPrice(startDate: string | any, endDate: string | any, price:
 
   const diffDays = getDaysDifference(start, end) + 1
   const sundays = countSundays(start, end)
-
   const days = diffDays - sundays
+  console.log("diffDays", diffDays)
+  console.log("sundays", sundays)
+  console.log("days without sundays", days)
+
   let result = 0
 
   if (days === 0 || price === 0) return ""
@@ -27,14 +31,17 @@ export function calcPrice(startDate: string | any, endDate: string | any, price:
   }
 
   function firstWeekPrice(days, price) {
+    console.log("firstWeekPrice", ((price * 0.1) / 6) * days)
     return ((price * 0.1) / 6) * days
   }
 
   function secondWeekPrice(days, price) {
+    console.log("secondWeekPrice", ((price * 0.05) / 6) * days)
     return ((price * 0.05) / 6) * days
   }
 
   function thirdWeekPrice(days, price) {
+    console.log("thirdWeekPrice", ((price * 0.025) / 6) * days)
     return ((price * 0.025) / 6) * days
   }
 
@@ -43,6 +50,7 @@ export function calcPrice(startDate: string | any, endDate: string | any, price:
     return Math.ceil(num)
   }
 
+  console.log("-----------------------------------")
   return truncate(result)
 }
 
