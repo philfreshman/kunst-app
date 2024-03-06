@@ -68,7 +68,7 @@ const props = defineProps({
             <th class="w-[87px]">{{ $t("common.article-id") }}.</th>
             <th class="w-[77px]">{{ $t("common.image") }}</th>
             <th class="w-[197px]">{{ $t("common.image-title") }}</th>
-            <th class="w-[125px]">{{ $t("common.size") }}</th>
+            <th class="w-[118px]">{{ $t("common.size") }}</th>
             <th class="w-[63px]">{{ $t("pdf.value-of-goods") }}</th>
             <th class="text-right !important">{{ $t("common.price") }}</th>
           </tr>

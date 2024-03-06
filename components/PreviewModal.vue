@@ -66,13 +66,9 @@ onBeforeMount(() => {
       class="absolute w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-700"
       :style="{ zoom: zoomValue }"
     >
-      <!--      :style="{ transform: `scale(${zoomValue})`, transformOrigin: '0 0' }"-->
       <BackgroundPattern class="absolute h-full overflow-hidden" />
       <div class="relative aspect-ratio parent overflow-scroll drop-shadow-2xl" style="aspect-ratio: 2480 / 3508">
-        <div
-          id="pdf-div"
-          class="bg-white w-[210mm] h-[297mm] relative inset-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
-        >
+        <div id="pdf-div" class="bg-white w-[210mm] h-[297mm] relative z-20">
           <div class="absolute top-0 left-0 w-full h-full text-black">
             <PdfWindow class="z-50" :data />
           </div>
