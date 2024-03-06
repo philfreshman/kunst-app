@@ -14,17 +14,17 @@ const { search, filteredRows } = useFilteredArtworks(invoices.data)
 const dropdownItems = (t: any, row: Invoice) => [
   [
     {
-      label: t("common.preview"),
+      label: t("actions.preview"),
       icon: "i-heroicons-eye-20-solid",
       click: () => initPreviewModalOpen(row)
     },
     {
-      label: t("common.edit"),
+      label: t("actions.edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () => setEditInvoiceId(row)
     },
     {
-      label: t("common.delete"),
+      label: t("actions.delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => setDeleteModalOpen(row)
     }
