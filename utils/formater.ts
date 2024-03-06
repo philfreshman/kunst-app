@@ -16,12 +16,12 @@ export const formatSnapshot = (snapshot_type: snapshotType): string => {
   return formats[snapshot_type] || "Unknown"
 }
 
-export const formatShortDate = (dateString: string): string => {
+export const formatShortDate = (dateString: string | undefined): string | boolean => {
+  if (dateString == undefined) return false
   const date = new Date(dateString)
   const endDay = date.getDate()
   const endMonth = date.getMonth() + 1
   const endYear = date.getFullYear().toString()
-
   return `${endDay}.${endMonth}.${endYear}`
 }
 

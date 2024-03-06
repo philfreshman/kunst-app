@@ -47,9 +47,9 @@ const props = defineProps({
       <p>{{ $t("common.production") }}: {{ data.production_name }}</p>
       <p>Set: {{ data.set_name }}</p>
       <p>{{ $t("common.rental-period") }}: {{ formatDateSpan(data.start_date, data.end_date) }}</p>
-      <p v-if="data.invoice_number">{{ $t("invoice-number") }}: {{ data.invoice_number }}</p>
+      <p v-if="data.invoice_number">{{ $t("common.invoice-number") }}: {{ data.invoice_number }}</p>
       <!--      <p v-if="data.offer_number">Angebot-Nr.: {{ data.offer_number }}</p>-->
-      <p v-if="data.custom_field">{{ data.custom_field.key }}: {{ data.custom_field.value }}</p>
+      <p v-if="data.custom_field.key">{{ data.custom_field.key }}: {{ data.custom_field.value }}</p>
     </div>
 
     <!--DOCUMENT DATE-->
