@@ -105,12 +105,18 @@ const props = defineProps({
       </div>
 
       <!--INFO-->
+
       <div class="pt-[33px] w-[639px] text-13 leading-[5.2mm] tracking-[0.04mm]">
-        <p>{{ $t("pdf.info-text-1") }}</p>
-        <p>{{ $t("pdf.info-text-2") }}</p>
-        <p>{{ $t("pdf.info-text-3") }}</p>
+        <div v-if="data.snapshot_type === 'offer'">
+          <p>{{ $t("pdf.offer-text-1") }}</p>
+          <p>{{ $t("pdf.offer-text-2") }}</p>
+          <p>{{ $t("pdf.offer-text-3") }}</p>
+        </div>
+        <div v-if="data.snapshot_type === 'invoice'">
+          <p>{{ $t("pdf.invoice-text-1") }}</p>
+        </div>
         <br />
-        <p>{{ $t("pdf.info-text-4") }}</p>
+        <p>{{ $t("pdf.greetings") }}</p>
         <p>Kasia Swiezak</p>
       </div>
     </div>

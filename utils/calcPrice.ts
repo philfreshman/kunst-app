@@ -1,4 +1,5 @@
 export function calcPrice(startDate: string | any, endDate: string | any, price: number | any) {
+  console.clear()
   console.log("-----------------------------------")
   if (typeof startDate !== "string" || typeof endDate !== "string") return "Date??"
   if (typeof price !== "number" || price === 0) return "Price??"

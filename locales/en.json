@@ -70,12 +70,22 @@
     "rental-fee-net": "Rental fee net",
     "plus-vat": "Plus 19% VAT",
     "total": "Total",
-    "info-text-1": "The rental fee is to be paid in advance.",
-    "info-text-2": "In case of loss or total damage, the full value of the goods is due. In case of partial damage, the",
-    "info-text-3": "repair sum estimated by the landlord is immediately invoiced.",
-    "info-text-4": "Kind regards",
+    "offer-text-1": "The rental fee is to be paid in advance.",
+    "offer-text-2": "In case of loss or total damage, the full value of the goods is due. In case of partial damage, the",
+    "offer-text-3": "repair sum estimated by the landlord is immediately invoiced.",
+    "greetings": "Kind regards",
     "footer-text-1": "Storage address",
     "footer-text-2": "Invoice address",
     "footer-text-3": "Bank details"
-  }
+  },
+"errors": {
+  "error": "Error",
+  "email-password": "Email or password is incorrect"
+},
+"validation": {
+  "email-required": "Email is required",
+  "password-required": "Password is required",
+  "email-invalid": "Email is invalid",
+  "password-min-8": "Password must be at least 8 characters long"
+}
 }
