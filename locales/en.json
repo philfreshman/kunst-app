@@ -73,19 +73,22 @@
     "offer-text-1": "The rental fee is to be paid in advance.",
     "offer-text-2": "In case of loss or total damage, the full value of the goods is due. In case of partial damage, the",
     "offer-text-3": "repair sum estimated by the landlord is immediately invoiced.",
+    "invoice-text-1": "Dear Sir or Madam,",
+    "invoice-text-2": "we charge you as per your order as follows:",
+    "invoice-text-3": "Thank you for the cooperation and ask for the transfer of the invoice to the account mentioned below.",
     "greetings": "Kind regards",
     "footer-text-1": "Storage address",
     "footer-text-2": "Invoice address",
     "footer-text-3": "Bank details"
   },
-"errors": {
-  "error": "Error",
-  "email-password": "Email or password is incorrect"
-},
-"validation": {
-  "email-required": "Email is required",
-  "password-required": "Password is required",
-  "email-invalid": "Email is invalid",
-  "password-min-8": "Password must be at least 8 characters long"
-}
+  "errors": {
+    "error": "Error",
+    "email-password": "Email or password is incorrect"
+  },
+  "validation": {
+    "email-required": "Email is required",
+    "password-required": "Password is required",
+    "email-invalid": "Email is invalid",
+    "password-min-8": "Password must be at least 8 characters long"
+  }
 }

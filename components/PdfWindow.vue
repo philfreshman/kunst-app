@@ -59,8 +59,13 @@ const props = defineProps({
       </p>
     </div>
 
+    <div class="relative top-[470px] w-auto text-13">
+      <p>{{ $t("pdf.invoice-text-1") }}</p>
+      <p>{{ $t("pdf.invoice-text-2") }}</p>
+    </div>
+
     <!--DOCUMENT ARTWORKS TABLE-->
-    <div class="relative top-[470px] w-[639px]">
+    <div class="relative top-[495px] w-[639px]">
       <table class="w-full">
         <thead>
           <tr class="font-din-medium text-13 leading-[5.2mm] border-b-[0.5px] border-black">
@@ -113,7 +118,7 @@ const props = defineProps({
           <p>{{ $t("pdf.offer-text-3") }}</p>
         </div>
         <div v-if="data.snapshot_type === 'invoice'">
-          <p>{{ $t("pdf.invoice-text-1") }}</p>
+          <p>{{ $t("pdf.invoice-text-3") }}</p>
         </div>
         <br />
         <p>{{ $t("pdf.greetings") }}</p>
