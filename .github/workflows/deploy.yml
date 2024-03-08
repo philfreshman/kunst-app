@@ -31,3 +31,6 @@ jobs:
 
       - name: Deploy to Vercel
         run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
+
+      - name: Notify deployment success
+        run: curl -d "Live deployment complete" ${{ secrets.pub-sub-instance }}
