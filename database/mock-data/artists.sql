@@ -1,0 +1,20 @@
+INSERT INTO public.artists (id, internal_id, name, phone, email, is_archived)
+VALUES
+    ('YzIwNDVmYzM', 1, 'Grace Johnson', '+49 30 987654', 'grace.johnson@example.com', false),
+    ('MjE0NWZlYmU', 2, 'John Doe', '+1 555-123-4567', 'john.doe@example.com', false),
+    ('MzYxMzcxMDM', 3, 'Alice Smith', '+49 30 987654', 'alice.smith@example.com', false),
+    ('YWMzN2ZkYzc', 4, 'Bob Johnson', '+44 20 12345678', 'bob.johnson@example.com', false),
+    ('MTVjNTRkNjU', 5, 'Emily Brown', '+33 1 23456789', 'emily.brown@example.com', false),
+    ('YWRiODViYmI', 6, 'David Lee', '+81 3 9876 5432', 'david.lee@example.com', false),
+    ('YjA5NWMzYWI', 7, 'Sophia Garcia', '+34 91 8765432', 'sophia.garcia@example.com', false),
+    ('NWY3YjdmNzk', 8, 'Michael Wang', '+86 10 12345678', 'michael.wang@example.com', false),
+    ('NzlmMDVkYWQ', 9, 'Olivia Kim', '+82 2 98765432', 'olivia.kim@example.com', false),
+    ('NGNmNzQ1OWQ', 10, 'Daniel Rodriguez', '+1 415-555-7890', 'daniel.rodriguez@example.com', false),
+    ('NzAxMDQ5Mjc', 11, 'Isabella Martinez', '+1 305-555-1234', 'isabella.martinez@example.com', false),
+    ('MDI3Yzk3ODg', 12, 'William Nguyen', '+1 713-555-5678', 'william.nguyen@example.com', false),
+    ('ZDIzN2ZiZDU', 13, 'Emma Kim', '+1 212-555-9876', 'emma.kim@example.com', false),
+    ('MzNjZDhmNjM', 14, 'Alexander Patel', '+1 650-555-4321', 'alexander.patel@example.com', false),
+    ('NDI1ZTc3ZmU', 15, 'Ava Hernandez', '+1 312-555-3456', 'ava.hernandez@example.com', false),
+    ('MWNkYmU5MGQ', 16, 'James Lee', '+1 404-555-6789', 'james.lee@example.com', false),
+    ('NzEwNDBhMTI', 17, 'Charlotte Nguyen', '+1 202-555-2345', 'charlotte.nguyen@example.com', false),
+    ('NWI4ZDExODg', 18, 'Liam Kim', '+1 415-555-7890', 'liam.kim@example.com', false);

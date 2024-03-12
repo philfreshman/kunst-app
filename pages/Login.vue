@@ -20,8 +20,8 @@ const schema = z.object({
 })
 
 const state = reactive({
-  email: "",
-  password: ""
+  email: import.meta.env.VITE_DEMO_EMAIL || "",
+  password: import.meta.env.VITE_DEMO_PASSWORD || ""
 })
 
 const validate = (state: any | undefined): FormError[] => {

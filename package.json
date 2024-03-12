@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev bun --dotenv .env.prod",
+    "demo": "nuxt dev --dotenv .env.demo",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
