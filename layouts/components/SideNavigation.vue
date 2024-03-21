@@ -3,32 +3,6 @@ const localePath = useLocalePath()
 </script>
 <template>
   <div class="h-auto flex flex-col">
-    <NuxtLink :to="localePath('/artists').toLowerCase()">
-      <UButton
-        :class="{ 'active-link': $route.path.endsWith('/artists') }"
-        class="w-full mb-1.5"
-        icon="i-mdi:alien-outline"
-        size="md"
-        color="gray"
-        variant="solid"
-      >
-        {{ $t("sidenav.artists") }}
-      </UButton>
-    </NuxtLink>
-
-    <NuxtLink :to="localePath('/artworks').toLowerCase()">
-      <UButton
-        :class="{ 'active-link': $route.path.endsWith('/artworks') }"
-        class="w-full my-1.5"
-        icon="i-mdi:palette-outline"
-        size="md"
-        color="gray"
-        variant="solid"
-      >
-        {{ $t("sidenav.artworks") }}
-      </UButton>
-    </NuxtLink>
-
     <NuxtLink :to="localePath('/offers').toLowerCase()">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/offers') }"
@@ -52,6 +26,32 @@ const localePath = useLocalePath()
         variant="solid"
       >
         {{ $t("sidenav.invoices") }}
+      </UButton>
+    </NuxtLink>
+
+    <NuxtLink :to="localePath('/artworks').toLowerCase()">
+      <UButton
+        :class="{ 'active-link': $route.path.endsWith('/artworks') }"
+        class="w-full my-1.5"
+        icon="i-mdi:palette-outline"
+        size="md"
+        color="gray"
+        variant="solid"
+      >
+        {{ $t("sidenav.artworks") }}
+      </UButton>
+    </NuxtLink>
+
+    <NuxtLink :to="localePath('/artists').toLowerCase()">
+      <UButton
+        :class="{ 'active-link': $route.path.endsWith('/artists') }"
+        class="w-full mb-1.5"
+        icon="i-mdi:alien-outline"
+        size="md"
+        color="gray"
+        variant="solid"
+      >
+        {{ $t("sidenav.artists") }}
       </UButton>
     </NuxtLink>
   </div>
