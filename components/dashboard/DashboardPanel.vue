@@ -1,31 +1,3 @@
-<template>
-  <div
-    ref="el"
-    v-bind="{ ...attrs, ...$attrs }"
-    :class="[ui.wrapper, grow ? ui.grow : ui.border, collapsible ? 'hidden lg:flex' : 'flex']"
-    :style="{ '--width': width && !grow ? `${width}px` : undefined }"
-  >
-    <slot />
-
-    <slot name="handle">
-      <DashboardPanelHandle v-if="resizable && !grow" @mousedown="onDrag" />
-    </slot>
-  </div>
-
-  <ClientOnly>
-    <USlideover
-      v-if="collapsible && smallerThanLg"
-      v-model="isOpen"
-      :side="side"
-      v-bind="{ ...attrs, ...$attrs }"
-      appear
-      class="lg:hidden"
-    >
-      <slot />
-    </USlideover>
-  </ClientOnly>
-</template>
-
 <script setup lang="ts">
 import type { PropType } from "vue"
 import { useBreakpoints, breakpointsTailwind } from "@vueuse/core"
@@ -112,3 +84,31 @@ defineExpose({
 
 provide("isOpen", isOpen)
 </script>
+
+<template>
+  <div
+    ref="el"
+    v-bind="{ ...attrs, ...$attrs }"
+    :class="[ui.wrapper, grow ? ui.grow : ui.border, collapsible ? 'hidden lg:flex' : 'flex']"
+    :style="{ '--width': width && !grow ? `${width}px` : undefined }"
+  >
+    <slot />
+
+    <slot name="handle">
+      <DashboardPanelHandle v-if="resizable && !grow" @mousedown="onDrag" />
+    </slot>
+  </div>
+
+  <ClientOnly>
+    <USlideover
+      v-if="collapsible && smallerThanLg"
+      v-model="isOpen"
+      :side="side"
+      v-bind="{ ...attrs, ...$attrs }"
+      appear
+      class="lg:hidden"
+    >
+      <slot />
+    </USlideover>
+  </ClientOnly>
+</template>

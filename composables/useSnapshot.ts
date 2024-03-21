@@ -3,7 +3,7 @@ import { calcPrice } from "~/utils/calcPrice"
 
 export default function useSnapshot() {
   const tax = 0.19
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
   const loading = ref<boolean>(true)
   const data = ref<Collection[]>()
   const snapshot = ref<Snapshot>()

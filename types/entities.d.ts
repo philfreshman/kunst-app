@@ -1,5 +1,3 @@
-import type { Ref } from "@vue/reactivity"
-
 export {}
 
 declare global {

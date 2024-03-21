@@ -8,34 +8,6 @@ const _useUIState = () => {
   const isDashboardSidebarSlidoverOpen = ref(false)
   const isDashboardSearchModalOpen = ref(false)
 
-  function toggleContentSearch() {
-    if (isHeaderDialogOpen.value) {
-      isHeaderDialogOpen.value = false
-
-      setTimeout(() => {
-        isContentSearchModalOpen.value = !isContentSearchModalOpen.value
-      }, 0)
-
-      return
-    }
-
-    isContentSearchModalOpen.value = !isContentSearchModalOpen.value
-  }
-
-  function toggleDashboardSearch() {
-    if (isDashboardSidebarSlidoverOpen.value) {
-      isDashboardSidebarSlidoverOpen.value = false
-
-      setTimeout(() => {
-        isDashboardSearchModalOpen.value = !isDashboardSearchModalOpen.value
-      }, 200)
-
-      return
-    }
-
-    isDashboardSearchModalOpen.value = !isDashboardSearchModalOpen.value
-  }
-
   watch(
     () => route.path,
     () => {
@@ -47,9 +19,7 @@ const _useUIState = () => {
     isHeaderDialogOpen,
     isContentSearchModalOpen,
     isDashboardSidebarSlidoverOpen,
-    isDashboardSearchModalOpen,
-    toggleContentSearch,
-    toggleDashboardSearch
+    isDashboardSearchModalOpen
   }
 }
 

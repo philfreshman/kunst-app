@@ -1,14 +1,8 @@
-<template>
-  <div :class="ui.wrapper" v-bind="attrs">
-    <slot />
-  </div>
-</template>
-
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import type { PropType } from "vue"
 
 const config = {
-  wrapper: 'p-4 flex-1 flex flex-col overflow-y-auto'
+  wrapper: "p-4 flex-1 flex flex-col overflow-y-auto"
 }
 
 defineOptions({
@@ -26,5 +20,11 @@ const props = defineProps({
   }
 })
 
-const { ui, attrs } = useUI('dashboard.panel.content', toRef(props, 'ui'), config, toRef(props, 'class'), true)
+const { ui, attrs } = useUI("dashboard.panel.content", toRef(props, "ui"), config, toRef(props, "class"), true)
 </script>
+
+<template>
+  <div :class="ui.wrapper" v-bind="attrs">
+    <slot />
+  </div>
+</template>

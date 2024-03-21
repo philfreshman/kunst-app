@@ -1,7 +1,7 @@
 import { ref } from "vue"
 
 export default function useArtworks(variant?: string) {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
   const data = ref<Artwork[] | ArtworkLight[]>()
   const loading = ref<boolean>()
 

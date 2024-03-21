@@ -1,7 +1,7 @@
 import { ref } from "vue"
 
 export default function useInvoices() {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
   const data = ref<Invoice[]>()
   const loading = ref(true)
 

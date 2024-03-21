@@ -1,7 +1,7 @@
 import { ref } from "vue"
 
 export default function useArtist() {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
   const loading = ref<boolean>(true)
   const data = ref<Artist[]>()
 

@@ -1,7 +1,7 @@
 import { ref } from "vue"
 
 export default function useOffers() {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
   const data = ref<Offer[]>()
   const loading = ref(true)
 

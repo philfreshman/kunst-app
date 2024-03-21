@@ -2,6 +2,8 @@ import type { Link as ULink, Avatar, Badge, Chip, Command, Tooltip } from "#ui/t
 
 export type UserStatus = "subscribed" | "unsubscribed" | "bounced"
 
+export type Json = string | number | boolean | null | { [key: string]: Json } | Json[]
+
 export interface User {
   id: number
   name: string
