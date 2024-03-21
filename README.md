@@ -30,8 +30,3 @@ I am actively working on improving and expanding Kunst-App. Here are some of the
 2.  **Transaction Safety Implementation:** Adding transaction-safety measures to the application for secure and reliable data handling.
     
 3.  **Contacts Management:** Introducing a feature for managing contacts within the application, making it easier to associate offers and invoices with specific clients.
-
-
-## Codebase visualisation 
-
-![Visualization of this repo](./diagram.svg)
