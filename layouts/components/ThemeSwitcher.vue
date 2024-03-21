@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
+const appConfig = useAppConfig()
 
 const isDark = computed({
   get() {
@@ -15,16 +16,15 @@ const isDark = computed({
   <ClientOnly>
     <UTooltip :text="$t('actions.toggle')">
       <UButton
-        :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+        :icon="isDark ? appConfig.ui.icons.dark : appConfig.ui.icons.light"
         color="gray"
         variant="solid"
-        aria-label="Theme"
         @click="isDark = !isDark"
       />
     </UTooltip>
 
     <template #fallback>
-      <UButton icon="i-heroicons-sun-20-solid" color="gray" variant="solid" aria-label="Theme" />
+      <UButton :icon="appConfig.ui.icons.light" color="gray" variant="solid" aria-label="Theme" />
     </template>
   </ClientOnly>
 </template>

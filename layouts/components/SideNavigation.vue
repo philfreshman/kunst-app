@@ -1,13 +1,28 @@
 <script setup lang="ts">
+const appConfig = useAppConfig()
+
 const localePath = useLocalePath()
 </script>
 <template>
   <div class="h-auto flex flex-col">
+    <NuxtLink :to="localePath('/')">
+      <UButton
+        :class="{ 'active-link': $route.path.endsWith('/') }"
+        class="w-full mb-1.5"
+        :icon="appConfig.ui.icons.dashboard"
+        size="md"
+        color="gray"
+        variant="solid"
+      >
+        Home
+      </UButton>
+    </NuxtLink>
+
     <NuxtLink :to="localePath('/offers')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/offers') }"
         class="w-full my-1.5"
-        icon="i-mdi:offer"
+        :icon="appConfig.ui.icons.offer"
         size="md"
         color="gray"
         variant="solid"
@@ -20,7 +35,7 @@ const localePath = useLocalePath()
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/invoices') }"
         class="w-full my-1.5"
-        icon="i-mdi:receipt-text-outline"
+        :icon="appConfig.ui.icons.receipt"
         size="md"
         color="gray"
         variant="solid"
@@ -33,7 +48,7 @@ const localePath = useLocalePath()
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/artworks') }"
         class="w-full my-1.5"
-        icon="i-mdi:palette-outline"
+        :icon="appConfig.ui.icons.palette"
         size="md"
         color="gray"
         variant="solid"
@@ -45,8 +60,8 @@ const localePath = useLocalePath()
     <NuxtLink :to="localePath('/artists')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/artists') }"
-        class="w-full mb-1.5"
-        icon="i-mdi:alien-outline"
+        class="w-full my-1.5"
+        :icon="appConfig.ui.icons.alien"
         size="md"
         color="gray"
         variant="solid"

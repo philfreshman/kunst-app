@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const appConfig = useAppConfig()
 const logout = async () => {
   await useSupabaseClient().auth.signOut()
   await useRouter().push(useLocalePath()("/login").toLowerCase())
@@ -7,6 +8,6 @@ const logout = async () => {
 
 <template>
   <UTooltip :text="$t('actions.logout')">
-    <UButton icon="i-heroicons-outline:logout" color="gray" variant="solid" @click="logout" />
+    <UButton :icon="appConfig.ui.icons.logout" color="gray" variant="solid" @click="logout" />
   </UTooltip>
 </template>

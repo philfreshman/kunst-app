@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const appConfig = useAppConfig()
 const { locale } = useI18n()
 const router = useRouter()
 const switchLocalePath = useSwitchLocalePath()
@@ -63,7 +64,7 @@ const isDropdownOpen = ref(false)
 <template>
   <UDropdown :items="languageOptions" :popper="{ offsetDistance: 5, placement: 'top-end' }" :ui="{ width: '' }">
     <UTooltip :prevent="isDropdownOpen" :text="$t('nouns.language')">
-      <UButton color="gray" icon="i-heroicons-outline:translate" @click="isDropdownOpen = true" />
+      <UButton color="gray" :icon="appConfig.ui.icons.translate" @click="isDropdownOpen = true" />
     </UTooltip>
   </UDropdown>
 </template>

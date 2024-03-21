@@ -27,6 +27,9 @@ export default defineNuxtConfig({
   devtools: {
     enabled: false
   },
+  ui: {
+    icons: ["heroicons", "simple-icons", "mdi"]
+  },
   css: ["~/assets/fonts/fonts.sass"],
   runtimeConfig: {
     useAuth: false
