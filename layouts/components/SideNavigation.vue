@@ -3,7 +3,7 @@ const localePath = useLocalePath()
 </script>
 <template>
   <div class="h-auto flex flex-col">
-    <NuxtLink :to="localePath('/offers').toLowerCase()">
+    <NuxtLink :to="localePath('/offers')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/offers') }"
         class="w-full my-1.5"
@@ -16,7 +16,7 @@ const localePath = useLocalePath()
       </UButton>
     </NuxtLink>
 
-    <NuxtLink :to="localePath('/invoices').toLowerCase()">
+    <NuxtLink :to="localePath('/invoices')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/invoices') }"
         class="w-full my-1.5"
@@ -29,7 +29,7 @@ const localePath = useLocalePath()
       </UButton>
     </NuxtLink>
 
-    <NuxtLink :to="localePath('/artworks').toLowerCase()">
+    <NuxtLink :to="localePath('/artworks')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/artworks') }"
         class="w-full my-1.5"
@@ -42,7 +42,7 @@ const localePath = useLocalePath()
       </UButton>
     </NuxtLink>
 
-    <NuxtLink :to="localePath('/artists').toLowerCase()">
+    <NuxtLink :to="localePath('/artists')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/artists') }"
         class="w-full mb-1.5"
