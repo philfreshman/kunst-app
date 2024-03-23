@@ -1,5 +1,3 @@
-import type { Ref } from "@vue/reactivity"
-
 export {}
 
 declare global {
@@ -35,7 +33,6 @@ declare global {
     snapshot_id: string
   }
 
-  // Rechnung
   type Invoice = {
     invoice_date: string
     invoice_number: string
@@ -45,7 +42,6 @@ declare global {
     }
   } & KunstDocument
 
-  // Angebot
   type Offer = {
     offer_date: string
   } & KunstDocument
