@@ -1,4 +1,4 @@
-# Kunst-app
+# Kunst-App
 
 Welcome to Kunst-App, a web application built with Vue, Nuxt, Tailwind, Supabase, and PostgreSQL. This repository focuses on providing a seamless experience for the creation and management of offers and invoices, including the ability to generate and download PDF documents (for best PDF rendering result, use a chromium-based browser).
 
