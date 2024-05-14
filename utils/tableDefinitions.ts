@@ -41,13 +41,13 @@ export const artworksTableColumns = (t: any) => [
     sortable: true
   },
   {
-    key: "height",
-    label: t("common.height"),
+    key: "width",
+    label: t("common.width"),
     sortable: true
   },
   {
-    key: "width",
-    label: t("common.width"),
+    key: "height",
+    label: t("common.height"),
     sortable: true
   },
   {

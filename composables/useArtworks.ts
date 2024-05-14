@@ -1,7 +1,7 @@
 import { ref } from "vue"
 
 export default function useArtworks(variant?: string) {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
   const data = ref<Artwork[] | ArtworkLight[]>()
   const loading = ref<boolean>()
 
@@ -22,7 +22,6 @@ export default function useArtworks(variant?: string) {
   }
 
   async function getArtworks(): Promise<any[]> {
-    // @ts-ignore
     const { data, error } = await supabase.rpc("get_artworks")
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
@@ -30,7 +29,6 @@ export default function useArtworks(variant?: string) {
   }
 
   async function getArtworksSearch(): Promise<any[]> {
-    // @ts-ignore
     const { data, error } = await supabase.rpc("get_artworks_search")
     return new Promise((resolve, reject) => {
       error ? reject(error) : resolve(data)
