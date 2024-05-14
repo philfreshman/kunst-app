@@ -6,7 +6,7 @@ const localePath = useLocalePath()
     <NuxtLink :to="localePath('/offers')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/offers') }"
-        class="w-full my-1.5"
+        class="w-full mb-1.5"
         icon="i-mdi:offer"
         size="md"
         color="gray"
@@ -45,7 +45,7 @@ const localePath = useLocalePath()
     <NuxtLink :to="localePath('/artists')">
       <UButton
         :class="{ 'active-link': $route.path.endsWith('/artists') }"
-        class="w-full mb-1.5"
+        class="w-full my-1.5"
         icon="i-mdi:alien-outline"
         size="md"
         color="gray"
