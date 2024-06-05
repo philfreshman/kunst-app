@@ -89,6 +89,10 @@ export const invoiceTableColumns = (t: any) => [
     label: "#"
   },
   {
+    key: "invoice_number",
+    label: t("common.invoice-number")
+  },
+  {
     key: "production_name",
     label: t("common.production")
   },

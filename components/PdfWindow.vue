@@ -50,7 +50,7 @@ const props = defineProps({
       <p v-if="data.invoice_number">{{ $t("common.invoice-number") }}: {{ data.invoice_number }}</p>
       <!--      <p v-if="data.offer_number">Angebot-Nr.: {{ data.offer_number }}</p>-->
       <p v-if="data.custom_field?.key && data.custom_field?.value">
-        {{ data.custom_field.key }}: {{ data.custom_field.value }}
+        {{ data.custom_field.key.trimEnd() }}: {{ data.custom_field.value }}
       </p>
     </div>
 
